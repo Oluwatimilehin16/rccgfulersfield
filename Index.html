@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fullers Field Parish | Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#221C63;
+    --navy-deep:#14113A;
+    --navy-light:#3D3690;
+    --red:#D42027;
+    --red-deep:#A5171D;
+    --red-light:#E8555B;
+    --green:#1B8A44;
+    --green-deep:#146536;
+    --green-light:#4CAE72;
+    --cream:#F7F5F0;
+    --ivory:#EFEBE0;
+    --charcoal:#1C1A2B;
+    --charcoal-soft:#4B4860;
+    --white:#FFFFFF;
+    --line:#E1DED2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans',sans-serif;
+    color:var(--charcoal);
+    background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--charcoal);
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--green);
+    font-weight:600;
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 28px;
+    font-size:0.9rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    border-radius:2px;
+    transition:all .25s ease;
+  }
+  .btn-gold{background:var(--red);color:var(--white);}
+  .btn-gold:hover{background:var(--red-light);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,0.7);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,0.12);}
+  .btn-burgundy{background:var(--navy);color:#fff;}
+  .btn-burgundy:hover{background:var(--navy-light);}
+  .btn-text{color:var(--navy);font-weight:600;font-size:0.88rem;border-bottom:1.5px solid var(--red);padding-bottom:2px;}
+  .btn-text:hover{color:var(--red);}
+  .section{padding:110px 8vw;}
+  .section-sm{padding:70px 8vw;}
+  .container{max-width:1280px;margin:0 auto;}
+  .icon{width:20px;height:20px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.6;}
+
+  /* ============ HEADER ============ */
+  header.site-header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:1000;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 5vw;
+    transition:background .3s ease, padding .3s ease, box-shadow .3s ease;
+  }
+  header.site-header.scrolled{
+    background:var(--cream);
+    padding:14px 5vw;
+    box-shadow:0 2px 18px rgba(0,0,0,0.06);
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fraunces',serif;font-weight:600;font-size:1.05rem;
+    color:#fff;letter-spacing:0.01em;
+  }
+  header.site-header.scrolled .logo{color:var(--navy);}
+  .logo-mark{
+    width:46px;height:46px;border-radius:50%;
+    background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    box-shadow:0 2px 8px rgba(0,0,0,0.18);
+    padding:2px;
+  }
+  .logo-mark img{width:100%;height:100%;object-fit:contain;border-radius:50%;}
+  .logo small{display:block;font-family:'Work Sans',sans-serif;font-weight:400;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;margin-top:1px;}
+
+  nav.main-nav{display:flex;align-items:center;gap:38px;}
+  nav.main-nav ul{display:flex;align-items:center;gap:34px;}
+  nav.main-nav a.nav-link{
+    color:#fff;font-size:0.92rem;font-weight:500;
+    display:flex;align-items:center;gap:5px;
+    padding:6px 0;position:relative;
+  }
+  header.site-header.scrolled nav.main-nav a.nav-link{color:var(--charcoal);}
+  nav.main-nav a.nav-link::after{
+    content:"";position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--red);
+    transition:width .25s ease;
+  }
+  nav.main-nav a.nav-link:hover::after{width:100%;}
+
+  .header-actions{display:flex;align-items:center;gap:14px;}
+  .live-btn{
+    display:flex;align-items:center;gap:7px;
+    padding:9px 16px;border:1.5px solid rgba(255,255,255,0.55);border-radius:20px;
+    color:#fff;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;
+    transition:border-color .25s ease, background .25s ease;
+  }
+  header.site-header.scrolled .live-btn{border-color:var(--navy);color:var(--navy);}
+  .live-btn:hover{background:rgba(255,255,255,0.14);}
+  header.site-header.scrolled .live-btn:hover{background:rgba(92,18,32,0.08);}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:#E23B3B;position:relative;}
+  .live-dot::after{
+    content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid #E23B3B;
+    animation:pulse 1.6s infinite ease-out;
+  }
+  @keyframes pulse{0%{transform:scale(0.6);opacity:1;}100%{transform:scale(1.9);opacity:0;}}
+
+  .social-icons{display:flex;gap:12px;align-items:center;}
+  .social-icons a{
+    width:32px;height:32px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(255,255,255,0.4);color:#fff;
+    transition:background .25s ease;
+  }
+  header.site-header.scrolled .social-icons a{border-color:var(--line);color:var(--navy);}
+  .social-icons a:hover{background:rgba(255,255,255,0.16);}
+  header.site-header.scrolled .social-icons a:hover{background:var(--ivory);}
+  .social-icons svg{width:15px;height:15px;}
+
+  .give-nav-btn{padding:10px 20px;}
+
+  .hamburger{display:none;flex-direction:column;gap:5px;width:26px;}
+  .hamburger span{height:2px;background:#fff;transition:all .25s ease;}
+  header.site-header.scrolled .hamburger span{background:var(--charcoal);}
+
+  /* Ministries mega menu */
+  .has-mega{position:relative;}
+  .mega-panel{
+    position:fixed;top:0;left:0;right:0;
+    background:var(--cream);
+    padding:130px 8vw 50px;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:22px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.12);
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .25s ease, transform .25s ease, visibility .25s;
+    z-index:900;
+  }
+  .has-mega:hover .mega-panel, .has-mega.mega-open .mega-panel{
+    opacity:1;visibility:visible;transform:translateY(0);
+  }
+  .mega-card{
+    background:var(--white);border:1px solid var(--line);
+    padding:26px 22px;transition:border-color .2s ease, transform .2s ease;
+  }
+  .mega-card:hover{border-color:var(--red);transform:translateY(-3px);}
+  .mega-card .mega-icon{
+    width:44px;height:44px;border-radius:50%;background:var(--ivory);
+    display:flex;align-items:center;justify-content:center;color:var(--navy);margin-bottom:16px;
+  }
+  .mega-card .mega-tag{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:6px;}
+  .mega-card h4{font-size:1.1rem;margin-bottom:6px;}
+  .mega-card p{font-size:0.85rem;color:var(--charcoal-soft);line-height:1.5;margin-bottom:14px;}
+  .mega-card .mega-link{font-size:0.8rem;font-weight:600;color:var(--navy);}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;height:100vh;min-height:640px;overflow:hidden;
+    color:#fff;
+  }
+  .hero-slide{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1s ease;
+    display:flex;align-items:flex-end;
+  }
+  .hero-slide.active{opacity:1;}
+  .hero-slide::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(0deg,rgba(20,10,10,0.72) 0%, rgba(20,10,10,0.32) 45%, rgba(20,10,10,0.5) 100%);
+  }
+  .hero-slide-inner{
+    position:relative;z-index:2;width:100%;
+    padding:0 6vw 90px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:60px;
+  }
+  .hero-copy{max-width:640px;}
+  .hero-copy h1{
+    font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.04;color:#fff;
+    margin-bottom:22px;font-weight:500;
+  }
+  .hero-copy p.hero-sub{font-size:1.08rem;line-height:1.6;color:rgba(255,255,255,0.88);max-width:480px;margin-bottom:30px;font-weight:300;}
+  .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .hero-person-card{
+    flex-shrink:0;width:300px;
+    background:rgba(20,14,13,0.55);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:20px;
+    display:flex;gap:16px;align-items:flex-start;
+  }
+  .hero-person-card img{
+    width:68px;height:68px;border-radius:50%;object-fit:cover;
+    border:2px solid var(--red);flex-shrink:0;
+  }
+  .hero-person-card .p-name{font-family:'Fraunces',serif;font-size:1rem;color:#fff;margin-bottom:2px;}
+  .hero-person-card .p-title{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--green-light);margin-bottom:9px;}
+  .hero-person-card .p-quote{font-size:0.84rem;line-height:1.5;color:rgba(255,255,255,0.85);font-style:italic;}
+
+  .hero-dots{
+    position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+    display:flex;gap:10px;z-index:3;
+  }
+  .hero-dots button{
+    width:34px;height:3px;background:rgba(255,255,255,0.35);
+    transition:background .3s ease;
+  }
+  .hero-dots button.active{background:var(--red);}
+
+  .hero-eyebrow-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);
+    padding:7px 14px;border-radius:20px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:#fff;margin-bottom:22px;font-weight:500;
+  }
+  .hero-eyebrow-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green-light);}
+
+  /* ============ WELCOME ============ */
+  .welcome-section{
+    display:grid;grid-template-columns:0.85fr 1.15fr;gap:70px;align-items:center;
+  }
+  .welcome-image{position:relative;}
+  .welcome-image img{width:100%;height:560px;object-fit:cover;}
+  .welcome-image .frame-accent{
+    position:absolute;bottom:-20px;left:-20px;
+    width:140px;height:140px;border:2px solid var(--red);
+    z-index:-1;
+  }
+  .welcome-text h2{font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.12;margin-bottom:24px;}
+  .welcome-text p{font-size:1.02rem;line-height:1.75;color:var(--charcoal-soft);margin-bottom:18px;font-weight:300;}
+  .welcome-text .signoff{
+    margin-top:28px;display:flex;align-items:center;gap:14px;
+  }
+  .welcome-text .signoff-line{width:44px;height:1.5px;background:var(--red);}
+  .welcome-text .signoff span{font-family:'Fraunces',serif;font-style:italic;font-size:1rem;color:var(--navy);}
+
+  /* ============ GALLERY MARQUEE ============ */
+  .gallery-section{padding:90px 0;background:var(--navy-deep);overflow:hidden;}
+  .gallery-heading{padding:0 8vw;margin-bottom:44px;color:#fff;}
+  .gallery-heading h2{color:#fff;font-size:clamp(1.9rem,3vw,2.6rem);}
+  .gallery-heading p{color:rgba(255,255,255,0.6);margin-top:10px;font-weight:300;}
+  .marquee-track{
+    display:flex;gap:20px;width:max-content;
+    animation:scroll-left 42s linear infinite;
+  }
+  .marquee-track:hover{animation-play-state:paused;}
+  .marquee-track img{
+    height:340px;object-fit:cover;flex-shrink:0;
+  }
+  .marquee-track img.landscape{width:460px;}
+  .marquee-track img.portrait{width:260px;}
+  @keyframes scroll-left{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-50%);}
+  }
+
+  /* ============ SERVICE TIMES ============ */
+  .services-section{background:var(--ivory);}
+  .services-header{text-align:center;max-width:640px;margin:0 auto 70px;}
+  .services-header h2{font-size:clamp(2rem,3.4vw,2.8rem);}
+  .services-header p{margin-top:16px;color:var(--charcoal-soft);font-weight:300;line-height:1.6;}
+
+  .services-body{max-width:980px;margin:0 auto;}
+
+  /* Sunday flow */
+  .sunday-flow{background:var(--navy);color:#fff;padding:48px 6vw;position:relative;overflow:hidden;}
+  .sunday-flow::before{
+    content:"";position:absolute;top:-60px;right:-60px;width:220px;height:220px;border-radius:50%;
+    border:1px solid rgba(255,255,255,0.08);
+  }
+  .flow-label{display:flex;align-items:center;gap:12px;margin-bottom:36px;position:relative;z-index:1;}
+  .flow-label .fl-icon{width:40px;height:40px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .flow-label h3{color:#fff;font-size:1.3rem;}
+  .flow-label span{display:block;font-size:0.8rem;color:rgba(255,255,255,0.55);margin-top:2px;}
+  .flow-steps{display:flex;align-items:flex-start;justify-content:space-between;position:relative;z-index:1;}
+  .flow-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 14px;}
+  .flow-step .fs-icon{
+    width:60px;height:60px;border-radius:50%;background:rgba(255,255,255,0.08);
+    border:1.5px solid var(--red);display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:#fff;
+  }
+  .flow-step .fs-time{font-family:'Fraunces',serif;font-size:1.2rem;color:#fff;margin-bottom:6px;}
+  .flow-step .fs-name{font-size:0.9rem;font-weight:500;color:rgba(255,255,255,0.78);line-height:1.4;}
+  .flow-arrow{flex:0 0 auto;padding-top:26px;color:var(--red);opacity:0.8;}
+  .flow-arrow svg{width:22px;height:22px;}
+
+  /* Midweek tickets */
+  .midweek-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:26px;}
+  .ticket-card{background:var(--white);border:1px solid var(--line);display:flex;}
+  .ticket-stub{
+    width:92px;flex-shrink:0;background:var(--green);color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px 8px;
+  }
+  .ticket-stub .day-abbr{font-family:'Fraunces',serif;font-size:1.6rem;line-height:1;}
+  .ticket-stub .day-full{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.1em;margin-top:6px;opacity:0.88;}
+  .ticket-body{
+    flex:1;padding:20px 24px;display:flex;flex-direction:column;justify-content:center;
+    border-left:2px dashed var(--line);
+  }
+  .ticket-body h4{font-size:1.1rem;margin-bottom:6px;}
+  .ticket-body .ticket-time{font-size:0.86rem;color:var(--charcoal-soft);font-weight:500;}
+
+  /* Monthly spotlight */
+  .monthly-spotlight{
+    margin-top:26px;background:var(--red);color:#fff;padding:38px 6vw;
+    display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between;
+  }
+  .spotlight-left{display:flex;align-items:center;gap:24px;}
+  .spotlight-icon{
+    width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,0.16);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;
+  }
+  .spotlight-text .sp-tag{font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;opacity:0.85;margin-bottom:6px;font-weight:600;}
+  .spotlight-text h3{color:#fff;font-size:1.5rem;margin-bottom:6px;}
+  .spotlight-text p{color:rgba(255,255,255,0.85);font-size:0.9rem;max-width:420px;font-weight:300;line-height:1.5;}
+
+  .location-box{
+    max-width:980px;margin:32px auto 0;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+    background:var(--navy-deep);color:#fff;padding:30px 34px;
+  }
+  .location-box .loc-info{display:flex;align-items:center;gap:16px;}
+  .location-box h4{color:#fff;font-size:1.1rem;margin-bottom:4px;}
+  .location-box p{font-size:0.88rem;color:rgba(255,255,255,0.75);}
+
+  @media (max-width:760px){
+    .flow-steps{flex-direction:column;gap:26px;}
+    .flow-arrow{display:none;}
+    .midweek-row{grid-template-columns:1fr;}
+    .monthly-spotlight{flex-direction:column;align-items:flex-start;}
+  }
+
+  /* ============ EVENTS ============ */
+  .events-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:54px;
+  }
+  .event-card{border:1px solid var(--line);background:var(--white);position:relative;}
+  .event-card img{width:100%;height:230px;object-fit:cover;}
+  .event-date-badge{
+    position:absolute;top:16px;left:16px;background:var(--white);
+    padding:8px 14px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,0.12);
+  }
+  .event-date-badge .day{font-family:'Fraunces',serif;font-size:1.3rem;line-height:1;color:var(--navy);}
+  .event-date-badge .mon{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);font-weight:700;}
+  .event-body{padding:24px;}
+  .event-body h3{font-size:1.15rem;margin-bottom:10px;line-height:1.3;}
+  .event-body p{font-size:0.9rem;color:var(--charcoal-soft);line-height:1.55;margin-bottom:16px;font-weight:300;}
+
+  .section-head-row{
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;
+  }
+
+  /* ============ MINISTRIES ============ */
+  .ministries-section{background:var(--navy-deep);}
+  .ministries-section .eyebrow{color:var(--green-light);}
+  .ministries-section h2{color:#fff;}
+  .ministries-section .section-head-row p{color:rgba(255,255,255,0.6);}
+  .ministries-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:54px;
+  }
+  .ministry-card{background:#2b2422;overflow:hidden;transition:transform .3s ease;}
+  .ministry-card:hover{transform:translateY(-6px);}
+  .ministry-card img{width:100%;height:200px;object-fit:cover;}
+  .ministry-body{padding:22px;}
+  .ministry-body .m-tag{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:8px;}
+  .ministry-body h3{color:#fff;font-size:1.15rem;margin-bottom:10px;}
+  .ministry-body p{color:rgba(255,255,255,0.62);font-size:0.86rem;line-height:1.55;margin-bottom:16px;font-weight:300;}
+  .ministry-body a{font-size:0.82rem;font-weight:600;color:var(--green-light);}
+  .ministries-cta{text-align:center;margin-top:52px;}
+
+  /* ============ NEWS ============ */
+  .news-list{margin-top:54px;display:flex;flex-direction:column;}
+  .news-item{
+    display:grid;grid-template-columns:220px 1fr auto;gap:32px;align-items:center;
+    padding:26px 0;border-bottom:1px solid var(--line);
+  }
+  .news-item:first-child{border-top:1px solid var(--line);}
+  .news-item img{width:220px;height:130px;object-fit:cover;}
+  .news-meta{font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:8px;}
+  .news-item h3{font-size:1.2rem;margin-bottom:8px;}
+  .news-item p{color:var(--charcoal-soft);font-size:0.9rem;line-height:1.55;font-weight:300;}
+
+  /* ============ GIVE STRIP ============ */
+  .give-strip{
+    background:var(--navy);color:#fff;padding:80px 8vw;text-align:center;
+  }
+  .give-strip h2{color:#fff;font-size:clamp(1.9rem,3.2vw,2.6rem);margin-bottom:18px;}
+  .give-strip p{color:rgba(255,255,255,0.78);max-width:560px;margin:0 auto 32px;font-weight:300;line-height:1.6;}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,0.7);padding:80px 8vw 30px;}
+  .footer-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px;
+  }
+  .footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:1.15rem;margin-bottom:16px;}
+  .footer-grid p{font-size:0.88rem;line-height:1.6;color:rgba(255,255,255,0.55);max-width:280px;}
+  .footer-col h5{color:#fff;font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;font-weight:600;}
+  .footer-col ul li{margin-bottom:12px;font-size:0.9rem;}
+  .footer-col ul li a:hover{color:var(--red-light);}
+  .footer-social{display:flex;gap:12px;margin-top:20px;}
+  .footer-social a{
+    width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,0.25);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .footer-social svg{width:15px;height:15px;}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.12);padding-top:26px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:0.8rem;color:rgba(255,255,255,0.45);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1080px){
+    .welcome-section{grid-template-columns:1fr;gap:44px;}
+    .welcome-image img{height:420px;}
+    .ministries-grid{grid-template-columns:repeat(2,1fr);}
+    .events-grid{grid-template-columns:repeat(2,1fr);}
+    .mega-panel{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:860px){
+    nav.main-nav ul, .social-icons{display:none;}
+    .hamburger{display:flex;}
+    .hero-slide-inner{flex-direction:column;align-items:flex-start;gap:30px;}
+    .hero-person-card{width:100%;max-width:420px;}
+    .news-item{grid-template-columns:1fr;}
+    .news-item img{width:100%;height:180px;}
+    .location-box{flex-direction:column;align-items:flex-start;}
+    .sunday-flow{padding:40px 6vw;}
+  }
+  @media (max-width:640px){
+    .section{padding:70px 6vw;}
+    .events-grid, .ministries-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:36px;}
+    .give-nav-btn span.label{display:none;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <a href="#home" class="logo">
+    <span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span>
+    <span>Fullers Field Parish<small>RCCG Parish</small></span>
+  </a>
+
+  <nav class="main-nav" id="mainNav">
+    <ul>
+      <li><a href="#home" class="nav-link">Home</a></li>
+      <li><a href="#welcome" class="nav-link">About</a></li>
+      <li class="has-mega" id="ministriesTrigger">
+        <a href="#ministries" class="nav-link">
+          Ministries
+          <svg class="icon" viewBox="0 0 24 24" style="width:14px;height:14px"><path d="M6 9l6 6 6-6"/></svg>
+        </a>
+        <div class="mega-panel">
+          <div class="mega-card">
+            <div class="mega-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+            <div class="mega-tag">60 &amp; Above</div>
+            <h4>Wise Women</h4>
+            <p>Fellowship, wisdom, and faith for women 60 and above.</p>
+            <a href="#" class="mega-link">Explore →</a>
+          </div>
+          <div class="mega-card">
+            <div class="mega-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7"/></svg></div>
+            <div class="mega-tag">60 &amp; Above</div>
+            <h4>Wise Men</h4>
+            <p>Mentorship, prayer, and purpose for men 60 and above.</p>
+            <a href="#" class="mega-link">Explore →</a>
+          </div>
+          <div class="mega-card">
+            <div class="mega-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/></svg></div>
+            <div class="mega-tag">Youth &amp; Young Adults</div>
+            <h4>Hope of Nations</h4>
+            <p>Raising the next generation of world-changers.</p>
+            <a href="#" class="mega-link">Explore →</a>
+          </div>
+          <div class="mega-card">
+            <div class="mega-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg></div>
+            <div class="mega-tag">Kids</div>
+            <h4>Children's Ministry</h4>
+            <p>A safe, fun, faith-filled space where kids discover God's love.</p>
+            <a href="#" class="mega-link">Explore →</a>
+          </div>
+        </div>
+      </li>
+      <li><a href="#events" class="nav-link">Events</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <a href="https://www.youtube.com/" target="_blank" rel="noopener" class="live-btn">
+      <span class="live-dot"></span> Live
+    </a>
+    <div class="social-icons">
+      <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.3c-.26-.04-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.75v2.56H8.2v3h2.46V21h2.84z"/></svg>
+      </a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <a href="#give" class="btn btn-gold give-nav-btn"><span class="label">Sow a Seed</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+
+  <div class="hero-slide active" style="background-image:url('images/churchhero1.jpg')">
+    <div class="hero-slide-inner">
+      <div class="hero-copy">
+        <span class="hero-eyebrow-badge"><span class="dot"></span> You Are Welcome Here</span>
+        <h1>Take a Step Toward the Light</h1>
+        <p class="hero-sub">Discover faith, hope, and a family for your soul. Whatever season you're in, there's a seat for you here.</p>
+        <div class="hero-cta-row">
+          <a href="#services" class="btn btn-gold">Plan a Visit</a>
+          <a href="#welcome" class="btn btn-outline">Watch Our Story</a>
+        </div>
+      </div>
+      <div class="hero-person-card">
+        <img src="images/pastorsheadshot.jpg" alt="Portrait of the Senior Pastor">
+        <div>
+          <div class="p-name">Pastor Wole Obayomi</div>
+          <div class="p-title">Pastor</div>
+          <div class="p-quote">"Welcome home. Come as you are and discover the love, community, and purpose God has for you."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide" style="background-image:url('images/community1.jpg')">
+    <div class="hero-slide-inner">
+      <div class="hero-copy">
+        <span class="hero-eyebrow-badge"><span class="dot"></span> Our Mandate</span>
+        <h1>To Make Heaven, Together</h1>
+        <p class="hero-sub">We exist to reach the lost and raise disciples who make heaven, and to take as many people with us as possible.</p>
+        <div class="hero-cta-row">
+          <a href="#welcome" class="btn btn-gold">See Our Vision &amp; Mission</a>
+        </div>
+      </div>
+      <div class="hero-person-card">
+        <img src="images/generaloverseerheadshot.jpg" alt="Portrait of the General Overseer">
+        <div>
+          <div class="p-name">Pastor E.A Adeboye</div>
+          <div class="p-title">General Overseer, RCCG</div>
+          <div class="p-quote">"Our mandate is simple — to make heaven, and to take as many people with us as possible."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-slide" style="background-image:url('images/hero3.jpg')">
+    <div class="hero-slide-inner">
+      <div class="hero-copy">
+        <span class="hero-eyebrow-badge"><span class="dot"></span> Sow in Faith</span>
+        <h1>Sow a Seed, Reap a Harvest</h1>
+        <p class="hero-sub">Giving is an act of worship. Every seed sown here helps us reach our community and beyond.</p>
+        <div class="hero-cta-row">
+          <a href="#give" class="btn btn-gold">Give / Sow a Seed</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-dots" id="heroDots">
+    <button class="active" data-i="0" aria-label="Slide 1"></button>
+    <button data-i="1" aria-label="Slide 2"></button>
+    <button data-i="2" aria-label="Slide 3"></button>
+  </div>
+</section>
+
+<!-- ============ WELCOME ============ -->
+<section class="section welcome-section" id="welcome">
+  <div class="welcome-image">
+    <img src="images/pastorsheadshot.jpg" alt="Pastor welcoming the congregation">
+    <div class="frame-accent"></div>
+  </div>
+  <div class="welcome-text">
+    <span class="eyebrow">Welcome</span>
+    <h2>A Place to Discover God and Find Your Family</h2>
+    <p>Fullers Field Parish is a vibrant spiritual community devoted to loving God, loving people, and doing good. As a parish of the Redeemed Christian Church of God, we've been raising disciples and serving our community with open arms.</p>
+    <p>We live out our faith by following Jesus's example — showing up for whoever we meet, wherever we go, no religious background required. If you're searching for hope, healing, or simply a place to belong, we'd love to have you.</p>
+    <div class="signoff">
+      <span class="signoff-line"></span>
+      <span>— Pastor Wole Obayomi</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY MARQUEE ============ -->
+<section class="gallery-section">
+  <div class="gallery-heading">
+    <span class="eyebrow">Life at CRF</span>
+    <h2>Moments From Our Family</h2>
+    <p>A look into fellowship, worship, and community life.</p>
+  </div>
+  <div class="marquee-track" id="marqueeTrack">
+    <img class="landscape" src="images/members1.jpg" alt="">
+    <img class="portrait" src="images/members2.jpg" alt="">
+    <img class="landscape" src="images/members3.jpg" alt="">
+    <img class="portrait" src="images/members7.jpg" alt="">
+    <img class="landscape" src="images/members4.jpg" alt="">
+    <img class="portrait" src="images/members5.jpg" alt="">
+    <!-- duplicate set for seamless loop -->
+    <img class="landscape" src="images/members10.jpg" alt="">
+    <img class="portrait" src="images/members8.jpg" alt="">
+    <img class="landscape" src="images/members1.jpg" alt="">
+    <img class="portrait" src="images/members2.jpg" alt="">
+    <img class="landscape" src="images/members3.jpg" alt="">
+    <img class="portrait" src="images/members7.jpg" alt="">
+  </div>
+</section>
+
+<!-- ============ SERVICE TIMES ============ -->
+<section class="section services-section" id="services">
+  <div class="services-header">
+    <span class="eyebrow">Our Rhythm</span>
+    <h2>Worship Service Times</h2>
+    <p>From Sunday mornings to midweek encounters, here's when we gather each week and each month.</p>
+  </div>
+
+  <div class="services-body">
+
+    <!-- Sunday flow -->
+    <div class="sunday-flow">
+      <div class="flow-label">
+        <div class="fl-icon"><svg class="icon" viewBox="0 0 24 24" stroke="#fff"><circle cx="12" cy="12" r="9"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/></svg></div>
+        <div><h3>Sunday Mornings</h3><span>Three moments, one gathering</span></div>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step">
+          <div class="fs-icon"><svg class="icon" viewBox="0 0 24 24" stroke="#fff"><path d="M12 2v10M12 12l5 3"/><circle cx="12" cy="12" r="9.5"/></svg></div>
+          <div class="fs-time">7:30 – 9:30 AM</div>
+          <div class="fs-name">First Service<br>(Overflow Service)</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="flow-step">
+          <div class="fs-icon"><svg class="icon" viewBox="0 0 24 24" stroke="#fff"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+          <div class="fs-time">9:30 – 10:30 AM</div>
+          <div class="fs-name">Sunday School</div>
+        </div>
+        <div class="flow-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 6l6 6-6 6"/></svg></div>
+        <div class="flow-step">
+          <div class="fs-icon"><svg class="icon" viewBox="0 0 24 24" stroke="#fff"><path d="M12 2v10M12 12l5 3"/><circle cx="12" cy="12" r="9.5"/></svg></div>
+          <div class="fs-time">10:30 AM – 12:00 PM</div>
+          <div class="fs-name">Second Service</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Midweek tickets -->
+    <div class="midweek-row">
+      <div class="ticket-card">
+        <div class="ticket-stub"><span class="day-abbr">Tue</span><span class="day-full">Weekly</span></div>
+        <div class="ticket-body">
+          <h4>Digging Deep</h4>
+          <span class="ticket-time">6:30 PM – 7:45 PM</span>
+        </div>
+      </div>
+      <div class="ticket-card">
+        <div class="ticket-stub"><span class="day-abbr">Thu</span><span class="day-full">Weekly</span></div>
+        <div class="ticket-body">
+          <h4>Faith Clinic</h4>
+          <span class="ticket-time">6:30 PM – 7:45 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Monthly spotlight -->
+    <div class="monthly-spotlight">
+      <div class="spotlight-left">
+        <div class="spotlight-icon"><svg class="icon" viewBox="0 0 24 24" stroke="#fff"><circle cx="12" cy="17" r="4"/><path d="M12 2v3M4.2 8.2l2 2M19.8 8.2l-2 2M2 17h2M20 17h2"/></svg></div>
+        <div class="spotlight-text">
+          <div class="sp-tag">Monthly Special Service</div>
+          <h3>Arise and Shine</h3>
+          <p>Every 3rd Sunday of the month — a dedicated time of breakthrough, prayer, and prophetic declarations for the new season.</p>
+        </div>
+      </div>
+      <a href="#" class="btn btn-outline" style="border-color:rgba(255,255,255,0.6)">Add to Calendar</a>
+    </div>
+
+  </div>
+
+  <div class="location-box">
+    <div class="loc-info">
+      <svg class="icon" viewBox="0 0 24 24" style="width:30px;height:30px;color:var(--red-light)"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <div>
+        <h4>Visit Us</h4>
+        <p>[Church Street Address], [City, State] — Parking available on-site</p>
+      </div>
+    </div>
+    <a href="#" class="btn btn-gold">Get Directions</a>
+  </div>
+</section>
+
+<!-- ============ EVENTS ============ -->
+<section class="section" id="events">
+  <div class="section-head-row">
+    <div>
+      <span class="eyebrow">What's Coming Up</span>
+      <h2>Upcoming Events</h2>
+    </div>
+    <a href="#" class="btn-text">View All Events →</a>
+  </div>
+
+  <div class="events-grid">
+    <div class="event-card">
+      <img src="images/event1.jpg" alt="">
+      <div class="event-date-badge"><div class="day">07</div><div class="mon">Dec</div></div>
+      <div class="event-body">
+        <h3>Sunday Worship Service</h3>
+        <p>Join us for a powerful time of praise, worship, and the Word — all are welcome.</p>
+        <a href="#" class="btn-text">Learn More →</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="images/event2.jpg" alt="">
+      <div class="event-date-badge"><div class="day">15</div><div class="mon">Dec</div></div>
+      <div class="event-body">
+        <h3>Arise and Shine Service</h3>
+        <p>Our monthly gathering for breakthrough, prayer, and prophetic declarations.</p>
+        <a href="#" class="btn-text">Learn More →</a>
+      </div>
+    </div>
+    <div class="event-card">
+      <img src="images/event3.jpg" alt="">
+      <div class="event-date-badge"><div class="day">24</div><div class="mon">Dec</div></div>
+      <div class="event-body">
+        <h3>Christmas Carol Night</h3>
+        <p>A special evening of carols, candlelight, and celebrating the birth of Christ.</p>
+        <a href="#" class="btn-text">Learn More →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MINISTRIES ============ -->
+<section class="section ministries-section" id="ministries">
+  <div class="section-head-row">
+    <div>
+      <span class="eyebrow">Find Your Place</span>
+      <h2>Our Ministries</h2>
+      <p style="margin-top:10px;max-width:480px;">Every generation has a home here — find the community that fits your season of life.</p>
+    </div>
+  </div>
+
+  <div class="ministries-grid">
+    <div class="ministry-card">
+      <img src="images/womenministry.jpg" alt="">
+      <div class="ministry-body">
+        <div class="m-tag">60 &amp; Above</div>
+        <h3>Wise Women Ministry</h3>
+        <p>A community for women 60 and above to grow in fellowship, wisdom, and faith together.</p>
+        <a href="#">See More →</a>
+      </div>
+    </div>
+    <div class="ministry-card">
+      <img src="images/wisemen.jpg" alt="">
+      <div class="ministry-body">
+        <div class="m-tag">60 &amp; Above</div>
+        <h3>Wise Men Ministry</h3>
+        <p>A brotherhood for men 60 and above centered on mentorship, prayer, and purpose.</p>
+        <a href="#">See More →</a>
+      </div>
+    </div>
+    <div class="ministry-card">
+      <img src="images/youthandyoung.jpg" alt="">
+      <div class="ministry-body">
+        <div class="m-tag">Youth &amp; Young Adults</div>
+        <h3>Hope of Nations</h3>
+        <p>Our youth and young adults ministry — raising the next generation of world-changers.</p>
+        <a href="#">See More →</a>
+      </div>
+    </div>
+    <div class="ministry-card">
+      <img src="images/childrenministry.jpg" alt="">
+      <div class="ministry-body">
+        <div class="m-tag">Kids</div>
+        <h3>Children's Ministry</h3>
+        <p>A safe, fun, faith-filled space where kids discover God's love.</p>
+        <a href="#">See More →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="ministries-cta">
+    <a href="#" class="btn btn-gold">See All Ministries</a>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="section" id="news">
+  <div class="section-head-row">
+    <div>
+      <span class="eyebrow">Stay Informed</span>
+      <h2>Latest News</h2>
+    </div>
+    <a href="#" class="btn-text">View All News →</a>
+  </div>
+
+  <div class="news-list">
+    <div class="news-item">
+      <img src="images/event1.jpg" alt="">
+      <div>
+        <div class="news-meta">Announcement · Nov 28</div>
+        <h3>Registration Now Open for Year-End Thanksgiving Service</h3>
+        <p>Join us as we close the year in gratitude — register your family for our special thanksgiving service.</p>
+      </div>
+      <a href="#" class="btn-text">Read More →</a>
+    </div>
+    <div class="news-item">
+      <img src="images/event2.jpg" alt="">
+      <div>
+        <div class="news-meta">Update · Nov 20</div>
+        <h3>New Digging Deep Series Begins This Tuesday</h3>
+        <p>A brand-new midweek teaching series kicks off — come dig deeper into the Word with us.</p>
+      </div>
+      <a href="#" class="btn-text">Read More →</a>
+    </div>
+    <div class="news-item">
+      <img src="images/event3.jpg" alt="">
+      <div>
+        <div class="news-meta">Community · Nov 12</div>
+        <h3>Hope of Nations Hosts Community Outreach Day</h3>
+        <p>Our young adults ministry served the community with food, clothing, and prayer this past weekend.</p>
+      </div>
+      <a href="#" class="btn-text">Read More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GIVE STRIP ============ -->
+<section class="give-strip" id="give">
+  <span class="eyebrow" style="color:var(--green-light)">Give</span>
+  <h2>Sow a Seed Today</h2>
+  <p>Your giving fuels our mission — reaching the lost, discipling believers, and serving our community.</p>
+  <a href="#" class="btn btn-gold">Give / Sow a Seed →</a>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span> Fullers Field Parish</div>
+      <p>A parish of the Redeemed Christian Church of God — a home for your faith, your family, and your future.</p>
+      <div class="footer-social">
+        <a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.3c-.26-.04-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.75v2.56H8.2v3h2.46V21h2.84z"/></svg></a>
+        <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg></a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Quick Links</h5>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#welcome">About</a></li>
+        <li><a href="#ministries">Ministries</a></li>
+        <li><a href="#give">Give</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Service Times</h5>
+      <ul>
+        <li>Sun · First Service 7:30 AM</li>
+        <li>Sun · Sunday School 9:30 AM</li>
+        <li>Sun · Second Service 10:30 AM</li>
+        <li>Tue · Digging Deep 6:30 PM</li>
+        <li>Thu · Faith Clinic 6:30 PM</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li>[Church Address, City]</li>
+        <li>[Phone Number]</li>
+        <li>[Email Address]</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fullers Field Parish. All rights reserved.</span>
+    <span>Built with faith, for the family.</span>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hero slideshow
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('#heroDots button');
+  let current = 0;
+  function showSlide(i){
+    slides.forEach(s => s.classList.remove('active'));
+    dots.forEach(d => d.classList.remove('active'));
+    slides[i].classList.add('active');
+    dots[i].classList.add('active');
+    current = i;
+  }
+  dots.forEach(d => d.addEventListener('click', () => showSlide(parseInt(d.dataset.i))));
+  let heroTimer = setInterval(() => showSlide((current + 1) % slides.length), 7000);
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  hamburger.addEventListener('click', () => {
+    mainNav.classList.toggle('mobile-open');
+    if(mainNav.classList.contains('mobile-open')){
+      mainNav.style.display = 'flex';
+      mainNav.style.flexDirection = 'column';
+      mainNav.style.position = 'fixed';
+      mainNav.style.top = '0'; mainNav.style.left='0'; mainNav.style.right='0'; mainNav.style.bottom='0';
+      mainNav.style.background = 'var(--navy-deep)';
+      mainNav.style.padding = '110px 8vw';
+      mainNav.querySelector('ul').style.flexDirection = 'column';
+      mainNav.querySelector('ul').style.alignItems = 'flex-start';
+      mainNav.querySelector('ul').style.gap = '26px';
+      mainNav.querySelectorAll('a.nav-link').forEach(a => a.style.color = '#fff');
+    } else {
+      mainNav.removeAttribute('style');
+    }
+  });
+
+  // Ministries mega menu — touch/click fallback
+  const megaTrigger = document.getElementById('ministriesTrigger');
+  megaTrigger.querySelector('a').addEventListener('click', (e) => {
+    if(window.innerWidth <= 860){
+      e.preventDefault();
+      megaTrigger.classList.toggle('mega-open');
+    }
+  });
+</script>
+
+</body>
+</html>
