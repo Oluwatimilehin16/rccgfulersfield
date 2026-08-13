@@ -368,13 +368,9 @@
   @media (max-width: 860px) {
     .section{padding:60px 5vw;}
     
-    /* Header Container Padding adjusted for logo/menu drop */
-    header.site-header{
-      padding: 24px 5vw 12px;
-    }
-    header.site-header.scrolled{
-      padding: 12px 5vw;
-    }
+    /* Mobile Header */
+   header.site-header{padding:45px 5vw 14px;}
+   header.site-header.scrolled{padding:16px 5vw 10px;}
     .hamburger{display:flex;}
     .social-icons{display:none;}
     .give-nav-btn{display:none;}
@@ -431,18 +427,17 @@
     .mega-card p { color: rgba(255,255,255,0.7); font-size: 0.8rem; margin-bottom: 8px; }
     .mega-card .mega-link { color: var(--red-light); }
 
-    /* Hero Section Mobile - Shift content up significantly */
-    .hero-slide-inner{
-      flex-direction:column;
-      align-items:flex-start;
-      gap:16px;
-      padding:55px 5vw 35px;
-    }
-    .hero-eyebrow-badge{ margin-bottom: 8px; }
-    .hero-copy h1{ font-size: 1.9rem; margin-bottom: 10px; }
-    .hero-copy p.hero-sub{ font-size: 0.88rem; margin-bottom: 14px; }
-    .hero-person-card{ width:100%; max-width:100%; padding: 12px; }
-    .hero-cta-row{ width: 100%; flex-direction: column; gap: 8px; }
+    /* Hero Section Mobile */
+.hero-slide-inner{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:24px;
+  padding:110px 5vw 110px;
+}
+    .hero-copy h1{ font-size: 2.2rem; }
+    .hero-copy p.hero-sub{ font-size: 0.95rem; margin-bottom: 20px; }
+    .hero-person-card{ width:100%; max-width:100%; padding: 14px; }
+    .hero-cta-row{ width: 100%; flex-direction: column; gap: 10px; }
     .hero-cta-row .btn{ width: 100%; }
 
     /* Countdown Strip Mobile */
