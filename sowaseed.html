@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sow a Seed | Fuller's Field Parish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A192F;
+    --navy-deep:#060E1A;
+    --navy-light:#1E293B;
+    --red:#D9383A;
+    --red-deep:#B82B2D;
+    --red-light:#E8555B;
+    --green:#10B981;
+    --green-deep:#059669;
+    --green-light:#34D399;
+    --white:#FFFFFF;
+    --off-white:#F8FAFC;
+    --ivory:#F1F5F9;
+    --charcoal:#0F172A;
+    --charcoal-soft:#475569;
+    --line:#E2E8F0;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans',sans-serif;
+    color:var(--charcoal);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--charcoal);
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--red);
+    font-weight:700;
+    display:inline-block;
+    margin-bottom:12px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:14px 24px;font-size:0.9rem;font-weight:600;letter-spacing:0.02em;
+    border-radius:6px;transition:all .25s ease;
+  }
+  .btn-gold{background:var(--red);color:var(--white);}
+  .btn-gold:hover{background:var(--red-deep);}
+  .btn-outline{border:1.5px solid rgba(255,255,255,0.7);color:#fff;}
+  .btn-outline:hover{background:rgba(255,255,255,0.12);}
+  .btn-text{color:var(--navy);font-weight:600;font-size:0.88rem;border-bottom:1.5px solid var(--red);padding-bottom:2px;}
+
+  .section{padding:90px 6vw;}
+  .container{max-width:1280px;margin:0 auto;}
+  .icon{width:20px;height:20px;flex-shrink:0;stroke:currentColor;fill:none;stroke-width:1.6;}
+
+  .scripture-box{
+    background:#FFF5F5;border-left:4px solid var(--red);
+    padding:22px 26px;border-radius:0 8px 8px 0;margin:20px 0;
+  }
+  .scripture-box p{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--navy);font-style:italic;line-height:1.5;}
+  .scripture-box span{display:block;margin-top:8px;font-weight:600;font-style:normal;font-size:0.85rem;color:var(--red);}
+
+  /* ============ SOW ILLUSTRATION ============ */
+  .sow-illustration{display:flex;flex-direction:column;align-items:center;margin-bottom:18px;}
+  .sow-svg{width:200px;height:auto;}
+  .sow-caption{margin-top:8px;font-family:'Fraunces',serif;font-style:italic;font-size:0.85rem;color:var(--charcoal-soft);}
+  .sow-hand{
+    transform-origin:150px 22px;
+    animation:sowtilt 3.4s ease-in-out infinite;
+  }
+  @keyframes sowtilt{
+    0%,100%{transform:rotate(0deg);}
+    22%{transform:rotate(-22deg);}
+    42%{transform:rotate(-4deg);}
+    50%{transform:rotate(0deg);}
+  }
+  .seed{opacity:0;}
+  .seed1{animation:seedfall 3.4s ease-in infinite;animation-delay:0.55s;}
+  .seed2{animation:seedfall 3.4s ease-in infinite;animation-delay:0.68s;}
+  .seed3{animation:seedfall 3.4s ease-in infinite;animation-delay:0.8s;}
+  .seed4{animation:seedfall 3.4s ease-in infinite;animation-delay:0.92s;}
+  @keyframes seedfall{
+    0%{opacity:0;transform:translate(0,0);}
+    6%{opacity:1;}
+    58%{opacity:1;transform:translate(-6px,76px);}
+    64%{opacity:0;transform:translate(-6px,78px);}
+    100%{opacity:0;}
+  }
+  .soil-mound{animation:soilpop 3.4s ease-in-out infinite;}
+  @keyframes soilpop{
+    0%,58%{opacity:0;}
+    64%,100%{opacity:1;}
+  }
+  .sow-sprout{
+    transform-origin:108px 138px;
+    animation:sprout 3.4s ease-in-out infinite;
+  }
+  @keyframes sprout{
+    0%,62%{transform:scale(0.15);opacity:0;}
+    75%{opacity:1;}
+    88%,100%{transform:scale(1);opacity:1;}
+  }
+  .leaf-l{transform-origin:108px 116px;}
+  .leaf-r{transform-origin:108px 106px;}
+
+  /* ============ HEADER (matches main site) ============ */
+  header.site-header{
+    position:fixed;top:0;left:0;right:0;z-index:1000;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 5vw;
+    background:linear-gradient(180deg, rgba(6,14,26,0.85) 0%, rgba(6,14,26,0) 100%);
+    transition:background .3s ease, padding .3s ease, box-shadow .3s ease;
+  }
+  header.site-header.scrolled{
+    background:var(--white);padding:12px 5vw;box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:1rem;color:#fff;letter-spacing:0.01em;}
+  header.site-header.scrolled .logo{color:var(--navy);}
+  .logo-mark{width:40px;height:40px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,0.18);padding:2px;}
+  .logo-mark img{width:100%;height:100%;object-fit:contain;border-radius:50%;}
+  .logo small{display:block;font-family:'Work Sans',sans-serif;font-weight:500;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;margin-top:1px;}
+
+  nav.main-nav{display:flex;align-items:center;gap:38px;}
+  nav.main-nav ul{display:flex;align-items:center;gap:28px;}
+  nav.main-nav a.nav-link{color:#fff;font-size:0.9rem;font-weight:500;padding:6px 0;position:relative;}
+  header.site-header.scrolled nav.main-nav a.nav-link{color:var(--charcoal);}
+  nav.main-nav a.nav-link.current{color:var(--red-light);}
+  header.site-header.scrolled nav.main-nav a.nav-link.current{color:var(--red);}
+
+  .header-actions{display:flex;align-items:center;gap:12px;}
+  .live-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px solid rgba(255,255,255,0.55);border-radius:20px;color:#fff;font-size:0.75rem;font-weight:600;letter-spacing:0.04em;}
+  header.site-header.scrolled .live-btn{border-color:var(--navy);color:var(--navy);}
+  .live-dot{width:7px;height:7px;border-radius:50%;background:#E23B3B;position:relative;}
+  .live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1.5px solid #E23B3B;animation:pulse 1.6s infinite ease-out;}
+  @keyframes pulse{0%{transform:scale(0.6);opacity:1;}100%{transform:scale(1.9);opacity:0;}}
+
+  .hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:32px;height:32px;z-index:1002;}
+  .hamburger span{height:2px;width:100%;background:#fff;border-radius:2px;transition:all .3s ease;}
+  header.site-header.scrolled .hamburger span{background:var(--charcoal);}
+  .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .hamburger.active span:nth-child(2){opacity:0;}
+  .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+  /* ============ GIVE HERO (full viewport, matches index) ============ */
+  .give-hero{
+    position:relative;min-height:100vh;display:flex;align-items:flex-end;color:#fff;
+    background:var(--navy-deep);
+    overflow:hidden;
+  }
+  .give-hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(217,56,58,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 15%, rgba(16,185,129,0.12) 0%, transparent 50%),
+      linear-gradient(0deg, rgba(6,14,26,0.97) 0%, rgba(6,14,26,0.72) 45%, rgba(6,14,26,0.55) 100%),
+      url('images/community1.jpg') center/cover no-repeat;
+    z-index:0;
+  }
+  .give-hero::after{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:26px 26px;
+    opacity:0.35;
+    z-index:0;
+    pointer-events:none;
+  }
+  .give-hero-inner{
+    position:relative;z-index:2;max-width:1280px;margin:0 auto;
+    padding:150px 6vw 100px;width:100%;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;
+  }
+  .give-hero-copy{max-width:640px;}
+  .hero-eyebrow-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);
+    padding:7px 14px;border-radius:20px;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;
+    color:#fff;margin-bottom:20px;font-weight:600;
+  }
+  .hero-eyebrow-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--red-light);}
+  .give-hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.08;color:#fff;margin-bottom:20px;}
+  .give-hero h1 em{color:var(--red-light);font-style:normal;}
+  .give-hero p.hero-sub{font-size:clamp(1rem,1.6vw,1.15rem);line-height:1.65;color:rgba(255,255,255,0.85);max-width:600px;font-weight:300;margin-bottom:30px;}
+  .hero-cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+
+  .give-hero-card{
+    flex-shrink:0;width:300px;
+    background:rgba(10,25,47,0.65);backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,0.18);padding:22px;border-radius:12px;
+  }
+  .give-hero-card .ghc-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red-light);font-weight:700;margin-bottom:10px;}
+  .give-hero-card .ghc-verse{font-family:'Fraunces',serif;font-style:italic;font-size:0.98rem;line-height:1.55;color:#fff;margin-bottom:10px;}
+  .give-hero-card .ghc-ref{font-size:0.78rem;color:rgba(255,255,255,0.6);font-weight:600;}
+
+  /* ============ BANK STRIP ============ */
+  .bank-strip{
+    position:relative;overflow:hidden;
+    background:linear-gradient(120deg, var(--navy) 0%, var(--navy-deep) 100%);color:#fff;
+    display:flex;align-items:center;gap:18px;justify-content:center;flex-wrap:wrap;
+    padding:26px 6vw;
+  }
+  .bank-strip::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 15% 50%, rgba(217,56,58,0.18), transparent 45%),
+               radial-gradient(circle at 85% 50%, rgba(16,185,129,0.14), transparent 45%);
+  }
+  .bank-strip > *{position:relative;z-index:1;}
+  .bank-strip .bank-name{font-family:'Fraunces',serif;font-size:1.25rem;}
+  .bank-strip .bank-tag{font-size:0.75rem;color:var(--red-light);letter-spacing:0.08em;text-transform:uppercase;font-weight:600;}
+  .bank-badge{
+    width:52px;height:52px;border-radius:50%;background:#fff;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;padding:4px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.25);
+  }
+  .bank-badge img{width:100%;height:100%;object-fit:contain;border-radius:50%;}
+
+  /* ============ ACCOUNT GRID ============ */
+  .accounts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px;}
+  .acc-card{
+    position:relative;
+    background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:24px;display:flex;flex-direction:column;gap:12px;
+    box-shadow:0 2px 10px rgba(10,25,47,0.04);
+    transition:box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+    border-left:4px solid var(--accent, var(--red));
+  }
+  .acc-card:hover{box-shadow:0 14px 30px rgba(10,25,47,0.12);transform:translateY(-4px);}
+  .acc-top{display:flex;align-items:center;gap:12px;}
+  .acc-icon{
+    width:42px;height:42px;border-radius:10px;flex-shrink:0;
+    background:color-mix(in srgb, var(--accent, var(--red)) 12%, white);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .acc-icon svg{width:20px;height:20px;stroke:var(--accent, var(--red));fill:none;stroke-width:1.8;}
+  .acc-card .acc-fund{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--navy);line-height:1.25;}
+  .acc-card .acc-bank{font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent, var(--red));font-weight:700;}
+  .acc-number-row{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    background:var(--off-white);border:1.5px dashed var(--line);border-radius:8px;padding:13px 16px;margin-top:2px;
+  }
+  .acc-number{font-family:'Fraunces',serif;font-size:1.35rem;font-weight:600;color:var(--charcoal);letter-spacing:0.02em;}
+  .copy-btn{
+    display:flex;align-items:center;gap:6px;background:var(--navy);color:#fff;
+    padding:9px 14px;border-radius:6px;font-size:0.78rem;font-weight:600;flex-shrink:0;
+    transition:background .2s ease, transform .15s ease;
+  }
+  .copy-btn:hover{background:var(--accent, var(--red));}
+  .copy-btn:active{transform:scale(0.95);}
+  .copy-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;}
+  .copy-btn.copied{background:var(--green-deep);}
+
+  /* ============ USSD CARD ============ */
+  /* ============ IMPACT SECTION ============ */
+  .impact-section{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg, var(--navy) 0%, var(--navy-deep) 100%);
+    padding:90px 6vw;
+  }
+  .impact-section::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 80% 20%, rgba(217,56,58,0.16), transparent 45%),
+               radial-gradient(circle at 10% 80%, rgba(16,185,129,0.12), transparent 45%);
+  }
+  .impact-inner{
+    position:relative;z-index:1;
+    display:flex;align-items:center;justify-content:space-between;gap:50px;flex-wrap:wrap;
+  }
+  .impact-copy{flex:1;min-width:260px;max-width:420px;}
+  .impact-illustration{flex:1;min-width:300px;display:flex;justify-content:center;}
+  .impact-svg{width:100%;max-width:420px;height:auto;}
+
+  .basket-travel{
+    animation:basketmove 4.2s ease-in-out infinite;
+  }
+  @keyframes basketmove{
+    0%{transform:translate(150px,150px) scale(0.9);opacity:0;}
+    8%{opacity:1;}
+    45%{transform:translate(215px,160px) scale(1.05);opacity:1;}
+    55%{transform:translate(235px,158px) scale(1);opacity:1;}
+    68%{opacity:1;}
+    76%{transform:translate(240px,158px) scale(0.9);opacity:0;}
+    100%{opacity:0;}
+  }
+  .giver{animation:givelean 4.2s ease-in-out infinite;transform-origin:95px 210px;}
+  @keyframes givelean{
+    0%,10%{transform:rotate(0deg);}
+    30%{transform:rotate(4deg);}
+    55%,100%{transform:rotate(0deg);}
+  }
+  .receiver{animation:receivelean 4.2s ease-in-out infinite;transform-origin:280px 210px;}
+  @keyframes receivelean{
+    0%,45%{transform:rotate(0deg) translateX(0);}
+    62%{transform:rotate(-3deg) translateX(-4px);}
+    80%,100%{transform:rotate(0deg) translateX(0);}
+  }
+  .impact-heart{
+    opacity:0;transform-origin:190px 170px;
+    animation:heartpulse 4.2s ease-in-out infinite;
+  }
+  @keyframes heartpulse{
+    0%,70%{opacity:0;transform:translateY(0) scale(0.6);}
+    78%{opacity:1;transform:translateY(-6px) scale(1);}
+    92%{opacity:1;transform:translateY(-22px) scale(1.15);}
+    100%{opacity:0;transform:translateY(-30px) scale(1.15);}
+  }
+
+  .ussd-section{background:var(--navy-deep);color:#fff;}
+  .ussd-card{
+    max-width:760px;margin:36px auto 0;background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:32px;
+  }
+  .ussd-dial-row{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    background:rgba(255,255,255,0.06);border:1.5px dashed rgba(255,255,255,0.25);
+    border-radius:10px;padding:18px 20px;margin:18px 0 22px;
+  }
+  .ussd-code{font-family:'Fraunces',serif;font-size:1.8rem;color:var(--red-light);letter-spacing:0.02em;}
+  .ussd-note{font-size:0.78rem;color:rgba(255,255,255,0.55);margin-top:14px;line-height:1.6;}
+  .ussd-steps{display:flex;flex-direction:column;gap:14px;margin-top:18px;}
+  .ussd-step{display:flex;gap:14px;align-items:flex-start;}
+  .ussd-step .num{
+    width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:700;flex-shrink:0;
+  }
+  .ussd-step p{font-size:0.9rem;color:rgba(255,255,255,0.82);line-height:1.5;}
+
+  /* ============ ONLINE GIVE STRIP (reuse main site style) ============ */
+  .give-strip{background:var(--navy);color:#fff;padding:70px 6vw;}
+  .give-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;}
+  .give-widget{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);padding:24px;border-radius:6px;}
+  .amount-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+  .amt-btn{border:1.5px solid rgba(255,255,255,0.3);color:#fff;padding:12px 8px;font-weight:600;border-radius:4px;}
+  .amt-btn.active{background:var(--red);border-color:var(--red);}
+  .amt-input{width:100%;padding:12px;margin-bottom:14px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.3);color:#fff;border-radius:4px;}
+
+  /* ============ CLOSING CTA ============ */
+  .closing-cta{
+    position:relative;overflow:hidden;text-align:center;
+    padding:80px 6vw;color:#fff;
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  }
+  .closing-cta::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 25% 30%, rgba(217,56,58,0.22), transparent 45%),
+               radial-gradient(circle at 78% 70%, rgba(16,185,129,0.16), transparent 45%);
+  }
+  .closing-cta-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+
+  /* ============ FAQ ============ */
+  .faq-item{border-bottom:1px solid var(--line);padding:18px 0;}
+  .faq-item h4{font-size:1rem;color:var(--navy);margin-bottom:6px;}
+  .faq-item p{font-size:0.88rem;color:var(--charcoal-soft);line-height:1.6;}
+
+  /* ============ FOOTER (matches main site) ============ */
+  footer{background:var(--navy-deep);color:rgba(255,255,255,0.7);padding:60px 6vw 24px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px;}
+  .footer-logo{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:12px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(255,255,255,0.1);font-size:0.8rem;}
+
+  /* toast */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);
+    background:var(--navy);color:#fff;padding:12px 22px;border-radius:30px;font-size:0.85rem;font-weight:600;
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);opacity:0;pointer-events:none;transition:all .25s ease;z-index:2000;
+    display:flex;align-items:center;gap:8px;
+  }
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+  .toast svg{width:16px;height:16px;stroke:var(--green-light);fill:none;stroke-width:2;}
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+
+  /* ============ MOBILE ============ */
+  @media (max-width:860px){
+    .section{padding:56px 5vw;}
+    header.site-header{padding:45px 5vw 14px;}
+    header.site-header.scrolled{padding:16px 5vw 10px;}
+    .hamburger{display:flex;}
+    nav.main-nav{
+      position:fixed;top:0;left:0;right:0;bottom:0;background:var(--navy-deep);z-index:1001;
+      flex-direction:column;justify-content:center;align-items:flex-start;padding:80px 8vw 40px;
+      opacity:0;visibility:hidden;transform:translateY(-10px);
+      transition:all .3s cubic-bezier(0.16,1,0.3,1);
+    }
+    nav.main-nav.mobile-open{opacity:1;visibility:visible;transform:translateY(0);}
+    nav.main-nav ul{flex-direction:column;align-items:flex-start;gap:22px;width:100%;}
+    nav.main-nav a.nav-link{font-size:1.3rem;color:#fff !important;font-family:'Fraunces',serif;}
+    nav.main-nav a.nav-link.current{color:var(--red-light) !important;}
+
+    .give-hero-inner{padding:120px 5vw 50px;}
+    .accounts-grid{grid-template-columns:1fr;}
+    .acc-number{font-size:1.15rem;}
+    .bank-strip{flex-direction:column;text-align:center;gap:8px;}
+    .give-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;gap:28px;}
+    .footer-bottom{flex-direction:column;gap:6px;text-align:center;}
+    .ussd-card{padding:22px;}
+    .ussd-dial-row{flex-direction:column;align-items:flex-start;gap:12px;}
+    .sow-svg{width:150px;}
+    .impact-inner{flex-direction:column;text-align:center;gap:30px;}
+    .impact-copy{max-width:100%;}
+    .impact-svg{max-width:280px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <a href="index.html#home" class="logo">
+    <span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span>
+    <span>Fuller's Field Parish<small>RCCG Parish</small></span>
+  </a>
+
+  <nav class="main-nav" id="mainNav">
+    <ul>
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#welcome" class="nav-link">About</a></li>
+      <li><a href="index.html#ministries" class="nav-link">Ministries</a></li>
+      <li><a href="index.html#leadership" class="nav-link">Leadership</a></li>
+      <li><a href="index.html#events" class="nav-link">Events</a></li>
+      <li><a href="sow-a-seed.html" class="nav-link current">Give</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-actions">
+    <a href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener" class="live-btn">
+      <span class="live-dot"></span> Live
+    </a>
+    <a href="#give-online" class="btn btn-gold give-nav-btn"><span class="label">Sow a Seed</span></a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="give-hero" id="home">
+  <div class="give-hero-inner">
+    <div class="give-hero-copy">
+      <span class="hero-eyebrow-badge"><span class="dot"></span> Give in Faith</span>
+      <h1>Sow a Seed,<br><em>Reap a Harvest</em></h1>
+      <p class="hero-sub">Every tithe, offering, and seed you sow becomes fuel for ministry, missions, and lives transformed. Thank you for giving cheerfully.</p>
+      <div class="hero-cta-row">
+        <a href="#give-online" class="btn btn-gold">
+          <svg class="icon" style="width:16px;height:16px;stroke:#fff" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Give by Bank Transfer
+        </a>
+        <a href="#ussd" class="btn btn-outline">Give via USSD</a>
+      </div>
+    </div>
+    <div class="give-hero-card">
+      <div class="ghc-label">Today's Word</div>
+      <div class="ghc-verse">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap."</div>
+      <div class="ghc-ref">— Luke 6:38</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCRIPTURE ============ -->
+<section class="section reveal" style="padding-bottom:20px;">
+  <div class="container" style="max-width:820px;">
+    <div class="sow-illustration" aria-hidden="true">
+      <svg viewBox="0 0 220 170" class="sow-svg">
+        <!-- ground -->
+        <path d="M10 138 Q110 126 210 138" stroke="#D9383A" stroke-width="2" fill="none" opacity="0.35"/>
+        <ellipse cx="110" cy="140" rx="95" ry="10" fill="#0A192F" opacity="0.06"/>
+        <ellipse class="soil-mound" cx="108" cy="136" rx="20" ry="6" fill="#8B5E34" opacity="0"/>
+
+        <!-- arm + open hand -->
+        <g class="sow-hand">
+          <!-- sleeve/arm -->
+          <path d="M150 8c8 0 14 6 14 14l-4 26c-1 6-7 10-13 8l-20-6c-6-2-9-8-7-14l6-20c2-6 8-9 14-9z" fill="#D9383A"/>
+          <!-- palm -->
+          <ellipse cx="121" cy="52" rx="15" ry="11" fill="#F1B98A" transform="rotate(-25 121 52)"/>
+          <!-- fingers -->
+          <path d="M108 46c-3-4-2-9 2-10 3-1 6 1 7 4l3 8-12-2z" fill="#F1B98A"/>
+          <path d="M112 56c-4-2-6-6-4-9 2-3 6-3 9-1l7 6-12 4z" fill="#F1B98A"/>
+          <path d="M118 62c-3 0-6-3-5-6 1-3 4-4 7-3l8 4-10 5z" fill="#F1B98A"/>
+        </g>
+
+        <!-- falling seeds -->
+        <circle class="seed seed1" cx="112" cy="58" r="3" fill="#5C3A21"/>
+        <circle class="seed seed2" cx="100" cy="60" r="2.6" fill="#5C3A21"/>
+        <circle class="seed seed3" cx="122" cy="64" r="2.3" fill="#5C3A21"/>
+        <circle class="seed seed4" cx="92" cy="58" r="2" fill="#5C3A21"/>
+
+        <!-- sprout -->
+        <g class="sow-sprout">
+          <path d="M108 138 C108 120 108 108 108 100" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path class="leaf leaf-l" d="M108 116c-14-2-20-14-16-24 12 2 18 12 16 24z" fill="#10B981"/>
+          <path class="leaf leaf-r" d="M108 106c14-2 20-13 16-23-12 2-18 11-16 23z" fill="#34D399"/>
+        </g>
+      </svg>
+      <p class="sow-caption">A hand that sows in faith reaps in joy</p>
+    </div>
+
+
+    <span class="eyebrow">A Word Before You Give</span>
+    <h2>Give Cheerfully, Give in Faith</h2>
+    <div class="scripture-box">
+      <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+      <span>— 2 Corinthians 9:7</span>
+    </div>
+    <div class="scripture-box">
+      <p>"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the Lord Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it."</p>
+      <span>— Malachi 3:10</span>
+    </div>
+    <p style="color:var(--charcoal-soft);font-size:0.95rem;line-height:1.7;margin-top:8px;">
+      Giving is an act of worship and obedience. Whether it's your first fruit, tithe, offering, or a seed sown into a special project, every naira is used with integrity to reach our community and beyond. Tap the copy icon on any account below to copy the number instantly.
+    </p>
+  </div>
+</section>
+
+<!-- ============ BANK STRIP ============ -->
+<div class="bank-strip">
+  <span class="bank-badge"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span>
+  <div>
+    <div class="bank-name">RCCG Fuller's Field &middot; Ecobank Nigeria</div>
+    <div class="bank-tag">Online / Bank Transfer Accounts</div>
+  </div>
+</div>
+
+<!-- ============ ACCOUNTS ============ -->
+<section class="section reveal" id="give-online">
+  <span class="eyebrow">Online Transfers</span>
+  <h2>Choose Where Your Seed Goes</h2>
+  <p style="color:var(--charcoal-soft);font-size:0.95rem;max-width:640px;margin-top:8px;">All accounts below are held with Ecobank, "The Pan African Bank." Tap the Copy button to copy any account number to your clipboard.</p>
+
+  <div class="accounts-grid">
+
+    <div class="acc-card" style="--accent:var(--red);">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div>
+          <div class="acc-fund">First Fruit, Tithe &amp; Love Offering</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num1">0212009328</span>
+        <button class="copy-btn" data-target="num1">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:var(--green-deep);">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
+        <div>
+          <div class="acc-fund">Tabernacle Fund (Building)</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num2">0212009335</span>
+        <button class="copy-btn" data-target="num2">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:#2563EB;">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.5 2.6 3.8 6 3.8 9.5s-1.3 6.9-3.8 9.5c-2.5-2.6-3.8-6-3.8-9.5S9.5 5.1 12 2.5z"/></svg></div>
+        <div>
+          <div class="acc-fund">Mission Fund</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num3">3490010950</span>
+        <button class="copy-btn" data-target="num3">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:#7C3AED;">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4.97-3.5-9-7.3-9-11.2A5.3 5.3 0 0112 6.5a5.3 5.3 0 019 3.3c0 3.9-4.03 7.7-9 11.2z"/></svg></div>
+        <div>
+          <div class="acc-fund">CSR</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num4">0210002112</span>
+        <button class="copy-btn" data-target="num4">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:#D97706;">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.5 2.9-6 6.5-6s6.5 2.5 6.5 6"/><path d="M16 9a3 3 0 100-6 3 3 0 000 6zM21.5 20c0-2.9-2-5.1-4.8-5.8"/></svg></div>
+        <div>
+          <div class="acc-fund">Hope of Nations</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num5">3490030961</span>
+        <button class="copy-btn" data-target="num5">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:#DB2777;">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M20.8 8.3c0 4.5-8.8 10.2-8.8 10.2S3.2 12.8 3.2 8.3a4.6 4.6 0 018.8-1.9 4.6 4.6 0 018.8 1.9z"/></svg></div>
+        <div>
+          <div class="acc-fund">Welfare</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num6">0213000786</span>
+        <button class="copy-btn" data-target="num6">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+    <div class="acc-card" style="--accent:var(--red-deep);">
+      <div class="acc-top">
+        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5.9L21 9.5l-4.8 4.1 1.5 6.7L12 17l-5.7 3.3 1.5-6.7L3 9.5l6.6-.6z"/></svg></div>
+        <div>
+          <div class="acc-fund">Special Funds</div>
+          <div class="acc-bank">Ecobank Nigeria</div>
+        </div>
+      </div>
+      <div class="acc-number-row">
+        <span class="acc-number" id="num7">0213061101</span>
+        <button class="copy-btn" data-target="num7">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ IMPACT / GIVING TO THE POOR ============ -->
+<section class="impact-section reveal">
+  <div class="container impact-inner">
+    <div class="impact-copy">
+      <span class="eyebrow" style="color:var(--red-light);">Beyond the Walls</span>
+      <h2 style="color:#fff;">Your Seed Reaches a Life in Need</h2>
+      <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;line-height:1.7;margin-top:10px;">Through the Welfare and CSR funds, your giving becomes food on a table, school fees paid, and hope restored for families around us. "Whatever you did for one of the least of these... you did for me." — Matthew 25:40</p>
+    </div>
+
+    <div class="impact-illustration" aria-hidden="true">
+      <svg viewBox="0 0 380 260" class="impact-svg">
+        <!-- ground -->
+        <path d="M20 220 Q190 208 360 220" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
+
+        <!-- giver figure -->
+        <g class="giver">
+          <circle cx="95" cy="90" r="20" fill="#F1B98A"/>
+          <path d="M65 210 L70 140c1-14 12-24 26-24h6c14 0 25 10 26 24l5 70z" fill="#D9383A"/>
+          <!-- extended arm -->
+          <path d="M120 148c16-4 30 2 40 14l6 8" stroke="#F1B98A" stroke-width="10" stroke-linecap="round" fill="none"/>
+        </g>
+
+        <!-- basket traveling -->
+        <g class="basket-travel">
+          <g class="basket">
+            <path d="M-16 0h32l-4 16h-24z" fill="#B5772F"/>
+            <rect x="-18" y="-4" width="36" height="6" rx="2" fill="#8B5E23"/>
+            <circle cx="-6" cy="-8" r="5" fill="#E8555B"/>
+            <circle cx="4" cy="-9" r="5" fill="#F1B98A"/>
+            <circle cx="-1" cy="-11" r="4.5" fill="#34D399"/>
+          </g>
+        </g>
+
+        <!-- receiver figure -->
+        <g class="receiver">
+          <circle cx="280" cy="96" r="19" fill="#C98455"/>
+          <path d="M252 210 L257 148c1-13 11-22 24-22h4c13 0 23 9 24 22l5 62z" fill="#0A192F"/>
+          <!-- open arms -->
+          <path d="M255 152c-14-2-26 4-34 16l-5 8" stroke="#C98455" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M305 152c10 0 18 6 22 16" stroke="#C98455" stroke-width="9" stroke-linecap="round" fill="none"/>
+        </g>
+
+        <!-- floating heart -->
+        <path class="impact-heart" d="M190 150c-6-8-20-6-20 4 0 8 12 16 20 22 8-6 20-14 20-22 0-10-14-12-20-4z" fill="#E8555B"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ USSD ============ -->
+<section class="section ussd-section reveal" id="ussd">
+  <div class="container" style="max-width:900px;">
+    <span class="eyebrow" style="color:var(--red-light);">No Data? No Problem</span>
+    <h2 style="color:#fff;">Give via USSD (No Internet Needed)</h2>
+    <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;margin-top:8px;">You can sow your seed straight from your phone's dial pad — works on any phone, even without a smartphone or data.</p>
+
+    <div class="ussd-card">
+      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red-light);font-weight:700;">Ecobank Nigeria USSD Code</span>
+      <div class="ussd-dial-row">
+        <span class="ussd-code" id="ussdCode">*326#</span>
+        <button class="copy-btn" data-target="ussdCode">
+          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          Copy
+        </button>
+      </div>
+
+      <div class="ussd-steps">
+        <div class="ussd-step">
+          <span class="num">1</span>
+          <p>Dial <strong>*326#</strong> on the phone line linked to your bank account, then select the <strong>Transfer</strong> option from the menu.</p>
+        </div>
+        <div class="ussd-step">
+          <span class="num">2</span>
+          <p>Choose <strong>Other Banks</strong> (if you don't bank with Ecobank) or <strong>Ecobank</strong> (if you already do), then enter <strong>Ecobank</strong> as the destination bank.</p>
+        </div>
+        <div class="ussd-step">
+          <span class="num">3</span>
+          <p>Enter the parish account number for the fund you're sowing into (see the accounts listed above), then enter the amount you wish to give.</p>
+        </div>
+        <div class="ussd-step">
+          <span class="num">4</span>
+          <p>Confirm the account name shown is <strong>RCCG Fuller's Field</strong>, then enter your USSD/transaction PIN to complete the transfer.</p>
+        </div>
+      </div>
+
+      <p class="ussd-note">Note: USSD menus and PIN steps vary slightly by bank. If this code doesn't match your bank's menu, dial your own bank's standard transfer USSD code and select Ecobank as the receiving bank, using the account numbers above.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section reveal">
+  <div class="container" style="max-width:760px;">
+    <span class="eyebrow">Good to Know</span>
+    <h2>Giving FAQs</h2>
+
+    <div class="faq-item">
+      <h4>Which account should I use for my regular tithe?</h4>
+      <p>Use the "First Fruit, Tithe &amp; Love Offering" account for your weekly tithes, first fruit, and love offerings.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Is my giving secure?</h4>
+      <p>Yes. All accounts are official Ecobank accounts held in the name of RCCG Fuller's Field. Always confirm the account name reads "RCCG Fuller's Field" before completing any transfer.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I get a giving statement or receipt?</h4>
+      <p>Yes, please reach out to the parish office after giving so we can issue you a giving statement for your records.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING CTA ============ -->
+<section class="closing-cta reveal">
+  <div class="closing-cta-inner">
+    <span class="eyebrow" style="color:var(--red-light);">Thank You</span>
+    <h2 style="color:#fff;">Every Seed Counts. Every Giver Matters.</h2>
+    <p style="color:rgba(255,255,255,0.75);max-width:520px;margin:10px auto 26px;font-size:0.95rem;">Whatever you sow today, sow it in faith — God sees, and He honours it.</p>
+    <a href="#give-online" class="btn btn-gold">Give Now</a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span> Fuller's Field Parish</div>
+      <p style="font-size:0.8rem;line-height:1.5;">A parish of the Redeemed Christian Church of God — a home for your faith, your family, and your future.</p>
+    </div>
+    <div>
+      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Quick Links</h5>
+      <ul style="font-size:0.85rem;display:flex;flex-direction:column;gap:8px;">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#welcome">About</a></li>
+        <li><a href="index.html#leadership">Leadership</a></li>
+        <li><a href="sow-a-seed.html">Give</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Services</h5>
+      <ul style="font-size:0.8rem;display:flex;flex-direction:column;gap:6px;">
+        <li>Sun &middot; 7:30 AM / 10:30 AM</li>
+        <li>Tue &middot; Digging Deep 6:30 PM</li>
+        <li>Thu &middot; Faith Clinic 6:30 PM</li>
+      </ul>
+    </div>
+    <div>
+      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Contact</h5>
+      <p style="font-size:0.8rem;">Km 47 beside DKK Supermarket Canaan Estate, Sangotedo, Ajah, Lagos</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Fuller's Field Parish. All rights reserved.</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+  <span id="toastText">Copied to clipboard!</span>
+</div>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu toggle
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mainNav.classList.toggle('mobile-open');
+  });
+  document.querySelectorAll('nav.main-nav a.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if(window.innerWidth <= 860){
+        hamburger.classList.remove('active');
+        mainNav.classList.remove('mobile-open');
+      }
+    });
+  });
+
+  // Copy to clipboard
+  const toast = document.getElementById('toast');
+  const toastText = document.getElementById('toastText');
+  let toastTimer;
+  function showToast(msg){
+    toastText.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+  }
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const targetId = btn.getAttribute('data-target');
+      const value = document.getElementById(targetId).textContent.trim();
+      try{
+        await navigator.clipboard.writeText(value);
+      }catch(e){
+        const tmp = document.createElement('textarea');
+        tmp.value = value;
+        document.body.appendChild(tmp);
+        tmp.select();
+        document.execCommand('copy');
+        document.body.removeChild(tmp);
+      }
+      const original = btn.innerHTML;
+      btn.classList.add('copied');
+      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Copied';
+      showToast(value + ' copied!');
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.innerHTML = original;
+      }, 1600);
+    });
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
