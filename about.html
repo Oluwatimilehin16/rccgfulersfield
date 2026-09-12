@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fuller's Field Parish | About Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0B1D2D;
+            --navy-deep: #060E18;
+            --navy-light: #152A3E;
+            --red: #C9363A;
+            --red-deep: #A62B2E;
+            --red-light: #E05A5D;
+            --red-soft: #FDF0F0;
+            --gold: #C9A96E;
+            --gold-light: #E8D5B5;
+            --white: #FFFFFF;
+            --off-white: #FAFAF8;
+            --ivory: #F5F2ED;
+            --charcoal: #1A1A1A;
+            --charcoal-soft: #555555;
+            --line: #E8E4DE;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--charcoal); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; line-height: 1.6; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; color: var(--charcoal); line-height: 1.2; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; }
+        button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+        .eyebrow { font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); font-weight: 700; display: inline-block; margin-bottom: 12px; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 28px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em; border-radius: 50px; transition: all var(--transition); }
+        .btn-gold { background: var(--red); color: #fff; box-shadow: 0 4px 20px rgba(201,54,58,0.3); }
+        .btn-gold:hover { background: var(--red-deep); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,54,58,0.4); }
+        .btn-outline { border: 1.5px solid rgba(255,255,255,0.6); color: #fff; backdrop-filter: blur(8px); background: rgba(255,255,255,0.05); }
+        .btn-outline:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.9); transform: translateY(-2px); }
+        .btn-white { background: #fff; color: var(--navy); box-shadow: var(--shadow-sm); }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .section { padding: 90px 6vw; }
+        .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94); }
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+        /* HEADER */
+        header.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 14px 4vw; background: transparent; transition: all var(--transition); }
+        header.site-header.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 10px 4vw; box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+        .logo { display: flex; align-items: center; gap: 10px; font-family: 'Fraunces', serif; font-weight: 600; font-size: 1rem; color: #fff; transition: color var(--transition); text-shadow: 0 1px 8px rgba(0,0,0,0.3); }
+        header.site-header.scrolled .logo { color: var(--navy); text-shadow: none; }
+        .logo-mark { width: 40px; height: 40px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 2px 12px rgba(0,0,0,0.2); padding: 2px; transition: all var(--transition); }
+        header.site-header.scrolled .logo-mark { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .logo-mark img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+        .logo small { display: block; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 500; font-size: 0.55rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; margin-top: 1px; }
+
+        nav.main-nav { display: flex; align-items: center; }
+        nav.main-nav ul { display: flex; align-items: center; gap: 28px; }
+        nav.main-nav a.nav-link { color: rgba(255,255,255,0.9); font-size: 0.82rem; font-weight: 500; display: flex; align-items: center; gap: 5px; padding: 5px 0; position: relative; transition: color var(--transition); letter-spacing: 0.02em; text-shadow: 0 1px 6px rgba(0,0,0,0.25); }
+        nav.main-nav a.nav-link::after { content: ""; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--red); border-radius: 2px; transition: width 0.3s ease; }
+        nav.main-nav a.nav-link:hover::after, nav.main-nav a.nav-link.active::after { width: 100%; }
+        header.site-header.scrolled nav.main-nav a.nav-link { color: var(--charcoal); text-shadow: none; }
+        header.site-header.scrolled nav.main-nav a.nav-link:hover { color: var(--red); }
+
+        .header-actions { display: flex; align-items: center; gap: 10px; }
+        .live-btn { display: flex; align-items: center; gap: 7px; padding: 8px 16px; border: 1.5px solid rgba(255,255,255,0.5); border-radius: 20px; color: #fff; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; transition: all var(--transition); text-shadow: 0 1px 6px rgba(0,0,0,0.2); }
+        header.site-header.scrolled .live-btn { border-color: var(--line); color: var(--navy); text-shadow: none; }
+        .live-btn:hover { border-color: var(--red); color: var(--red); }
+        .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #E23B3B; position: relative; }
+        .live-dot::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1.5px solid #E23B3B; animation: pulse 1.6s infinite ease-out; }
+        @keyframes pulse { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(2); opacity: 0; } }
+        .social-icons { display: flex; gap: 8px; align-items: center; }
+        .social-icons a { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,0.4); color: #fff; transition: all var(--transition); text-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+        header.site-header.scrolled .social-icons a { border-color: var(--line); color: var(--navy); text-shadow: none; }
+        .social-icons a:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+        .social-icons svg { width: 13px; height: 13px; }
+        .give-nav-btn { padding: 10px 20px; font-size: 0.78rem; border-radius: 30px; box-shadow: 0 4px 16px rgba(201,54,58,0.3); }
+        .hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 32px; height: 32px; z-index: 1002; cursor: pointer; }
+        .hamburger span { height: 2px; width: 100%; background: #fff; border-radius: 2px; transition: all 0.3s ease; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+        header.site-header.scrolled .hamburger span { background: var(--charcoal); box-shadow: none; }
+
+        .has-mega { position: relative; }
+        .mega-panel { position: fixed; top: 0; left: 0; right: 0; background: var(--white); padding: 110px 6vw 40px; display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-12px); transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); z-index: 900; }
+        .has-mega:hover .mega-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+        .mega-card { background: var(--off-white); border: 1px solid var(--line); padding: 22px; border-radius: 10px; transition: all var(--transition); }
+        .mega-card:hover { border-color: var(--red); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .mega-tag { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 6px; }
+        .mega-card h4 { font-size: 1rem; color: var(--navy); margin-bottom: 6px; font-weight: 700; }
+        .mega-card p { font-size: 0.78rem; color: var(--charcoal-soft); line-height: 1.5; margin-bottom: 10px; }
+        .mega-link { color: var(--red); font-weight: 600; font-size: 0.78rem; }
+
+        /* HERO */
+        .hero { position: relative; min-height: 85vh; display: flex; align-items: flex-end; color: #fff; background: var(--navy-deep); overflow: hidden; }
+        .hero-slide { position: absolute; inset: 0; background-size: cover; background-position: center center; background-repeat: no-repeat; opacity: 0; transition: opacity 1.2s cubic-bezier(0.25,0.46,0.45,0.94); display: flex; align-items: flex-end; will-change: opacity, transform; }
+        .hero-slide.active { opacity: 1; animation: kenBurns 8s ease-out forwards; }
+        @keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+        .hero-slide::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(6,14,24,0.3) 0%, rgba(6,14,24,0.3) 40%, rgba(6,14,24,0.65) 75%, rgba(6,14,24,0.9) 100%); z-index: 1; }
+        .hero-slide-inner { position: relative; z-index: 2; width: 100%; max-width: 1400px; margin: 0 auto; padding: 140px 6vw 70px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
+        .hero-copy { max-width: 680px; }
+        .hero-copy h1 { font-size: clamp(2.6rem, 5.5vw, 4rem); line-height: 1.1; color: #fff; margin-bottom: 18px; font-weight: 700; letter-spacing: -0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+        .hero-copy p.hero-sub { font-size: clamp(0.95rem,1.3vw,1.1rem); line-height: 1.7; color: rgba(255,255,255,0.88); margin-bottom: 28px; font-weight: 300; text-shadow: 0 1px 10px rgba(0,0,0,0.25); }
+        .hero-cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+
+        .hero-person-card { flex-shrink: 0; width: 290px; background: rgba(11,29,45,0.65); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12); padding: 18px; display: flex; gap: 12px; align-items: flex-start; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: all var(--transition); }
+        .hero-person-card:hover { transform: translateY(-3px); box-shadow: 0 16px 50px rgba(0,0,0,0.28); border-color: rgba(255,255,255,0.25); }
+        .hero-person-card img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; object-position: center top; border: 2px solid var(--gold); flex-shrink: 0; }
+        .hero-person-card .p-name { font-family: 'Fraunces', serif; font-size: 0.88rem; color: #fff; font-weight: 600; }
+        .hero-person-card .p-title { font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 4px; font-weight: 600; }
+        .hero-person-card .p-quote { font-size: 0.72rem; line-height: 1.5; color: rgba(255,255,255,0.72); font-style: italic; }
+
+        .hero-dots { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 3; }
+        .hero-dots button { width: 24px; height: 3px; border-radius: 2px; background: rgba(255,255,255,0.35); transition: all 0.4s ease; cursor: pointer; }
+        .hero-dots button.active { background: var(--red); width: 40px; }
+
+        /* COUNTDOWN & STATS STRIP */
+        .countdown-strip { background: var(--white); border-bottom: 1px solid var(--line); padding: 20px 6vw; display: flex; align-items: center; justify-content: center; gap: 36px; flex-wrap: wrap; }
+        .cd-label { display: flex; flex-direction: column; gap: 2px; }
+        .cd-eyebrow { font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--red); font-weight: 700; }
+        .cd-service-name { font-family: 'Fraunces', serif; font-size: 0.95rem; color: var(--charcoal); font-weight: 600; }
+        .cd-timer { display: flex; align-items: center; gap: 8px; }
+        .cd-unit { display: flex; flex-direction: column; align-items: center; min-width: 40px; background: var(--off-white); border-radius: 6px; padding: 6px 4px; border: 1px solid var(--line); }
+        .cd-unit span { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--red); line-height: 1; font-weight: 700; }
+        .cd-unit small { font-size: 0.5rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--charcoal-soft); margin-top: 2px; font-weight: 600; }
+        .cd-sep { font-family: 'Fraunces', serif; font-size: 1rem; color: var(--line); margin-top: -8px; }
+        .cd-watch { border: 1.5px solid var(--navy); color: var(--navy); padding: 9px 18px; border-radius: 30px; font-size: 0.75rem; font-weight: 600; display: inline-flex; align-items: center; gap: 7px; transition: all var(--transition); }
+        .cd-watch:hover { border-color: var(--red); color: var(--red); }
+
+        .stats-strip { background: var(--navy); color: #fff; padding: 36px 6vw; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 20px; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .stat-number { font-family: 'Fraunces', serif; font-size: 2.2rem; color: var(--gold); font-weight: 700; line-height: 1; }
+        .stat-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.7); margin-top: 6px; font-weight: 500; }
+
+        /* ABOUT / PURPOSE SECTION */
+        .story-section { background: var(--white); }
+        .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .story-content h2 { font-size: clamp(2rem, 3.2vw, 2.8rem); margin-bottom: 20px; }
+        .story-content p { font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.8; margin-bottom: 16px; }
+        .story-media { position: relative; }
+        .story-media img { border-radius: 16px; box-shadow: var(--shadow-lg); width: 100%; height: 480px; object-fit: cover; }
+        .story-badge { position: absolute; bottom: -20px; left: -20px; background: var(--navy); color: #fff; padding: 24px; border-radius: 12px; max-width: 240px; box-shadow: var(--shadow-md); border: 1px solid rgba(255,255,255,0.1); }
+        .story-badge h4 { color: var(--gold); font-size: 1.8rem; font-weight: 700; }
+        .story-badge p { font-size: 0.75rem; color: rgba(255,255,255,0.8); margin: 0; line-height: 1.4; }
+
+        /* MISSION & VISION */
+        .mv-section { background: var(--off-white); position: relative; }
+        .mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .mv-card { background: var(--white); padding: 40px; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: all var(--transition); position: relative; overflow: hidden; }
+        .mv-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--gold); }
+        .mv-card::before { content: ""; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--red); }
+        .mv-card.vision::before { background: var(--gold); }
+        .mv-card h3 { font-size: 1.5rem; margin-bottom: 14px; color: var(--navy); }
+        .mv-card p { font-size: 0.92rem; color: var(--charcoal-soft); line-height: 1.8; }
+
+        /* CORE VALUES */
+        .values-section { background: var(--white); }
+        .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin-top: 40px; }
+        .value-card { background: var(--off-white); border: 1px solid var(--line); border-radius: 12px; padding: 32px 26px; transition: all var(--transition); }
+        .value-card:hover { background: var(--white); border-color: var(--red); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .value-icon { width: 48px; height: 48px; border-radius: 10px; background: var(--red-soft); color: var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin-bottom: 18px; font-family: 'Fraunces', serif; }
+        .value-card h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 8px; }
+        .value-card p { font-size: 0.82rem; color: var(--charcoal-soft); line-height: 1.6; }
+
+        /* TIMELINE / HISTORY */
+        .history-section { background: var(--navy-deep); color: #fff; position: relative; }
+        .history-section .eyebrow { color: var(--gold-light); }
+        .history-section h2 { color: #fff; margin-bottom: 40px; }
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(255,255,255,0.15); transform: translateX(-50%); }
+        .timeline-item { position: relative; margin-bottom: 40px; width: 50%; padding: 0 30px; box-sizing: border-box; }
+        .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+        .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+        .timeline-dot { width: 16px; height: 16px; background: var(--red); border: 3px solid var(--navy-deep); border-radius: 50%; position: absolute; top: 5px; }
+        .timeline-item:nth-child(odd) .timeline-dot { right: -8px; }
+        .timeline-item:nth-child(even) .timeline-dot { left: -8px; }
+        .timeline-content { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 20px 24px; border-radius: 10px; backdrop-filter: blur(10px); }
+        .timeline-year { font-family: 'Fraunces', serif; font-size: 1.2rem; color: var(--gold); font-weight: 700; margin-bottom: 4px; }
+        .timeline-title { font-size: 0.95rem; color: #fff; font-weight: 600; margin-bottom: 6px; }
+        .timeline-desc { font-size: 0.78rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+        /* BELIEFS / RCCG AFFILIATION */
+        .beliefs-section { background: var(--off-white); }
+        .beliefs-container { max-width: 900px; margin: 0 auto; background: var(--white); padding: 48px; border-radius: 16px; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+        .beliefs-container h2 { text-align: center; margin-bottom: 20px; }
+        .beliefs-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; }
+        .belief-item { display: flex; gap: 12px; align-items: flex-start; }
+        .belief-bullet { width: 8px; height: 8px; border-radius: 50%; background: var(--red); margin-top: 8px; flex-shrink: 0; }
+        .belief-item p { font-size: 0.85rem; color: var(--charcoal-soft); line-height: 1.6; }
+
+        /* LEADERSHIP SECTION */
+        .leadership-section { background: var(--white); position: relative; }
+
+        /* CTA BANNER */
+        .cta-banner { background: linear-gradient(rgba(11,29,45,0.65), rgba(11,29,45,0.65)), url('images/community1.jpg') center/cover no-repeat; color: #fff; padding: 80px 6vw; text-align: center; }
+        .cta-banner h2 { color: #fff; font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; margin-bottom: 10px; text-shadow: 0 1px 10px rgba(0,0,0,0.4); }
+        .cta-banner p { font-size: 0.88rem; opacity: 0.9; max-width: 520px; margin: 6px auto 0; line-height: 1.6; text-shadow: 0 1px 8px rgba(0,0,0,0.3); }
+        .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+
+        /* FOOTER */
+        footer { background: var(--navy-deep); color: rgba(255,255,255,0.7); padding: 60px 6vw 20px; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; margin-bottom: 36px; max-width: 1100px; margin-left: auto; margin-right: auto; }
+        .footer-logo { display: flex; align-items: center; gap: 8px; color: #fff; font-family: 'Fraunces', serif; font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+        .footer-logo .logo-mark { width: 32px; height: 32px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+        footer p { font-size: 0.74rem; line-height: 1.6; }
+        footer h5 { color: #fff; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; }
+        footer ul { font-size: 0.76rem; display: flex; flex-direction: column; gap: 6px; }
+        footer ul a:hover { color: var(--gold-light); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; text-align: center; font-size: 0.68rem; color: rgba(255,255,255,0.35); }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .section { padding: 60px 5vw; }
+            .hamburger { display: flex; }
+            .social-icons, .give-nav-btn { display: none; }
+            nav.main-nav { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--navy-deep); z-index: 1001; flex-direction: column; justify-content: center; align-items: flex-start; padding: 80px 8vw 40px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.35s cubic-bezier(0.25,0.46,0.45,0.94); }
+            nav.main-nav.mobile-open { opacity: 1; visibility: visible; transform: translateY(0); }
+            nav.main-nav ul { flex-direction: column; align-items: flex-start; gap: 18px; width: 100%; }
+            nav.main-nav a.nav-link { font-size: 1.2rem; color: #fff !important; font-family: 'Fraunces', serif; text-shadow: none; }
+            
+            .story-grid, .mv-grid { grid-template-columns: 1fr; gap: 32px; }
+            .timeline::before { left: 20px; }
+            .timeline-item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left !important; }
+            .timeline-item:nth-child(even) { left: 0; }
+            .timeline-item:nth-child(odd) .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 12px; right: auto; }
+            .beliefs-list { grid-template-columns: 1fr; }
+            .beliefs-container { padding: 28px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 850px) {
+     .leader-row {
+        grid-template-columns: 1fr !important;
+        gap: 24px !important;
+    }
+    .leader-row-reverse .leader-media {
+        order: -1; /* Ensures image stays above text on mobile for reverse rows */
+    }
+    .leader-media {
+        height: 300px !important;
+    }
+        }
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header" id="siteHeader">
+        <a href="index.html" class="logo">
+            <span class="logo-mark"><img src="images/logo.png" alt="RCCG Fuller's Field Parish logo"></span>
+            <span>Fuller's Field Parish<small>RCCG Parish</small></span>
+        </a>
+        <nav class="main-nav" id="mainNav">
+            <ul>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li class="has-mega" id="ministriesTrigger">
+                    <a href="index.html#ministries" class="nav-link">Ministries <svg class="icon" viewBox="0 0 24 24" style="width:12px;height:12px"><path d="M6 9l6 6 6-6"/></svg></a>
+                    <div class="mega-panel">
+                        <div class="mega-card"><div class="mega-tag">60 &amp; Above</div><h4>Wise Women</h4><p>Fellowship, wisdom, and faith for women 60 and above.</p><a href="index.html#ministries" class="mega-link">Explore →</a></div>
+                        <div class="mega-card"><div class="mega-tag">60 &amp; Above</div><h4>Wise Men</h4><p>Mentorship, prayer, and purpose for men 60 and above.</p><a href="index.html#ministries" class="mega-link">Explore →</a></div>
+                        <div class="mega-card"><div class="mega-tag">Youth &amp; Young Adults</div><h4>Hope of Nations</h4><p>Raising the next generation of world-changers.</p><a href="index.html#ministries" class="mega-link">Explore →</a></div>
+                        <div class="mega-card"><div class="mega-tag">Kids</div><h4>Children's Ministry</h4><p>A safe, fun, faith-filled space where kids discover God's love.</p><a href="index.html#ministries" class="mega-link">Explore →</a></div>
+                    </div>
+                </li>
+                <li><a href="#leadership" class="nav-link">Leadership</a></li>
+                <li><a href="index.html#events" class="nav-link">Events</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <a href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener" class="live-btn"><span class="live-dot"></span> Live</a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/rccgfullersfield/" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.3c-.26-.04-1.15-.11-2.19-.11-2.17 0-3.65 1.32-3.65 3.75v2.56H8.2v3h2.46V21h2.84z"/></svg></a>
+                <a href="https://instagram.com/rccgfullersfield" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.6" fill="currentColor"/></svg></a>
+            </div>
+            <a href="give.html" class="btn btn-gold give-nav-btn">Sow a Seed</a>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-slide active" style="background-image:url('images/churchbuilding.jpeg')">
+            <div class="hero-slide-inner">
+                <div class="hero-copy">
+                    <h1>We Are Fuller's Field</h1>
+                    <p class="hero-sub">A place of hope, love, and spiritual transformation. Discover our journey, our purpose, and the heart behind our community.</p>
+                    <div class="hero-cta-row"><a href="#story" class="btn btn-gold">Our Story</a><a href="#leadership" class="btn btn-outline">Meet Our Leaders</a></div>
+                </div>
+                <div class="hero-person-card">
+                    <img src="images/pastorsheadshot.jpg" alt="Pastor Wole Obayomi" style="object-position: center 20%;">
+                    <div><div class="p-name">Pastor Wole Obayomi</div><div class="p-title">Pastor-in-Charge</div><div class="p-quote">"Welcome to our story. We exist to help you discover God and fulfill His purpose."</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide" style="background-image:url('images/community1.jpg')">
+            <div class="hero-slide-inner">
+                <div class="hero-copy">
+                    <h1>Built on Faith &amp; Family</h1>
+                    <p class="hero-sub">Rooted in the Redeemed Christian Church of God, we are committed to winning souls, building disciples, and empowering lives.</p>
+                    <div class="hero-cta-row"><a href="#mission" class="btn btn-gold">Vision &amp; Values</a></div>
+                </div>
+                <div class="hero-person-card">
+                    <img src="images/generaloverseerheadshot.jpg" alt="Pastor E.A Adeboye" style="object-position: center 20%;">
+                    <div><div class="p-name">Pastor E.A Adeboye</div><div class="p-title">General Overseer, RCCG</div><div class="p-quote">"Our mandate is simple — to make heaven, and to take as many people with us as possible."</div></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-dots" id="heroDots">
+            <button class="active" data-i="0" aria-label="Slide 1"></button>
+            <button data-i="1" aria-label="Slide 2"></button>
+        </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-strip">
+        <div class="cd-label"><span class="cd-eyebrow">Next Gathering</span><span class="cd-service-name" id="cdServiceName">—</span></div>
+        <div class="cd-timer">
+            <div class="cd-unit"><span id="cdDays">00</span><small>Days</small></div><div class="cd-sep">:</div>
+            <div class="cd-unit"><span id="cdHours">00</span><small>Hrs</small></div><div class="cd-sep">:</div>
+            <div class="cd-unit"><span id="cdMins">00</span><small>Min</small></div><div class="cd-sep">:</div>
+            <div class="cd-unit"><span id="cdSecs">00</span><small>Sec</small></div>
+        </div>
+        <a href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener" class="cd-watch"><svg class="icon" style="width:14px;height:14px" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg> Watch Live</a>
+    </div>
+
+    <!-- STATS -->
+    <section class="stats-strip">
+        <div class="stats-grid">
+            <div><div class="stat-number">12+</div><div class="stat-label">Years of Faith</div></div>
+            <div><div class="stat-number">5</div><div class="stat-label">Active Ministries</div></div>
+            <div><div class="stat-number">3</div><div class="stat-label">Weekly Services</div></div>
+            <div><div class="stat-number">1,000+</div><div class="stat-label">Lives Impacted</div></div>
+        </div>
+    </section>
+
+    <!-- ABOUT / PURPOSE -->
+    <section class="section story-section reveal" id="story">
+        <div class="story-grid">
+            <div class="story-content">
+                <span class="eyebrow">Who We Are</span>
+                <h2>A Place Where Faith Meets Family</h2>
+                <p>Fuller's Field Parish is more than a church building—it is a thriving, diverse home for seekers, believers, and families looking to anchor their lives in Jesus Christ. As a parish of the Redeemed Christian Church of God (RCCG), we are rooted in timeless biblical truths while expressing them in modern, transformative ways.</p>
+                <p>Located in Sangotedo, Lekki, our community is dedicated to helping every individual encounter the unconditional love of God, heal from past wounds, and step into their divine destiny.</p>
+            </div>
+            <div class="story-media">
+                <img src="images/members1.jpg" alt="Fuller's Field Family">
+                <div class="story-badge">
+                    <h4>12+ Years</h4>
+                    <p>Fostering faith, hope, and community transformation in Sangotedo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="section mv-section reveal" id="mission">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <span class="eyebrow">Driven By Purpose</span>
+            <h2>Our Vision &amp; Mission</h2>
+        </div>
+        <div class="mv-grid">
+            <div class="mv-card vision">
+                <h3>Our Vision</h3>
+                <p>To be a beacon of spiritual illumination where lives are redeemed, potential is unlocked, and disciples are raised to impact nations for God's kingdom.</p>
+            </div>
+            <div class="mv-card">
+                <h3>Our Mission</h3>
+                <p>To preach the uncompromising gospel of Jesus Christ, nurture authentic fellowship, empower individuals through prayer and biblical teaching, and take as many people with us to heaven as possible.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE VALUES -->
+    <section class="section values-section reveal" id="values">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <span class="eyebrow">What Guides Us</span>
+            <h2>Our Core Values</h2>
+            <p style="color: var(--charcoal-soft); font-size: 0.88rem; margin-top: 8px;">These pillars shape how we worship, serve, and love one another every day.</p>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">01</div>
+                <h3>Uncompromising Faith</h3>
+                <p>We stand firmly on the Word of God as our absolute truth and foundation for life.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">02</div>
+                <h3>Radical Welcome</h3>
+                <p>Come as you are. We foster a culture of open arms, belonging, and genuine care.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">03</div>
+                <h3>Passionate Worship</h3>
+                <p>We host God’s presence with vibrant praise, earnest prayer, and spiritual depth.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">04</div>
+                <h3>Generational Legacy</h3>
+                <p>From seniors to children, we nurture every stage of life to pass down a legacy of faith.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORICAL TIMELINE -->
+    <section class="section history-section reveal" id="history">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+            <span class="eyebrow">Our Journey</span>
+            <h2>How God Has Led Us</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-title">The Foundation</div>
+                    <div class="timeline-desc">Fuller's Field Parish was planted with a vision to serve families along the Lekki-Epe corridor.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-title">Expanding Ministries</div>
+                    <div class="timeline-desc">Launched Hope of Nations youth ministry and dedicated specialized programs for our seniors.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-title">Digital &amp; Community Reach</div>
+                    <div class="timeline-desc">Expanded online streaming globally while deepening local community outreach initiatives.</div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">Present</div>
+                    <div class="timeline-title">Growing Stronger</div>
+                    <div class="timeline-desc">Continuing to make disciples, raise leaders, and shine God’s light in Sangotedo and beyond.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE BELIEVE -->
+    <section class="section beliefs-section reveal">
+        <div class="beliefs-container">
+            <span class="eyebrow" style="display: block; text-align: center;">Statement of Faith</span>
+            <h2>What We Believe</h2>
+            <div class="beliefs-list">
+                <div class="belief-item">
+                    <div class="belief-bullet"></div>
+                    <p><strong>The Trinity:</strong> We believe in one God eternally existing in three persons: Father, Son, and Holy Spirit.</p>
+                </div>
+                <div class="belief-item">
+                    <div class="belief-bullet"></div>
+                    <p><strong>Salvation:</strong> Salvation is a gift from God received through personal faith in Jesus Christ.</p>
+                </div>
+                <div class="belief-item">
+                    <div class="belief-bullet"></div>
+                    <p><strong>The Bible:</strong> The Holy Scriptures are fully inspired by God and serve as our supreme authority.</p>
+                </div>
+                <div class="belief-item">
+                    <div class="belief-bullet"></div>
+                    <p><strong>Holy Spirit:</strong> We believe in the baptism and ongoing empowering presence of the Holy Spirit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP (Alternating Split Layout) -->
+    <section class="section leadership-section reveal" id="leadership">
+        <div style="text-align:center; max-width:680px; margin:0 auto 60px;">
+            <span class="eyebrow">Servant Leaders</span>
+            <h2>Meet Our Pastoral Team</h2>
+            <p style="color:var(--charcoal-soft); font-weight:400; font-size:0.95rem; margin-top:8px; line-height:1.7;">
+                Guided by vision, integrity, and unconditional love, our leadership team is dedicated to shepherding the congregation, equipping believers, and building a thriving spiritual home for every family.
+            </p>
+        </div>
+
+        <div class="pastoral-container" style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 80px;">
+            
+            <!-- 1. SENIOR PASTORS (Image Left, Text Right) -->
+            <div class="leader-row" style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; align-items: center;">
+                <div class="leader-media" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); height: 420px;">
+                    <img src="images/pastorsheadshot.jpg" alt="Pastor Wole & Pastor (Mrs.) Bose Obayomi" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                </div>
+                <div class="leader-content">
+                    <h3 style="font-size: 2.1rem; color: var(--navy); margin-bottom: 16px; font-weight: 700;">Pastor Wole &amp; Pastor (Mrs.) Bose Obayomi</h3>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        Pastor Wole and Pastor (Mrs.) Bose Obayomi serve as the Senior Pastors-in-Charge of Fuller's Field Parish. With over a decade of dedicated ministry, their heart is centered on building a warm, Christ-centered community where people from all walks of life can encounter God’s presence, heal, and flourish.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        Together, they provide visionary leadership rooted in deep biblical teaching, prayer, and pastoral care. Pastor Wole brings a passionate teaching ministry focused on purpose and spiritual growth, while Pastor Bose faithfully shepherds family dynamics, women's fellowship, and community welfare initiatives.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85;">
+                        Their unified vision is to raise grounded disciples who do not merely attend church, but actively influence their homes, workplaces, and neighborhoods with kingdom values and genuine love.
+                    </p>
+                </div>
+            </div>
+
+            <!-- 2. ASSISTANT PASTOR & WIFE (Image Right, Text Left) -->
+            <div class="leader-row leader-row-reverse" style="display: grid; grid-template-columns: 1.1fr 1fr; gap: 50px; align-items: center;">
+                <div class="leader-content">
+                    <h3 style="font-size: 2.1rem; color: var(--navy); margin-bottom: 16px; font-weight: 700;">Pastor Imoh &amp; Patience Akpan</h3>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        Serving as Assistant Pastor alongside his wife Patience, Pastor Imoh Akpan plays a pivotal role in strengthening the ministry infrastructure and spiritual vitality of Fuller's Field Parish. 
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        They work hand-in-hand to oversee daily ministry administration, pastoral care, and member assimilation. Their dedication ensures that every individual who steps through our doors finds a place of connection, mentorship, and practical spiritual guidance.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85;">
+                        Pastor Imoh and Patience embody servant leadership, championing family stability, small group discipleship, and continuous support for our volunteers and operational teams.
+                    </p>
+                </div>
+                <div class="leader-media" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); height: 420px;">
+                    <img src="images/assistant1.jpg" alt="Pastor Imoh & Patience Akpan" style="width: 100%; height: 100%; object-fit: cover; object-position: center 20%;">
+                </div>
+            </div>
+
+            <!-- 3. HOPE OF NATIONS (Image Left, Text Right) -->
+            <div class="leader-row" style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 50px; align-items: center;">
+                <div class="leader-media" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-md); height: 420px;">
+                    <img src="images/community1.jpg" alt="Hope of Nations Youth Leadership" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                </div>
+                <div class="leader-content">
+                    <h3 style="font-size: 2.1rem; color: var(--navy); margin-bottom: 16px; font-weight: 700;">Hope of Nations Leadership</h3>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        The Hope of Nations Youth &amp; Young Adults Ministry is spearheaded by a passionate, dynamic leadership team devoted to raising the next generation of Kingdom influencers, innovators, and leaders.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85; margin-bottom: 16px;">
+                        Recognizing the unique pressures faced by young people today, the team creates engaging environments where youth can tackle real-world questions, deepen their personal relationship with God, and discover their unique talents.
+                    </p>
+                    <p style="font-size: 0.95rem; color: var(--charcoal-soft); line-height: 1.85;">
+                        Through vibrant gatherings, career development workshops, creative arts, and outreach programs, the Hope of Nations leaders empower young adults to stand bold in their faith and positively shape culture.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section class="cta-banner">
+        <h2>Find Your Place in Our Family</h2>
+        <p>Whether you're visiting for the first time or looking for a home church, we'd love to welcome you this Sunday.</p>
+        <div class="cta-buttons"><a href="index.html#services" class="btn btn-gold">Service Times</a><a href="give.html" class="btn btn-white">Sow a Seed</a></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div><div class="footer-logo"><span class="logo-mark"><img src="images/logo.png" alt="Logo"></span> Fuller's Field Parish</div><p>A parish of the Redeemed Christian Church of God.</p></div>
+            <div><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="#leadership">Leadership</a></li><li><a href="give.html">Give</a></li></ul></div>
+            <div><h5>Services</h5><ul><li>Sun · 7:30 AM / 10:30 AM</li><li>Tue · Digging Deep 6:30 PM</li><li>Thu · Faith Clinic 6:30 PM</li></ul></div>
+            <div><h5>Contact</h5><p>Km 47 beside DKK Supermarket, Canaan Estate, Sangotedo, Ajah, Lagos</p></div>
+        </div>
+        <div class="footer-bottom"><span>© 2026 Fuller's Field Parish. All rights reserved.</span></div>
+    </footer>
+
+    <script>
+        const header = document.getElementById('siteHeader');
+        window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 40); });
+
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('#heroDots button');
+        let current = 0, heroTimer;
+        function showSlide(i) {
+            slides.forEach(s => { s.classList.remove('active'); s.style.animation = 'none'; });
+            dots.forEach(d => d.classList.remove('active'));
+            slides[i].classList.add('active'); dots[i].classList.add('active');
+            void slides[i].offsetWidth; slides[i].style.animation = 'kenBurns 8s ease-out forwards';
+            current = i;
+        }
+        function startHeroTimer() { clearInterval(heroTimer); heroTimer = setInterval(() => showSlide((current+1)%slides.length), 7000); }
+        dots.forEach(d => d.addEventListener('click', () => { showSlide(parseInt(d.dataset.i)); startHeroTimer(); }));
+        void slides[0].offsetWidth; slides[0].style.animation = 'kenBurns 8s ease-out forwards'; startHeroTimer();
+
+        const hamburger = document.getElementById('hamburgerBtn'), mainNav = document.getElementById('mainNav');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); mainNav.classList.toggle('mobile-open'); });
+        
+        const gatherings = [
+            { day:0, hour:7, min:30, name:'Sunday · First Service' },
+            { day:0, hour:10, min:30, name:'Sunday · Second Service' },
+            { day:2, hour:18, min:30, name:'Tuesday · Digging Deep' },
+            { day:4, hour:18, min:30, name:'Thursday · Faith Clinic' }
+        ];
+        function nextGathering(){ const now=new Date(); let best=null; gatherings.forEach(g=>{ const d=new Date(now); const dayDiff=(g.day-now.getDay()+7)%7; d.setDate(now.getDate()+dayDiff); d.setHours(g.hour,g.min,0,0); if(d<=now) d.setDate(d.getDate()+7); if(!best||d<best.date) best={date:d,name:g.name}; }); return best; }
+        function updateCountdown(){ const target=nextGathering(); document.getElementById('cdServiceName').textContent=target.name; const diff=Math.max(0,target.date-new Date()); const days=Math.floor(diff/(1000*60*60*24)); const hours=Math.floor((diff/(1000*60*60))%24); const mins=Math.floor((diff/(1000*60))%60); const secs=Math.floor((diff/1000)%60); document.getElementById('cdDays').textContent=String(days).padStart(2,'0'); document.getElementById('cdHours').textContent=String(hours).padStart(2,'0'); document.getElementById('cdMins').textContent=String(mins).padStart(2,'0'); document.getElementById('cdSecs').textContent=String(secs).padStart(2,'0'); }
+        updateCountdown(); setInterval(updateCountdown,1000);
+
+        const revealEls = document.querySelectorAll('.reveal');
+        const io = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ if(entry.isIntersecting){ entry.target.classList.add('in-view'); io.unobserve(entry.target); } }); }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+        revealEls.forEach(el=>io.observe(el));
+    </script>
+</body>
+</html>
