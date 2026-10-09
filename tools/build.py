@@ -50,6 +50,8 @@ P = {
  "hands": '<path d="M12 21s-7-5-7-11V4l7 4 7-4v6c0 6-7 11-7 11z"/>',
  "gift": '<rect x="3" y="8" width="18" height="13" rx="1"/><path d="M12 8v13M3 12h18M12 8S10 3 7.5 4 9 8 12 8zM12 8s2-5 4.5-4S15 8 12 8z"/>',
  "chev": '<path d="M6 9l6 6 6-6"/>',
+ "card": '<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/>',
+ "keypad": '<rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h.01M12 6h.01M15 6h.01M9 10h.01M12 10h.01M15 10h.01M9 14h.01M12 14h.01M15 14h.01M12 18h.01"/>',
 }
 def ic(name, sw=2):
     return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{P[name]}</svg>'
@@ -271,7 +273,7 @@ def page(fn, title, desc, main, active=None, fab=True, extra=""):
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>{title}</title>
   <meta name="description" content="{desc}">
-  <meta name="theme-color" content="#22125F">
+  <meta name="theme-color" content="#28166F">
   <link rel="icon" href="{IMG}logo.png">
   <link rel="preload" href="fonts/fraunces.woff" as="font" type="font/woff" crossorigin>
   <link rel="preload" href="fonts/jakarta.woff" as="font" type="font/woff" crossorigin>
@@ -357,60 +359,50 @@ SERVICES = f'''    <section class="section" id="services">
       </div>
     </section>'''
 
-def event_card(e):
+
+# ------------------------------------------------------------------ shared blocks
+SQ = ["red", "navy", "green"]
+def sq(icon, i):
+    return f'<span class="sq {SQ[i % 3]}">{ic(icon)}</span>'
+
+def ev_row(e):
     r = f' data-rule="{e["rule"]}" data-time="{e["time"]}"' if e["rule"] else ""
-    return f'''          <article class="event-card"{r} tabindex="0" role="button" aria-label="Open the flyer for {html.escape(e["title"])}">
-            <div class="event-img"><img src="{IMG}{e["img"]}" alt="{e["alt"]}" loading="lazy"><div class="date-badge"><span class="d">{e["d"]}</span><span class="m">{e["m"]}</span></div></div>
-            <div class="event-body">
-              <div class="event-meta"><span class="ev-tag">{e["tag"]}</span><span>{e["meta"]}</span></div>
-              <h3>{e["title"]}</h3>
-              <p>{e["lead"]}</p>
-              <span class="ev-when" hidden>{e["when"]}</span>
-              <div class="ev-more">{e["more"]}</div>
-              <span class="btn-text">View flyer →</span>
-            </div>
-          </article>'''
+    dcls = "d word" if not e["rule"] and not e["d"].isdigit() else "d"
+    return f'''        <li class="ev-row"{r} tabindex="0" role="button" aria-label="Open the flyer for {html.escape(e["title"])}">
+          <div class="event-date"><span class="{dcls}">{e["d"]}</span><span class="m">{e["m"]}</span></div>
+          <div>
+            <h3>{e["title"]}</h3>
+            <p class="ev-when">{e["when"]}</p>
+            <p class="ev-lead">{e["lead"]}</p>
+            <div class="ev-more">{e["more"]}</div>
+            <span class="ev-open">View flyer &amp; details</span>
+          </div>
+          <img src="{IMG}{e["img"]}" alt="{e["alt"]}" loading="lazy">
+        </li>'''
 
-def events_section(eyebrow="What's coming up", title="Upcoming Events"):
-    cards = "\n".join(event_card(e) for e in EVENTS)
-    return f'''    <section class="section events-sec" id="events">
-      <div class="wrap">
-        <div class="head-c reveal"><span class="eyebrow">{eyebrow}</span><h2 class="h2">{title}</h2><p>Tap an event to see its flyer and details.</p></div>
-        <div class="events-grid swipe">
-{cards}
-        </div>
-        <p class="swipe-hint">Swipe to see more</p>
-      </div>
+def events_list(title, sub, limit=None, more_btn=False):
+    lim = f' data-limit="{limit}"' if limit else ""
+    rows = "\n".join(ev_row(e) for e in EVENTS)
+    btn = '\n      <div class="ev-more-wrap"><a href="events.html" class="btn btn-red">See all events</a></div>' if more_btn else ""
+    return f'''    <section class="ev-sec" id="events">
+      <div class="ev-head reveal"><h2>{title}</h2><p>{sub}</p></div>
+      <ul class="ev-list"{lim}>
+{rows}
+      </ul>{btn}
     </section>'''
 
-def ministry_card(m):
-    return f'''          <a class="ministry-card" href="{m["fn"]}">
-            <img src="{IMG}{m["hero"]}" alt="{m["name"]}" loading="lazy">
-            <div class="ministry-body"><small>{m["tag"]}</small><h3>{m["name"]}</h3><p>{m["short"]}</p><span class="go">Learn more →</span></div>
-          </a>'''
+def mcard(m):
+    return f'''        <a class="mcard" href="{m["fn"]}">
+          <img src="{IMG}{m["hero"]}" alt="" loading="lazy">
+          <div class="body"><span class="tag">{m["tag"]}</span><h3>{m["name"]}</h3><p>{m["short"]}</p><span class="go">Visit the {m["name"]} page →</span></div>
+        </a>'''
 
-def ministries_section(title="Our Ministries", eyebrow="Find your place"):
-    cards = "\n".join(ministry_card(m) for m in MINISTRIES)
-    return f'''    <section class="section ministries-sec on-dark" id="ministries">
-      <div class="head-c reveal"><span class="eyebrow">{eyebrow}</span><h2 class="h2">{title}</h2><p>A family within the family for every age and season.</p></div>
-      <div class="ministry-grid swipe reveal">
-{cards}
-      </div>
-      <p class="swipe-hint">Swipe to see more</p>
-    </section>'''
-
-def leader_card(img, name, role, bio, pos="center 18%"):
-    return f'''        <article class="leader-card">
-          <div class="leader-img"><img src="{IMG}{img}" alt="{name}" loading="lazy" style="object-position:{pos}"></div>
-          <div class="leader-info"><h3>{name}</h3><p class="leader-role">{role}</p><p class="leader-bio">{bio}</p></div>
-        </article>'''
-
-LEADERS = "\n".join([
-  leader_card("pastor-portrait.jpg", "Wole Obayomi", "Pastor-in-Charge", "Leads with a heart for discipleship and community transformation."),
-  leader_card("pastor-mrs-portrait.jpg", "Bose Obayomi", "Mother of the Parish", "Nurtures the flock with wisdom, prayer and care for families."),
-  leader_card("assistant1.jpg", "Imoh Akpan", "Assistant Pastor", "Faithfully supports pastoral care and the running of the parish.", "30% 20%"),
-  leader_card("assistant2.jpg", "Patience Akpan", "Assistant Leader", "Serves with grace and compassion.", "70% 30%"),
-])
+DSUB = {"Ushering": "Welcome people at the door", "Choir & Music": "Lead the church in praise", "Media & Technical": "Sound, cameras and livestream",
+        "Sanctuary Keepers": "Prepare the house of God", "Children's Teachers": "Teach children on Sundays", "Protocol & Hospitality": "Look after guests",
+        "Welfare & Evangelism": "Care for people in need", "Prayer Team": "Stand in the gap in prayer", "Security & Car Park": "Keep everyone safe"}
+def dtile(d, i):
+    n, icon, _desc, _e = d
+    return f'          <a class="dtile" href="workers.html#departments">{sq(icon, i)}<span><strong>{html.escape(n)}</strong><span class="sub">{DSUB[n]}</span></span></a>'
 
 GIVE_STRIP = f'''    <section class="give-strip on-dark" id="give">
       <span class="eyebrow">Sow a seed</span>
@@ -419,8 +411,9 @@ GIVE_STRIP = f'''    <section class="give-strip on-dark" id="give">
       <a href="give.html" class="btn btn-red">{ic("heart")} Give Online</a>
     </section>'''
 
+WIT_LINK = mailto("Register me for Workers in Training", "Hello, my name is ... and I would like to register for Workers in Training. My phone number is ...")
+
 # ------------------------------------------------------------------ HOME
-DEPT_TILES = "\n".join(f'          <a class="dept-tile" href="workers.html#departments"><span class="ic">{ic_plain(i)}</span><strong>{html.escape(n)}</strong></a>' for n, i, _d, _e in DEPTS)
 def gi(cls, img, alt):
     return f'          <div class="g-item {cls}"><img src="{IMG}{img}" alt="{alt}" loading="lazy"></div>'
 GALLERY = "\n".join([
@@ -449,7 +442,15 @@ def slide(img, pos, h1, sub, btns, card=""):
         </div>
       </div>'''
 
-slides = [
+def hero(slides):
+    sl = "\n".join(s.replace("{active}", " active" if i == 0 else "") for i, s in enumerate(slides))
+    dots = "".join(f'<button{" class=\"active\"" if i == 0 else ""} data-i="{i}" aria-label="Slide {i+1}"></button>' for i in range(len(slides)))
+    return f'''    <section class="hero" id="home">
+{sl}
+      <div class="hero-dots" id="heroDots">{dots}</div>
+    </section>'''
+
+home = f'''{hero([
   slide("churchbuilding.jpg", "center 40%", "Take a Step Toward the Light",
         "Discover faith, hope and a family for your soul. Whatever season you're in, there's a seat for you here.",
         f'<a href="#services" class="btn btn-red">Join Us This Sunday</a><a href="{YT}" target="_blank" rel="noopener" class="btn btn-outline">Watch Live</a>',
@@ -458,20 +459,13 @@ slides = [
         "We exist to reach the lost and raise disciples who make heaven, taking as many people with us as possible.",
         '<a href="about.html#mission" class="btn btn-red">Our Mission &amp; Vision</a>',
         person_card("generaloverseerheadshot.jpg", "Pastor E.A. Adeboye", "General Overseer, RCCG", "Our mandate is simple: to make heaven, and to take as many people with us as possible.")),
-  slide("members17.jpg", "center 30%", "Raising a Generation on Fire for God",
+  slide("members17.jpg", "center 30%", "Raising a Generation for God",
         "Hope of Nations meets every Sunday at 9:30am. Young people, there's a place for you.",
         '<a href="hope-of-nations.html" class="btn btn-red">Meet Hope of Nations</a><a href="ministries.html" class="btn btn-outline">All Ministries</a>'),
   slide("offeringhero.jpg", "center", "Sow a Seed, Reap a Harvest",
         "Giving is an act of worship. Every seed sown here helps us reach our community and beyond.",
         f'<a href="give.html" class="btn btn-red">{ic("heart")} Give / Sow a Seed</a><a href="workers.html" class="btn btn-outline">Serve With Us</a>'),
-]
-slides_html = "\n".join(s.replace("{active}", " active" if i == 0 else "") for i, s in enumerate(slides))
-dots_html = "".join(f'<button{" class=\"active\"" if i == 0 else ""} data-i="{i}" aria-label="Slide {i+1}"></button>' for i in range(len(slides)))
-
-home = f'''    <section class="hero" id="home">
-{slides_html}
-      <div class="hero-dots" id="heroDots">{dots_html}</div>
-    </section>
+])}
 
 {COUNTDOWN}
 
@@ -498,14 +492,6 @@ home = f'''    <section class="hero" id="home">
       </div>
     </section>
 
-    <section class="section leadership" id="leadership">
-      <div class="head-c reveal"><span class="eyebrow">Our leadership</span><h2 class="h2">Meet Our Pastoral Team</h2><p>Devoted leaders serving with love and vision.</p></div>
-      <div class="leader-grid swipe reveal">
-{LEADERS}
-      </div>
-      <p class="swipe-hint">Swipe to see more</p>
-    </section>
-
     <section class="gallery on-dark" aria-labelledby="gal-title">
       <div class="gallery-head"><span class="eyebrow">Life at Fuller's Field</span><h2 class="h2" id="gal-title">Moments From Our Family</h2></div>
       <div class="marquee" id="marquee">
@@ -516,11 +502,17 @@ home = f'''    <section class="hero" id="home">
 
 {SERVICES}
 
-{events_section()}
+{events_list("Coming up", 'The next special services at Fuller\'s Field. Tap one to see its flyer.', limit=2, more_btn=True)}
 
-{ministries_section()}
+    <section class="section" id="ministries">
+      <div class="head-c reveal"><span class="eyebrow">Find your place</span><h2 class="h2">Find Your People</h2><p>Each ministry is a family within the family where you can grow, be known and serve.</p></div>
+      <div class="mcards swipe reveal">
+{chr(10).join(mcard(m) for m in MINISTRIES)}
+      </div>
+      <p class="swipe-hint">Swipe to see more</p>
+    </section>
 
-    <section class="section" id="serve">
+    <section class="section leadership" id="serve">
       <div class="serve-home reveal">
         <div>
           <span class="eyebrow">Serve with us</span>
@@ -533,19 +525,9 @@ home = f'''    <section class="hero" id="home">
           </ol>
           <div class="btn-row"><a href="workers.html#wit" class="btn btn-red">Become a Worker</a><a href="workers.html" class="btn btn-line">All Departments</a></div>
         </div>
-        <div class="dept-tiles">
-{DEPT_TILES}
+        <div class="dtiles">
+{chr(10).join(dtile(d, i) for i, d in enumerate(DEPTS))}
         </div>
-      </div>
-    </section>
-
-    <section class="cta-banner" style="background-image:url('{IMG}members8.jpg')">
-      <h2>Ready to Take Your Next Step?</h2>
-      <p>There is a place for your gifts and a family for your journey. Join a ministry, or serve in God's house through Workers in Training.</p>
-      <div class="cta-buttons">
-        <a href="ministries.html" class="btn btn-white">Join a Ministry</a>
-        <a href="workers.html" class="btn btn-white">Become a Worker</a>
-        <a href="#services" class="btn btn-red">Plan a Visit</a>
       </div>
     </section>
 
@@ -554,88 +536,22 @@ page("index.html", "Fuller's Field Parish | RCCG, Lekki–Epe Expressway",
      "RCCG Fuller's Field Parish, Km 47 Lekki–Epe Expressway, Lagos. Sunday services 7:30am and 10:30am. Hope of Nations 9:30am.",
      home, extra=EV_DIALOG)
 
-# ------------------------------------------------------------------ ABOUT
-mv_items = "\n".join(f"          <li><p>{t}</p></li>" for t in MV)
-about = f'''{page_hero("members23.jpg", "About us", "We Are Fuller's Field", "A place of hope, love and spiritual transformation, rooted in The Redeemed Christian Church of God.",
-   '<a href="#story" class="btn btn-red">Our Story</a><a href="#pastors" class="btn btn-outline">Meet Our Pastors</a>',
-   person_card("generaloverseerheadshot.jpg", "Pastor E.A. Adeboye", "General Overseer, RCCG", "Our mandate is simple: to make heaven, and to take as many people with us as possible."), "center 35%")}
-
-    <section class="section" id="story">
-      <div class="split reveal">
-        <div class="photo"><img src="{IMG}churchbuilding.jpg" alt="The Fuller's Field church building"></div>
-        <div>
-          <span class="eyebrow">Who we are</span>
-          <h2 class="h2">A Place Where Faith Meets Family</h2>
-          <p>Fuller's Field Parish is a home for seekers, believers and families looking to anchor their lives in Jesus Christ. As a parish of the Redeemed Christian Church of God, we are rooted in timeless biblical truth.</p>
-          <p>Located on the Lekki–Epe Expressway in Sangotedo, our church family is dedicated to helping every person encounter the love of God, heal from the past and step into their God-given purpose.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" style="padding-top:0">
-      <div class="head-c reveal"><span class="eyebrow">Our journey</span><h2 class="h2">How God Has Led Us</h2></div>
-      <ul class="timeline swipe reveal">
-        <li class="card"><p class="yr">2012</p><h3>The Foundation</h3><p>Fuller's Field Parish was planted to serve families along the Lekki–Epe corridor.</p></li>
-        <li class="card"><p class="yr">2016</p><h3>Expanding Ministries</h3><p>Hope of Nations began, alongside fellowships for our seniors.</p></li>
-        <li class="card"><p class="yr">2020</p><h3>Reaching Further</h3><p>Services began streaming online as our outreach grew.</p></li>
-        <li class="card"><p class="yr">Today</p><h3>Growing Stronger</h3><p>Making disciples and shining God's light in Sangotedo and beyond.</p></li>
-      </ul>
-    </section>
-
-    <section class="section mv on-dark" id="mission">
-      <div class="head-c reveal"><span class="eyebrow">The RCCG mandate</span><h2 class="h2">Mission &amp; Vision</h2></div>
-      <ol class="mv-list reveal">
-{mv_items}
-      </ol>
-    </section>
-
-    <section class="section">
-      <div class="head-c reveal"><span class="eyebrow">What guides us</span><h2 class="h2">Our Core Values</h2></div>
-      <ul class="values-grid swipe reveal">
-        <li class="card"><h3>The Word First</h3><p>The Bible is our foundation and final authority.</p></li>
-        <li class="card"><h3>Open Arms</h3><p>Come as you are. Everyone belongs here.</p></li>
-        <li class="card"><h3>Prayer &amp; Worship</h3><p>We seek God's presence with praise and prayer.</p></li>
-        <li class="card"><h3>Every Generation</h3><p>From children to our Wise Women and Men.</p></li>
-      </ul>
-    </section>
-
-    <section class="section leadership" id="pastors">
-      <div class="head-c reveal"><span class="eyebrow">Servant leaders</span><h2 class="h2">Our Pastors</h2></div>
-      <article class="pastor-row card reveal">
-        <img src="{IMG}p1andwifecontemp.jpg" alt="Pastor Wole and Pastor (Mrs.) Bose Obayomi">
-        <div>
-          <h3>Pastor Wole &amp; Pastor (Mrs.) Bose Obayomi</h3>
-          <p class="leader-role">Pastor-in-Charge</p>
-          <p>Pastor Wole and Pastor (Mrs.) Bose Obayomi lead Fuller's Field Parish. Their heart is to build a warm, Christ-centred church where people from all walks of life can meet God, heal and grow.</p>
-          <p>Pastor Wole brings a passionate teaching ministry focused on purpose and spiritual growth, while Pastor Bose shepherds families, women's fellowship and welfare.</p>
-        </div>
-      </article>
-      <article class="pastor-row card reveal">
-        <img src="{IMG}assistant1.jpg" alt="Pastor Imoh Akpan" style="object-position:30% 20%">
-        <div>
-          <h3>Pastor Imoh &amp; Patience Akpan</h3>
-          <p class="leader-role">Assistant Pastor</p>
-          <p>Pastor Imoh serves as Assistant Pastor alongside his wife, Patience. Together they oversee ministry administration, pastoral care and welcoming new members, so everyone finds connection and support.</p>
-        </div>
-      </article>
-      <div class="go-card card reveal">
-        <img src="{IMG}generaloverseerheadshot.jpg" alt="Pastor E.A. Adeboye">
-        <div><h3>Part of a Worldwide Family</h3><p>Fuller's Field is a parish of The Redeemed Christian Church of God, led by our General Overseer, Pastor E.A. Adeboye.</p><a href="https://www.rccg.org" target="_blank" rel="noopener" class="btn-text">Visit rccg.org →</a></div>
-      </div>
-    </section>
-
-{GIVE_STRIP}'''
-page("about.html", "About | Fuller's Field Parish", "Our story, the RCCG mission and vision, our values and pastors at Fuller's Field Parish, Sangotedo, Lagos.", about)
+# ------------------------------------------------------------------ ABOUT (original layout)
+about = open(os.path.join(ROOT, "tools", "about_v3.html")).read()
+page("about.html", "About | Fuller's Field Parish", "Our story, the RCCG mission and vision, our values, beliefs and pastors at Fuller's Field Parish, Sangotedo, Lagos.", about)
 
 # ------------------------------------------------------------------ MINISTRIES OVERVIEW
-mins = f'''{page_hero("members8.jpg", "Find your place", "Our Ministries", "Church is more than Sunday. Each ministry is a family where you can grow, be known and serve.", '<a href="#list" class="btn btn-red">Explore Ministries</a><a href="workers.html" class="btn btn-outline">Serve in a Department</a>', pos="center 30%")}
+mins = f'''{page_hero("members8.jpg", "Find your place", "Our Ministries", "Church is more than Sunday. Each ministry is a family where you can grow, be known and serve.", pos="center 30%")}
 
     <section class="section" id="list">
       <div class="head-c reveal"><span class="eyebrow">Ministries</span><h2 class="h2">Choose a Ministry</h2><p>Tap a ministry to see photos, meeting times and how to join.</p></div>
-      <div class="ministry-grid swipe reveal">
-{chr(10).join(ministry_card(m) for m in MINISTRIES)}
+      <div class="mcards reveal">
+{chr(10).join(mcard(m) for m in MINISTRIES)}
       </div>
-      <p class="swipe-hint">Swipe to see more</p>
+      <div class="msmall reveal">
+        <a href="index.html#services"><img src="{IMG}members16.jpg" alt="" loading="lazy"><div><strong>Sunday School</strong><span>Bible study classes every Sunday, 9:30 – 10:30am.</span></div></a>
+        <a href="index.html#services"><img src="{IMG}members6.jpg" alt="" loading="lazy"><div><strong>Prayer &amp; Bible Study</strong><span>Digging Deep (Tue) and Faith Clinic (Thu), 6:30pm.</span></div></a>
+      </div>
     </section>
 
     <section class="cta-banner" style="background-image:url('{IMG}members15.jpg')">
@@ -645,29 +561,30 @@ mins = f'''{page_hero("members8.jpg", "Find your place", "Our Ministries", "Chur
     </section>'''
 page("ministries.html", "Ministries | Fuller's Field Parish", "Hope of Nations, Children's Church, Wise Women and Wise Men at RCCG Fuller's Field Parish.", mins)
 
-# ------------------------------------------------------------------ MINISTRY PAGES
+# ------------------------------------------------------------------ MINISTRY PAGES (earlier design)
 for m in MINISTRIES:
-    acts = "\n".join(f'          <li class="card"><span class="ic">{ic_plain(i)}</span><div><strong>{t}</strong><span>{d}</span></div></li>' for i, t, d in m["acts"])
+    acts = "\n".join(f'          <li>{sq(i, k)}<div><strong>{t}</strong><span>{d}</span></div></li>' for k, (i, t, d) in enumerate(m["acts"]))
     gal = "\n".join(f'        <button type="button" aria-label="Enlarge photo {k+1}"><img src="{IMG}{g}" alt="{m["name"]}, photo {k+1}" loading="lazy"></button>' for k, g in enumerate(m["gallery"]))
-    steps = "\n".join(f'        <li class="card"><strong>{t}</strong><span>{d}</span></li>' for t, d in m["steps"])
-    others = "\n".join(ministry_card(o) for o in MINISTRIES if o is not m)
+    steps = "\n".join(f'          <li><div><strong>{t}</strong><span>{d}</span></div></li>' for t, d in m["steps"])
+    others = "\n".join(f'        <a href="{o["fn"]}"><img src="{IMG}{o["hero"]}" alt="" loading="lazy"><div><strong>{o["name"]}</strong><span>{o["short"]}</span></div></a>' for o in MINISTRIES if o is not m)
     about_p = "\n".join(f"          <p>{p}</p>" for p in m["about"])
+    plain = html.unescape(m["name"])
     body = f'''{page_hero(m["hero"], m["tag"], m["name"], m["short"], '<a href="#join" class="btn btn-red">How to Join</a><a href="ministries.html" class="btn btn-outline">All Ministries</a>', pos="center 30%")}
 
-    <div class="facts">
-      <div class="card"><small>When</small><strong>{m["when"]}</strong></div>
-      <div class="card"><small>Who</small><strong>{m["who"]}</strong></div>
-      <div class="card"><small>Where</small><strong>Fuller's Field, Km 47 Lekki–Epe Expy</strong></div>
-    </div>
+    <div class="mfacts"><div class="in">
+      <div><small>When</small><strong>{m["when"]}</strong></div>
+      <div><small>Who</small><strong>{m["who"]}</strong></div>
+      <div><small>Where</small><strong>Fuller's Field, Km 47 Lekki–Epe Expy</strong></div>
+    </div></div>
 
     <section class="section">
-      <div class="split reveal" style="align-items:start">
+      <div class="mabout reveal">
         <div>
           <span class="eyebrow">About us</span>
           <h2 class="h2">Welcome to {m["name"]}</h2>
 {about_p}
         </div>
-        <ul class="acts">
+        <ul class="mact">
 {acts}
         </ul>
       </div>
@@ -680,42 +597,47 @@ for m in MINISTRIES:
       </div>
     </section>
 
-    <section class="section" id="join">
-      <div class="head-c reveal"><span class="eyebrow">Join us</span><h2 class="h2">How to Join</h2></div>
-      <ol class="steps-grid swipe reveal">
-{steps}
-      </ol>
-      <div class="reach reveal">
-        <p>Prefer to reach out first? Email us or call the parish office and we'll connect you with the {m["name"]} leaders.</p>
-        <div class="btn-row">
-          <a class="btn btn-red btn-sm" href="{mailto("I want to join " + html.unescape(m["name"]), "Hello, my name is ... and I would like to join " + html.unescape(m["name"]) + ". My phone number is ...")}">{ic("mail")} Email Us</a>
-          <a class="btn btn-white btn-sm" href="tel:{TEL}">{ic("phone")} {PHONE}</a>
+    <section class="section mjoin" id="join">
+      <div class="in reveal">
+        <div>
+          <span class="eyebrow">Join us</span>
+          <h2 class="h2">How to Join {m["name"]}</h2>
+          <div class="mreach">
+            <p>Prefer to reach out first? Email us or call the parish office and we'll connect you with the {m["name"]} leaders.</p>
+            <div class="btn-row">
+              <a class="btn btn-red btn-sm" href="{mailto("I want to join " + plain, "Hello, my name is ... and I would like to join " + plain + ". My phone number is ...")}">{ic("mail")} Email Us</a>
+              <a class="btn btn-white btn-sm" href="tel:{TEL}">{ic("phone")} {PHONE}</a>
+            </div>
+          </div>
         </div>
+        <ol class="jsteps">
+{steps}
+        </ol>
       </div>
     </section>
 
-    <section class="section ministries-sec on-dark">
+    <section class="section">
       <div class="head-c reveal"><span class="eyebrow">Keep exploring</span><h2 class="h2">Other Ministries</h2></div>
-      <div class="ministry-grid swipe reveal" style="grid-template-columns:repeat(3,1fr)">
+      <div class="msmall reveal" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
 {others}
       </div>
     </section>'''
-    page(m["fn"], f"{html.unescape(m['name'])} | Fuller's Field Parish", f"{html.unescape(m['name'])} at RCCG Fuller's Field Parish. {m['when']}.", body, active=m["fn"], extra=PHOTO_DIALOG)
+    page(m["fn"], f"{plain} | Fuller's Field Parish", f"{plain} at RCCG Fuller's Field Parish. {m['when']}.", body, active=m["fn"], extra=PHOTO_DIALOG)
 
 # ------------------------------------------------------------------ WORKERS
-def dept_card(name, icon, desc, extra):
-    plain = html.unescape(name)
+def dept_card(d, i):
+    name, icon, desc, extra = d
     steps = ["Worship with us regularly at Fuller's Field.", "Register for Workers in Training (WIT).",
-             f"Tell us you'd like to join {plain}; we'll introduce you to the head of department."] + extra + ["Start serving after training."]
+             f"Tell us you'd like to join {name}; we'll introduce you to the head of department."] + extra + ["Start serving after training."]
     lis = "".join(f"<li><span>{html.escape(s)}</span></li>" for s in steps)
     return f'''        <article class="dept-card card">
-          <span class="ic">{ic_plain(icon)}</span>
+          {sq(icon, i)}
           <h3>{html.escape(name)}</h3>
           <p>{desc}</p>
           <details>
             <summary>How to join</summary>
             <ol class="mini-steps">{lis}</ol>
-            <a class="btn btn-red btn-sm" href="{mailto("I want to join " + plain, "Hello, my name is ... and I would like to join " + plain + ". My phone number is ...")}">{ic("mail")} Email to join</a>
+            <a class="btn btn-red btn-sm" href="{mailto("I want to join " + name, "Hello, my name is ... and I would like to join " + name + ". My phone number is ...")}">{ic("mail")} Email to join</a>
           </details>
         </article>'''
 
@@ -727,7 +649,7 @@ workers = f'''{page_hero("members15.jpg", "Serve with us", "Serve in God's House
           <span class="eyebrow">Start here</span>
           <h2 class="h2">Workers in Training</h2>
           <p class="sub">Every worker at Fuller's Field begins with Workers in Training (WIT), the RCCG course that grounds you in the faith and prepares you to serve.</p>
-          <div class="btn-row"><a class="btn btn-red" href="{mailto("Register me for Workers in Training", "Hello, my name is ... and I would like to register for Workers in Training. My phone number is ...")}">{ic("mail")} Register for WIT</a></div>
+          <div class="btn-row"><a class="btn btn-red" href="{WIT_LINK}">{ic("mail")} Register for WIT</a></div>
         </div>
         <ol class="wit-steps">
           <li class="card"><div><strong>Worship with us</strong><span>Be part of the Fuller's Field family on Sundays.</span></div></li>
@@ -740,7 +662,7 @@ workers = f'''{page_hero("members15.jpg", "Serve with us", "Serve in God's House
     <section class="section leadership" id="departments">
       <div class="head-c reveal"><span class="eyebrow">Departments</span><h2 class="h2">Where You Can Serve</h2><p>Tap “How to join” on any department.</p></div>
       <div class="dept-grid reveal">
-{chr(10).join(dept_card(*d) for d in DEPTS)}
+{chr(10).join(dept_card(d, i) for i, d in enumerate(DEPTS))}
       </div>
     </section>
 
@@ -751,14 +673,10 @@ workers = f'''{page_hero("members15.jpg", "Serve with us", "Serve in God's House
     </section>'''
 page("workers.html", "Serve | Fuller's Field Parish", "Departments at RCCG Fuller's Field Parish and how to join, starting with Workers in Training.", workers)
 
-# ------------------------------------------------------------------ EVENTS
-events = f'''{page_hero("members27.jpg", "What's on", "Events &amp; Programmes", "Monthly special services, yearly celebrations and our weekly rhythm. Tap any event to see its flyer.", '<a href="#events" class="btn btn-red">Upcoming Events</a>', pos="center 30%")}
+# ------------------------------------------------------------------ EVENTS (no repeats from the home page)
+events = f'''{page_hero("members27.jpg", "What's on", "Events &amp; Programmes", "Monthly special services and yearly celebrations at Fuller's Field. Tap any event to see its flyer.", pos="center 30%")}
 
-{COUNTDOWN}
-
-{events_section("Mark your calendar", "Upcoming Events")}
-
-{SERVICES}
+{events_list("All Events", "Dates update automatically, so the next one is always at the top.")}
 
     <section class="section leadership">
       <div class="head-c reveal"><span class="eyebrow">With the wider RCCG family</span><h2 class="h2">RCCG Programmes</h2><p>Held at Redemption City and streamed online. See rccg.org for exact dates.</p></div>
@@ -767,15 +685,20 @@ events = f'''{page_hero("members27.jpg", "What's on", "Events &amp; Programmes",
         <li class="card"><h3>Annual Convention</h3><p>Every August at Redemption City.</p></li>
         <li class="card"><h3>Holy Ghost Congress</h3><p>Every December at Redemption City.</p></li>
       </ul>
+    </section>
+
+    <section class="cta-banner" style="background-image:url('{IMG}members23.jpg')">
+      <h2>Never Miss a Service</h2>
+      <p>Every service also streams live on YouTube and Facebook @rccgfullersfield.</p>
+      <div class="cta-buttons"><a href="{YT}" target="_blank" rel="noopener" class="btn btn-red">Watch on YouTube</a><a href="index.html#services" class="btn btn-white">Weekly Service Times</a></div>
     </section>'''
-page("events.html", "Events | Fuller's Field Parish", "Monthly special services, yearly events and service times at RCCG Fuller's Field Parish.", events, extra=EV_DIALOG)
+page("events.html", "Events | Fuller's Field Parish", "Monthly special services and yearly events at RCCG Fuller's Field Parish.", events, extra=EV_DIALOG)
 
 # ------------------------------------------------------------------ GIVE
-funds = "\n".join(f'''        <article class="fund card">
-          <h3>{n}</h3>
-          <p>{u}</p>
-          <div class="row"><span class="num">{num}</span>{copy_btn(num, aria="Copy " + n + " account number")}</div>
-        </article>''' for n, u, num in FUNDS)
+fund_rows = "\n".join(f'''        <div class="fund-row">
+          <div><h3>{n}</h3><p>{u}</p></div>
+          <span class="num">{num}</span>{copy_btn(num, aria="Copy " + n + " account number")}
+        </div>''' for n, u, num in FUNDS)
 give = f'''{page_hero("offeringhero.jpg", "Sow a seed", "Give Cheerfully, Give in Faith", "Your tithes, offerings and seeds fund ministry, missions and care for families. Thank you for giving.")}
 
     <div style="padding:0 6vw">
@@ -789,26 +712,38 @@ give = f'''{page_hero("offeringhero.jpg", "Sow a seed", "Give Cheerfully, Give i
     </div>
 
     <section class="section">
-      <div class="head-c reveal"><span class="eyebrow">Online transfers</span><h2 class="h2">Choose Where Your Seed Goes</h2><p>All accounts are with Ecobank Nigeria, in the name RCCG Fuller's Field.</p></div>
-      <div class="fund-grid reveal">
-{funds}
+      <div class="head-c reveal"><span class="eyebrow">Other funds</span><h2 class="h2">Choose Where Your Seed Goes</h2><p>All accounts are with Ecobank Nigeria, in the name RCCG Fuller's Field.</p></div>
+      <div class="fund-list reveal">
+{fund_rows}
       </div>
     </section>
 
-    <section class="section leadership" id="ussd">
-      <div class="ussd reveal">
-        <div>
-          <span class="eyebrow">No data? No problem</span>
-          <h2 class="h2">Give via USSD</h2>
-          <p class="sub">Give from any phone, even without internet.</p>
-          <div class="ussd-code"><span class="code">*326#</span>{copy_btn("*326#", aria="Copy USSD code")}</div>
+    <section class="section leadership" id="ways">
+      <div class="head-c reveal"><span class="eyebrow">Ways to give</span><h2 class="h2">Give Your Way</h2></div>
+      <div class="ways reveal">
+        <div class="way card">
+          {sq("card", 1)}
+          <h3>Bank transfer</h3>
+          <p>Use your banking app to send to any account above. Copy the number with one tap.</p>
         </div>
-        <ol class="num-steps">
-          <li class="card"><span>Dial <strong>*326#</strong> from the number linked to your bank account and choose <strong>Transfer</strong>.</span></li>
-          <li class="card"><span>Choose <strong>Ecobank</strong> as the receiving bank.</span></li>
-          <li class="card"><span>Enter the account number for your fund, then the amount.</span></li>
-          <li class="card"><span>Check the name reads <strong>RCCG Fuller's Field</strong>, then enter your PIN.</span></li>
-        </ol>
+        <div class="way card" id="ussd">
+          {sq("keypad", 0)}
+          <h3>USSD, no data needed</h3>
+          <div class="ussd-code" style="margin:4px 0"><span class="code">*326#</span>{copy_btn("*326#", aria="Copy USSD code")}</div>
+          <details><summary>How it works +</summary>
+            <ol>
+              <li><span>Dial *326# from the number linked to your bank account and choose Transfer.</span></li>
+              <li><span>Choose Ecobank as the receiving bank.</span></li>
+              <li><span>Enter the account number for your fund, then the amount.</span></li>
+              <li><span>Check the name reads RCCG Fuller's Field, then enter your PIN.</span></li>
+            </ol>
+          </details>
+        </div>
+        <div class="way card">
+          {sq("church", 2)}
+          <h3>In church</h3>
+          <p>Give during any Sunday service through the offering, or use the offering envelopes from the ushers.</p>
+        </div>
       </div>
     </section>
 
@@ -817,7 +752,7 @@ give = f'''{page_hero("offeringhero.jpg", "Sow a seed", "Give Cheerfully, Give i
       <div class="faq reveal">
         <details class="card"><summary>Which account should I use for my tithe?</summary><p>Use the Tithe, first fruit &amp; love offering account (0212009328) for your tithe, first fruit and regular offerings.</p></details>
         <details class="card"><summary>Is my giving secure?</summary><p>Yes. All accounts are official Ecobank accounts in the name RCCG Fuller's Field. Always confirm the account name before completing a transfer.</p></details>
-        <details class="card"><summary>Can I get a receipt?</summary><p>Yes. Contact the parish office after giving and we will send you a giving statement.</p></details>
+        <details class="card"><summary>Can I get a receipt?</summary><p>Yes. Contact the parish office on {PHONE} after giving and we will send you a giving statement.</p></details>
       </div>
     </section>
 
@@ -825,7 +760,7 @@ give = f'''{page_hero("offeringhero.jpg", "Sow a seed", "Give Cheerfully, Give i
       <p>“Give, and it shall be given unto you; good measure, pressed down, and shaken together, and running over.”</p>
       <cite>Luke 6:38</cite>
     </section>'''
-page("give.html", "Give | Fuller's Field Parish", "Give your tithes and offerings to RCCG Fuller's Field by bank transfer or USSD. All accounts are with Ecobank Nigeria.", give, fab=False)
+page("give.html", "Give | Fuller's Field Parish", "Give your tithes and offerings to RCCG Fuller's Field by bank transfer, USSD or in church. All accounts are with Ecobank Nigeria.", give, fab=False)
 
 # ------------------------------------------------------------------ CONTACT
 contact = f'''{page_hero("churchbuilding.jpg", "Get in touch", "We'd Love to Hear From You", "Visit us on Sunday, call the parish office, or send us a prayer request.", pos="center 40%")}
@@ -848,7 +783,6 @@ contact = f'''{page_hero("churchbuilding.jpg", "Get in touch", "We'd Love to Hea
             <li>Opposite Maple Plaza</li>
             <li>Farm Bus Stop, Oko-Ado</li>
           </ul>
-          <p><strong>Sundays</strong> 7:30am &amp; 10:30am · <strong>Tue</strong> 6:30pm · <strong>Thu</strong> 6:30pm</p>
         </div>
       </div>
     </section>

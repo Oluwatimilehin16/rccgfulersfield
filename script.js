@@ -97,38 +97,39 @@
     }
     return null;
   }
-  var grid = document.querySelector(".events-grid");
-  var dated = [];
-  document.querySelectorAll(".event-card[data-rule]").forEach(function (ev) {
-    var hm = ev.dataset.time.split(":");
-    var d = nextOcc(ev.dataset.rule.split(","), +hm[0], +hm[1]);
-    if (!d) return;
-    dated.push({ el: ev, d: d });
-    var dd = ev.querySelector(".date-badge .d"), mm = ev.querySelector(".date-badge .m"), full = ev.querySelector(".next-full");
-    if (dd) dd.textContent = d.getDate();
-    if (mm) mm.textContent = MONTHS[d.getMonth()].slice(0, 3);
-    if (full) full.textContent = DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()];
+  document.querySelectorAll(".ev-list").forEach(function (list) {
+    var dated = [];
+    list.querySelectorAll(".ev-row[data-rule]").forEach(function (ev) {
+      var hm = ev.dataset.time.split(":");
+      var d = nextOcc(ev.dataset.rule.split(","), +hm[0], +hm[1]);
+      if (!d) return;
+      dated.push({ el: ev, d: d });
+      var dd = ev.querySelector(".event-date .d"), mm = ev.querySelector(".event-date .m"), full = ev.querySelector(".next-full");
+      if (dd) dd.textContent = d.getDate();
+      if (mm) mm.textContent = MONTHS[d.getMonth()].slice(0, 3) + " " + d.getFullYear();
+      if (full) full.textContent = DAYS[d.getDay()] + " " + d.getDate() + " " + MONTHS[d.getMonth()];
+    });
+    dated.sort(function (x, y) { return x.d - y.d; }).forEach(function (x) { list.appendChild(x.el); });
+    list.querySelectorAll(".ev-row:not([data-rule])").forEach(function (el) { list.appendChild(el); });
+    var limit = +list.dataset.limit || 0;
+    if (limit) Array.prototype.slice.call(list.children).forEach(function (el, i) { if (i >= limit) el.remove(); });
   });
-  if (grid && dated.length) {
-    dated.sort(function (a, b) { return a.d - b.d; }).forEach(function (x) { grid.appendChild(x.el); });
-    grid.querySelectorAll(".event-card:not([data-rule])").forEach(function (el) { grid.appendChild(el); });
-  }
 
   // ---------- Event flyer dialog ----------
   var dlg = document.getElementById("evDialog");
   if (dlg && typeof dlg.showModal === "function") {
     var dImg = dlg.querySelector(".flyer img"), dT = dlg.querySelector("h3"), dW = dlg.querySelector(".when"), dD = dlg.querySelector(".desc");
     var open = function (ev) {
-      var img = ev.querySelector(".event-img img");
+      var img = ev.querySelector("img");
       dImg.src = ev.dataset.flyer || (img ? img.getAttribute("src") : "");
       dImg.alt = img ? img.alt : "";
       dT.textContent = ev.querySelector("h3").textContent;
       var w = ev.querySelector(".ev-when"); dW.textContent = w ? w.textContent : "";
-      var lead = ev.querySelector(".event-body > p"), more = ev.querySelector(".ev-more");
+      var lead = ev.querySelector(".ev-lead"), more = ev.querySelector(".ev-more");
       dD.innerHTML = (lead ? "<p>" + lead.innerHTML + "</p>" : "") + (more ? more.innerHTML : "");
       dlg.showModal(); document.body.style.overflow = "hidden";
     };
-    document.querySelectorAll(".event-card").forEach(function (ev) {
+    document.querySelectorAll(".ev-row").forEach(function (ev) {
       ev.addEventListener("click", function () { open(ev); });
       ev.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(ev); } });
     });
