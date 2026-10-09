@@ -210,7 +210,7 @@ SERVICES = f'''    <section class="sec" id="services" aria-labelledby="svc-title
           <div class="flow">
 {step("sun", "7:30 – 9:30am", "First service")}
 {step("book", "9:30 – 10:30am", "Sunday school (Bible study)")}
-{step("fire", "9:30 – 11:00am", "Hope of Nations", youth=True)}
+{step("users", "9:30 – 11:00am", "Hope of Nations", youth=True)}
 {step("church", "10:30am – 12:00pm", "Second service")}
           </div>
         </div>
@@ -235,7 +235,7 @@ def event(rule, time, d, m, title, when, lead, more, img, alt, date_word=False):
               <p class="when">{when}</p>
               <p class="ev-lead">{lead}</p>
               <div class="ev-more">{more}</div>
-              <span class="ev-open">{svg("calendar")} View flyer &amp; details</span>
+              <span class="ev-open">View flyer &amp; details</span>
             </div>
             <img src="images/web/{img}" alt="{alt}" loading="lazy">
           </li>'''
@@ -354,7 +354,7 @@ MINISTRIES = [
       short="Our youth and young adults ministry: worship, the Word and real conversations.",
       about=["Hope of Nations is the youth and young adults ministry of Fuller's Field. We are raising the next generation of leaders and influencers for God's kingdom.",
              "Young people face real pressures today. Hope of Nations gives them a place to bring honest questions, grow in their relationship with God and discover their gifts, with friends who are walking the same road."],
-      acts=[("fire", "bg-red", "Sunday youth service", "Worship, teaching and prayer every Sunday from 9:30am."),
+      acts=[("users", "bg-red", "Sunday youth service", "Worship, teaching and prayer every Sunday from 9:30am."),
             ("mic", "bg-gold", "Creative arts", "Music, drama and spoken word, like our Easter Praise Concert."),
             ("book", "bg-indigo", "Career and life workshops", "Practical sessions on work, money, relationships and purpose."),
             ("globe", "bg-green", "Outreach", "Taking the love of Jesus to our neighbourhood and campuses.")],
@@ -763,7 +763,7 @@ FUNDS = [
  ("Mission Fund", "Evangelism and RCCG missions", "globe", "bg-green", "3490010950"),
  ("CSR", "Projects that serve our community", "hands", "bg-gold", "0210002112"),
  ("Welfare", "Food, school fees and help for families", "heart", "bg-red", "0213000786"),
- ("Hope of Nations", "Our youth and young adults", "fire", "bg-rose", "3490030961"),
+ ("Hope of Nations", "Our youth and young adults", "users", "bg-rose", "3490030961"),
  ("Special Funds", "Special seeds, vows and projects", "gift", "bg-ink", "0213061101"),
 ]
 fund_html = "\n".join(f'''          <article class="fundc">
@@ -823,7 +823,7 @@ give_main = f'''  <main id="main">
           <figure class="seed"><img src="images/web/community1.jpg" alt="Two women embracing after service" loading="lazy"><span><small>Welfare</small>Families cared for in hard times</span></figure>
           <figure class="seed"><img src="images/web/childrenministry.jpg" alt="Children gathered at a celebration" loading="lazy"><span><small>Ministry</small>Children growing in faith</span></figure>
           <figure class="seed"><img src="images/web/churchbuilding.jpg" alt="The church building" loading="lazy"><span><small>Tabernacle</small>A house of God for generations</span></figure>
-          <figure class="seed"><img src="images/web/members17.jpg" alt="Young people worshipping" loading="lazy"><span><small>Hope of Nations</small>Young people on fire for God</span></figure>
+          <figure class="seed"><img src="images/web/members17.jpg" alt="Young people worshipping" loading="lazy"><span><small>Hope of Nations</small>Young people growing in God</span></figure>
         </div>
       </div>
     </section>

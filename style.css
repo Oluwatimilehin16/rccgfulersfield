@@ -968,3 +968,29 @@ h3 {
 .ev-open svg { width: 18px; height: 18px; flex-shrink: 0; }
 @media (max-width: 900px) { .event-date .d.word { font-size: 1.05rem; } }
 .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+
+/* ---------- Round 4: calmer colour pairings ---------- */
+/* White circle for the heart on the floating Give button */
+.fab-give .fab-ic { background: #fff; color: var(--red); }
+/* Hope of Nations step matches the others */
+.flow-step.youth .fs-ic { background: var(--indigo); }
+.flow-step.youth .fs-ic svg { stroke: var(--gold); }
+/* Arise and Shine: light card instead of yellow next to the red day stubs */
+.spotlight { background: var(--tint); color: var(--indigo-ink); border: 1px solid var(--line); }
+.spotlight small { color: var(--red); }
+.spotlight h3 { color: var(--indigo); }
+/* No gold text on red */
+.countdown .cd-label small { color: rgba(255,255,255,.82); }
+.facts small { color: rgba(255,255,255,.75); }
+.thanks cite { color: #fff; opacity: .85; }
+/* Events: quieter list */
+.events .event-date .d { color: #fff; }
+.events .when { color: rgba(255,255,255,.92); font-weight: 600; }
+.ev-open { border: 0; padding: 0; margin-top: 10px; border-radius: 0; font-size: 0.95rem; font-weight: 650; color: #fff; text-decoration: underline; text-decoration-color: rgba(255,255,255,.5); text-underline-offset: 5px; }
+.ev-open:hover { background: none; text-decoration-color: #fff; }
+.event:hover h3 { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; }
+@media (max-width: 900px) {
+  .event > img { display: none; }
+  .event { padding: 24px 0; }
+}
