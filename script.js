@@ -175,6 +175,88 @@
   if (list && dated.length) {
     dated.sort(function (a, b) { return a.date - b.date; })
       .forEach(function (x) { list.appendChild(x.el); });
+    list.querySelectorAll(".event:not([data-rule])").forEach(function (el) { list.appendChild(el); });
+  }
+
+  // ---------- Floating Give button ----------
+  var fab = document.querySelector(".fab-give");
+  if (fab) {
+    var onScroll = function () { fab.classList.toggle("is-visible", window.scrollY > 280); };
+    window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  }
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- Photo mosaic: tiles change picture one at a time ----------
+  var tiles = Array.prototype.slice.call(document.querySelectorAll(".tile"));
+  tiles.forEach(function (t) { var f = t.querySelector("img"); if (f) f.classList.add("is-on"); });
+  if (tiles.length && !reduceMotion) {
+    var last = -1;
+    setInterval(function () {
+      var i; do { i = Math.floor(Math.random() * tiles.length); } while (tiles.length > 1 && i === last);
+      last = i;
+      var imgs = tiles[i].querySelectorAll("img");
+      if (imgs.length < 2) return;
+      var cur = 0;
+      imgs.forEach(function (im, k) { if (im.classList.contains("is-on")) cur = k; });
+      var nxt = (cur + 1) % imgs.length;
+      if (imgs[nxt].loading === "lazy") imgs[nxt].loading = "eager";
+      imgs[cur].classList.remove("is-on"); imgs[nxt].classList.add("is-on");
+    }, 2200);
+  }
+  // Moving strip: duplicate once for a seamless loop
+  document.querySelectorAll(".strip-track").forEach(function (track) {
+    Array.prototype.slice.call(track.children).forEach(function (img) {
+      var c = img.cloneNode(true); c.alt = ""; c.setAttribute("aria-hidden", "true"); track.appendChild(c);
+    });
+  });
+
+  // ---------- Event flyer + details dialog ----------
+  var dlg = document.getElementById("evDialog");
+  if (dlg && typeof dlg.showModal === "function") {
+    var dImg = dlg.querySelector(".flyer img"), dTitle = dlg.querySelector("h3"),
+        dWhen = dlg.querySelector(".when"), dDesc = dlg.querySelector(".desc");
+    var openEvent = function (ev) {
+      var img = ev.querySelector("img");
+      dImg.src = img ? img.getAttribute("src") : "";
+      dImg.alt = img ? img.alt : "";
+      dTitle.textContent = ev.querySelector("h3").textContent;
+      var w = ev.querySelector(".when");
+      dWhen.textContent = w ? w.textContent : "";
+      var more = ev.querySelector(".ev-more");
+      var lead = ev.querySelector(".ev-lead");
+      dDesc.innerHTML = (lead ? "<p>" + lead.innerHTML + "</p>" : "") + (more ? more.innerHTML : "");
+      dlg.showModal();
+      document.body.style.overflow = "hidden";
+    };
+    document.querySelectorAll(".event").forEach(function (ev) {
+      ev.addEventListener("click", function (e) {
+        if (e.target.closest("a")) return;
+        openEvent(ev);
+      });
+      ev.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openEvent(ev); }
+      });
+    });
+    var closeDlg = function () { dlg.close(); };
+    dlg.querySelector(".ev-close").addEventListener("click", closeDlg);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) closeDlg(); });
+    dlg.addEventListener("close", function () { document.body.style.overflow = ""; });
+  }
+
+  // ---------- Photo viewer for ministry galleries ----------
+  var pv = document.getElementById("photoDialog");
+  if (pv && typeof pv.showModal === "function") {
+    var pvImg = pv.querySelector("img");
+    document.querySelectorAll(".gallery-grid button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var im = b.querySelector("img"); pvImg.src = im.getAttribute("src"); pvImg.alt = im.alt;
+        pv.showModal(); document.body.style.overflow = "hidden";
+      });
+    });
+    pv.querySelector(".ev-close").addEventListener("click", function () { pv.close(); });
+    pv.addEventListener("click", function (e) { if (e.target === pv) pv.close(); });
+    pv.addEventListener("close", function () { document.body.style.overflow = ""; });
   }
 
   // ---------- Copy account numbers ----------
