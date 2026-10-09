@@ -1,492 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sow a Seed | Fuller's Field Parish</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="give.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Give | RCCG Fuller's Field</title>
+  <meta name="description" content="Give your tithes and offerings to RCCG Fuller's Field by bank transfer or USSD. All accounts are with Ecobank Nigeria.">
+  <meta name="theme-color" content="#28166F">
+  <link rel="icon" href="images/web/logo.png">
+  <link rel="preload" href="fonts/archivo-var.woff" as="font" type="font/woff" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ============ HEADER ============ -->
-<header class="site-header" id="siteHeader">
-  <a href="index.html#home" class="logo">
-    <span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span>
-    <span>Fuller's Field Parish<small>RCCG Parish</small></span>
-  </a>
-
-  <nav class="main-nav" id="mainNav">
-    <ul>
-      <li><a href="index.html#home" class="nav-link">Home</a></li>
-      <li><a href="index.html#welcome" class="nav-link">About</a></li>
-      <li><a href="index.html#ministries" class="nav-link">Ministries</a></li>
-      <li><a href="index.html#leadership" class="nav-link">Leadership</a></li>
-      <li><a href="index.html#events" class="nav-link">Events</a></li>
-      <li><a href="sow-a-seed.html" class="nav-link current">Give</a></li>
-      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="header-actions">
-    <a href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener" class="live-btn">
-      <span class="live-dot"></span> Live
-    </a>
-    <a href="#give-online" class="btn btn-gold give-nav-btn"><span class="label">Sow a Seed</span></a>
-    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle navigation menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- ============ HERO ============ -->
-<section class="give-hero" id="home">
-  <div class="give-hero-inner">
-    <div class="give-hero-copy">
-      <span class="hero-eyebrow-badge"><span class="dot"></span> Give in Faith</span>
-      <h1>Sow a Seed,<br><em>Reap a Harvest</em></h1>
-      <p class="hero-sub">Every tithe, offering, and seed you sow becomes fuel for ministry, missions, and lives transformed. Thank you for giving cheerfully.</p>
-      <div class="hero-cta-row">
-        <a href="#give-online" class="btn btn-gold">
-          <svg class="icon" style="width:16px;height:16px;stroke:#fff" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Give by Bank Transfer
-        </a>
-        <a href="#ussd" class="btn btn-outline">Give via USSD</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <img src="images/web/logo.png" alt="" width="46" height="46">
+        <span><span class="brand-name">Fuller's Field</span><span class="brand-sub">The Redeemed Christian Church of God</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="index.html#ministries">Ministries</a></li>
+          <li><a href="index.html#monthly">Events</a></li>
+          <li><a href="give.html" aria-current="page">Give</a></li>
+        </ul>
+        <div class="mobile-actions">
+          <a class="btn btn-red" href="index.html#visit">Plan a visit</a>
+          <a class="btn btn-line on-light" href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener"><span class="live-dot"></span> Watch live on YouTube</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <a class="live-link" href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener"><span class="live-dot"></span><span class="lbl">Watch live</span></a>
+        <a class="btn btn-red" href="index.html#visit">Plan a visit</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">
+          <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
     </div>
-    <div class="give-hero-card">
-      <div class="ghc-label">Today's Word</div>
-      <div class="ghc-verse">"Give, and it will be given to you. A good measure, pressed down, shaken together and running over, will be poured into your lap."</div>
-      <div class="ghc-ref">— Luke 6:38</div>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- ============ SCRIPTURE ============ -->
-<section class="section reveal" style="padding-bottom:20px;">
-  <div class="container" style="max-width:820px;">
-    <div class="sow-illustration" aria-hidden="true">
-      <svg viewBox="0 0 220 170" class="sow-svg">
-        <!-- ground -->
-        <path d="M10 138 Q110 126 210 138" stroke="#D9383A" stroke-width="2" fill="none" opacity="0.35"/>
-        <ellipse cx="110" cy="140" rx="95" ry="10" fill="#0A192F" opacity="0.06"/>
-        <ellipse class="soil-mound" cx="108" cy="136" rx="20" ry="6" fill="#8B5E34" opacity="0"/>
-
-        <!-- arm + open hand -->
-        <g class="sow-hand">
-          <!-- sleeve/arm -->
-          <path d="M150 8c8 0 14 6 14 14l-4 26c-1 6-7 10-13 8l-20-6c-6-2-9-8-7-14l6-20c2-6 8-9 14-9z" fill="#D9383A"/>
-          <!-- palm -->
-          <ellipse cx="121" cy="52" rx="15" ry="11" fill="#F1B98A" transform="rotate(-25 121 52)"/>
-          <!-- fingers -->
-          <path d="M108 46c-3-4-2-9 2-10 3-1 6 1 7 4l3 8-12-2z" fill="#F1B98A"/>
-          <path d="M112 56c-4-2-6-6-4-9 2-3 6-3 9-1l7 6-12 4z" fill="#F1B98A"/>
-          <path d="M118 62c-3 0-6-3-5-6 1-3 4-4 7-3l8 4-10 5z" fill="#F1B98A"/>
-        </g>
-
-        <!-- falling seeds -->
-        <circle class="seed seed1" cx="112" cy="58" r="3" fill="#5C3A21"/>
-        <circle class="seed seed2" cx="100" cy="60" r="2.6" fill="#5C3A21"/>
-        <circle class="seed seed3" cx="122" cy="64" r="2.3" fill="#5C3A21"/>
-        <circle class="seed seed4" cx="92" cy="58" r="2" fill="#5C3A21"/>
-
-        <!-- sprout -->
-        <g class="sow-sprout">
-          <path d="M108 138 C108 120 108 108 108 100" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round"/>
-          <path class="leaf leaf-l" d="M108 116c-14-2-20-14-16-24 12 2 18 12 16 24z" fill="#10B981"/>
-          <path class="leaf leaf-r" d="M108 106c14-2 20-13 16-23-12 2-18 11-16 23z" fill="#34D399"/>
-        </g>
-      </svg>
-      <p class="sow-caption">A hand that sows in faith reaps in joy</p>
-    </div>
-
-
-    <span class="eyebrow">A Word Before You Give</span>
-    <h2>Give Cheerfully, Give in Faith</h2>
-    <div class="scripture-box">
-      <p>"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
-      <span>— 2 Corinthians 9:7</span>
-    </div>
-    <div class="scripture-box">
-      <p>"Bring the whole tithe into the storehouse, that there may be food in my house. Test me in this," says the Lord Almighty, "and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it."</p>
-      <span>— Malachi 3:10</span>
-    </div>
-    <p style="color:var(--charcoal-soft);font-size:0.95rem;line-height:1.7;margin-top:8px;">
-      Giving is an act of worship and obedience. Whether it's your first fruit, tithe, offering, or a seed sown into a special project, every naira is used with integrity to reach our community and beyond. Tap the copy icon on any account below to copy the number instantly.
-    </p>
-  </div>
-</section>
-
-<!-- ============ BANK STRIP ============ -->
-<div class="bank-strip">
-  <span class="bank-badge"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span>
-  <div>
-    <div class="bank-name">RCCG Fuller's Field &middot; Ecobank Nigeria</div>
-    <div class="bank-tag">Online / Bank Transfer Accounts</div>
-  </div>
-</div>
-
-<!-- ============ ACCOUNTS ============ -->
-<section class="section reveal" id="give-online">
-  <span class="eyebrow">Online Transfers</span>
-  <h2>Choose Where Your Seed Goes</h2>
-  <p style="color:var(--charcoal-soft);font-size:0.95rem;max-width:640px;margin-top:8px;">All accounts below are held with Ecobank, "The Pan African Bank." Tap the Copy button to copy any account number to your clipboard.</p>
-
-  <div class="accounts-grid">
-
-    <div class="acc-card" style="--accent:var(--red);">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+  <main id="main">
+    <section class="give-intro">
+      <div class="wrap">
         <div>
-          <div class="acc-fund">First Fruit, Tithe &amp; Love Offering</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <h1>Give</h1>
+          <p class="lead">Giving is worship. Your tithes, offerings and seeds fund ministry at Fuller's Field, support families in need, send the gospel further and help build our church. Thank you.</p>
+          <div class="jump">
+            <a class="btn btn-red" href="#accounts">Give by bank transfer</a>
+            <a class="btn btn-line on-light" href="#ussd">Give with USSD</a>
+          </div>
         </div>
-      </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num1">0212009328</span>
-        <button class="copy-btn" data-target="num1">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
-
-    <div class="acc-card" style="--accent:var(--green-deep);">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-6 7 6v12M9 21v-6h6v6"/></svg></div>
         <div>
-          <div class="acc-fund">Tabernacle Fund (Building)</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <blockquote class="verse">
+            <p>Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.</p>
+            <cite>2 Corinthians 9:7</cite>
+          </blockquote>
+          <figure class="give-photo">
+            <img src="images/web/offeringhero.jpg" alt="A member holding an RCCG Fuller's Field offering envelope">
+          </figure>
         </div>
       </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num2">0212009335</span>
-        <button class="copy-btn" data-target="num2">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
+    </section>
 
-    <div class="acc-card" style="--accent:#2563EB;">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M2.5 12h19M12 2.5c2.5 2.6 3.8 6 3.8 9.5s-1.3 6.9-3.8 9.5c-2.5-2.6-3.8-6-3.8-9.5S9.5 5.1 12 2.5z"/></svg></div>
+    <!-- Accounts -->
+    <section class="accounts" id="accounts" aria-labelledby="acct-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="acct-title">Bank transfer</h2>
+          <p>Choose the fund you want to give to and copy its account number into your banking app.</p>
+        </div>
+
+        <div class="acct-holder">
+          <div><span>Bank</span><strong>Ecobank Nigeria</strong></div>
+          <div><span>Account name</span><strong>RCCG Fuller's Field</strong></div>
+        </div>
+
+        <div class="acct-card acct-main">
+          <p class="fund">Tithe, first fruit &amp; love offering</p>
+          <p class="bank">For your regular tithe and Sunday offerings</p>
+          <div class="acct-num-row">
+            <span class="acct-num">0212009328</span>
+            <button class="copy-btn" type="button" data-copy="0212009328" aria-label="Copy tithe and offering account number">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+              <span class="lbl">Copy</span>
+            </button>
+          </div>
+        </div>
+
+        <table class="acct-table">
+          <caption class="sr-only">Other funds</caption>
+          <thead>
+            <tr><th scope="col">Fund</th><th scope="col">What it supports</th><th scope="col">Account number</th><th scope="col"><span class="sr-only">Copy</span></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="f-name">Tabernacle Fund</td>
+              <td class="f-use">Our church building project</td>
+              <td class="f-num">0212009335</td>
+              <td><button class="copy-btn" type="button" data-copy="0212009335" aria-label="Copy Tabernacle Fund account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+            <tr>
+              <td class="f-name">Mission Fund</td>
+              <td class="f-use">Evangelism and RCCG missions</td>
+              <td class="f-num">3490010950</td>
+              <td><button class="copy-btn" type="button" data-copy="3490010950" aria-label="Copy Mission Fund account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+            <tr>
+              <td class="f-name">CSR</td>
+              <td class="f-use">Projects that serve our local community</td>
+              <td class="f-num">0210002112</td>
+              <td><button class="copy-btn" type="button" data-copy="0210002112" aria-label="Copy CSR account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+            <tr>
+              <td class="f-name">Welfare</td>
+              <td class="f-use">Food, school fees and help for families in need</td>
+              <td class="f-num">0213000786</td>
+              <td><button class="copy-btn" type="button" data-copy="0213000786" aria-label="Copy Welfare account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+            <tr>
+              <td class="f-name">Hope of Nations</td>
+              <td class="f-use">Our youth and young adults ministry</td>
+              <td class="f-num">3490030961</td>
+              <td><button class="copy-btn" type="button" data-copy="3490030961" aria-label="Copy Hope of Nations account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+            <tr>
+              <td class="f-name">Special Funds</td>
+              <td class="f-use">Special seeds, vows and projects</td>
+              <td class="f-num">0213061101</td>
+              <td><button class="copy-btn" type="button" data-copy="0213061101" aria-label="Copy Special Funds account number"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="acct-warn"><strong>Before you send:</strong> check that the account name shown in your banking app reads "RCCG Fuller's Field".</p>
+      </div>
+    </section>
+
+    <!-- USSD -->
+    <section class="ussd" id="ussd" aria-labelledby="ussd-title">
+      <div class="wrap">
         <div>
-          <div class="acc-fund">Mission Fund</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <h2 id="ussd-title">No data? Use USSD</h2>
+          <p class="muted" style="margin-top:18px; max-width:28em">You can give from any phone, even without a smartphone or internet, using Ecobank's USSD code.</p>
+          <div class="ussd-code">
+            <span class="code">*326#</span>
+            <button class="copy-btn" type="button" data-copy="*326#" aria-label="Copy USSD code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span class="lbl">Copy</span></button>
+          </div>
         </div>
-      </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num3">3490010950</span>
-        <button class="copy-btn" data-target="num3">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
-
-    <div class="acc-card" style="--accent:#7C3AED;">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 21c-4.97-3.5-9-7.3-9-11.2A5.3 5.3 0 0112 6.5a5.3 5.3 0 019 3.3c0 3.9-4.03 7.7-9 11.2z"/></svg></div>
         <div>
-          <div class="acc-fund">CSR</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <ol class="steps">
+            <li><p>Dial <strong>*326#</strong> from the phone number linked to your bank account and choose <strong>Transfer</strong>.</p></li>
+            <li><p>Choose <strong>Ecobank</strong> as the receiving bank.</p></li>
+            <li><p>Enter the account number for the fund you are giving to, then the amount.</p></li>
+            <li><p>Check the account name reads <strong>RCCG Fuller's Field</strong>, then enter your PIN to confirm.</p></li>
+          </ol>
+          <p class="note-small">Menus differ slightly between banks. If you don't bank with Ecobank, dial your own bank's transfer code instead and choose Ecobank as the receiving bank.</p>
         </div>
       </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num4">0210002112</span>
-        <button class="copy-btn" data-target="num4">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
+    </section>
 
-    <div class="acc-card" style="--accent:#D97706;">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.5 20c0-3.5 2.9-6 6.5-6s6.5 2.5 6.5 6"/><path d="M16 9a3 3 0 100-6 3 3 0 000 6zM21.5 20c0-2.9-2-5.1-4.8-5.8"/></svg></div>
+    <!-- FAQ -->
+    <section class="faq" aria-labelledby="faq-title">
+      <div class="wrap">
         <div>
-          <div class="acc-fund">Hope of Nations</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <h2 id="faq-title">Questions about giving</h2>
+          <p class="muted" style="margin-top:18px; max-width:26em">Can't find your answer? Call the parish office on <a class="text-link" href="tel:+2348033030620">0803 303 0620</a> or email <a class="text-link" href="mailto:rccgfullersfield@gmail.com">rccgfullersfield@gmail.com</a>.</p>
         </div>
-      </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num5">3490030961</span>
-        <button class="copy-btn" data-target="num5">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
-
-    <div class="acc-card" style="--accent:#DB2777;">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M20.8 8.3c0 4.5-8.8 10.2-8.8 10.2S3.2 12.8 3.2 8.3a4.6 4.6 0 018.8-1.9 4.6 4.6 0 018.8 1.9z"/></svg></div>
         <div>
-          <div class="acc-fund">Welfare</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <details>
+            <summary>Which account is for my tithe?</summary>
+            <p>Use the Tithe, first fruit &amp; love offering account (0212009328) for your tithe, first fruit and regular offerings.</p>
+          </details>
+          <details>
+            <summary>How do I know my transfer is safe?</summary>
+            <p>Every account on this page is an official Ecobank account in the name RCCG Fuller's Field. Always check that name appears before you confirm a transfer. If anyone asks you to pay into a different account name, please contact the parish office first.</p>
+          </details>
+          <details>
+            <summary>Can I get a receipt or giving statement?</summary>
+            <p>Yes. Contact the parish office after you give, with the date and amount, and we will send you a giving statement for your records.</p>
+          </details>
         </div>
       </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num6">0213000786</span>
-        <button class="copy-btn" data-target="num6">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-    </div>
+    </section>
+  </main>
 
-    <div class="acc-card" style="--accent:var(--red-deep);">
-      <div class="acc-top">
-        <div class="acc-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.4 5.9L21 9.5l-4.8 4.1 1.5 6.7L12 17l-5.7 3.3 1.5-6.7L3 9.5l6.6-.6z"/></svg></div>
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-grid">
         <div>
-          <div class="acc-fund">Special Funds</div>
-          <div class="acc-bank">Ecobank Nigeria</div>
+          <div class="footer-brand">
+            <img src="images/web/logo.png" alt="" width="52" height="52">
+            <span><strong>Fuller's Field</strong>The Redeemed Christian Church of God</span>
+          </div>
+          <address>Km 47, Lekki–Epe Expressway, beside DKK Pharmacy &amp; Supermarket, opposite Maple Plaza, Farm Bus Stop, Oko-Ado, Lagos</address>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li>Sunday 7:30am &amp; 10:30am</li>
+            <li>Sunday school 9:30am</li>
+            <li>Tuesday 6:30pm, Digging Deep</li>
+            <li>Thursday 6:30pm, Faith Clinic</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+2348033030620">0803 303 0620</a></li>
+            <li><a href="mailto:rccgfullersfield@gmail.com">rccgfullersfield@gmail.com</a></li>
+            <li><a href="https://maps.app.goo.gl/6pb1X8zB5iHSp81V7" target="_blank" rel="noopener">Get directions</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener">YouTube</a></li>
+            <li><a href="https://www.facebook.com/rccgfullersfield/" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://instagram.com/rccgfullersfield" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://x.com/Fullers_Field" target="_blank" rel="noopener">X (Twitter)</a></li>
+          </ul>
         </div>
       </div>
-      <div class="acc-number-row">
-        <span class="acc-number" id="num7">0213061101</span>
-        <button class="copy-btn" data-target="num7">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> RCCG Fuller's Field</span>
+        <a href="https://www.rccg.org" target="_blank" rel="noopener">A parish of The Redeemed Christian Church of God</a>
       </div>
     </div>
+  </footer>
 
-  </div>
-</section>
-
-<!-- ============ IMPACT / GIVING TO THE POOR ============ -->
-<section class="impact-section reveal">
-  <div class="container impact-inner">
-    <div class="impact-copy">
-      <span class="eyebrow" style="color:var(--red-light);">Beyond the Walls</span>
-      <h2 style="color:#fff;">Your Seed Reaches a Life in Need</h2>
-      <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;line-height:1.7;margin-top:10px;">Through the Welfare and CSR funds, your giving becomes food on a table, school fees paid, and hope restored for families around us. "Whatever you did for one of the least of these... you did for me." — Matthew 25:40</p>
-    </div>
-
-    <div class="impact-illustration" aria-hidden="true">
-      <svg viewBox="0 0 380 260" class="impact-svg">
-        <!-- ground -->
-        <path d="M20 220 Q190 208 360 220" stroke="rgba(255,255,255,0.2)" stroke-width="2" fill="none"/>
-
-        <!-- giver figure -->
-        <g class="giver">
-          <circle cx="95" cy="90" r="20" fill="#F1B98A"/>
-          <path d="M65 210 L70 140c1-14 12-24 26-24h6c14 0 25 10 26 24l5 70z" fill="#D9383A"/>
-          <!-- extended arm -->
-          <path d="M120 148c16-4 30 2 40 14l6 8" stroke="#F1B98A" stroke-width="10" stroke-linecap="round" fill="none"/>
-        </g>
-
-        <!-- basket traveling -->
-        <g class="basket-travel">
-          <g class="basket">
-            <path d="M-16 0h32l-4 16h-24z" fill="#B5772F"/>
-            <rect x="-18" y="-4" width="36" height="6" rx="2" fill="#8B5E23"/>
-            <circle cx="-6" cy="-8" r="5" fill="#E8555B"/>
-            <circle cx="4" cy="-9" r="5" fill="#F1B98A"/>
-            <circle cx="-1" cy="-11" r="4.5" fill="#34D399"/>
-          </g>
-        </g>
-
-        <!-- receiver figure -->
-        <g class="receiver">
-          <circle cx="280" cy="96" r="19" fill="#C98455"/>
-          <path d="M252 210 L257 148c1-13 11-22 24-22h4c13 0 23 9 24 22l5 62z" fill="#0A192F"/>
-          <!-- open arms -->
-          <path d="M255 152c-14-2-26 4-34 16l-5 8" stroke="#C98455" stroke-width="9" stroke-linecap="round" fill="none"/>
-          <path d="M305 152c10 0 18 6 22 16" stroke="#C98455" stroke-width="9" stroke-linecap="round" fill="none"/>
-        </g>
-
-        <!-- floating heart -->
-        <path class="impact-heart" d="M190 150c-6-8-20-6-20 4 0 8 12 16 20 22 8-6 20-14 20-22 0-10-14-12-20-4z" fill="#E8555B"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ============ USSD ============ -->
-<section class="section ussd-section reveal" id="ussd">
-  <div class="container" style="max-width:900px;">
-    <span class="eyebrow" style="color:var(--red-light);">No Data? No Problem</span>
-    <h2 style="color:#fff;">Give via USSD (No Internet Needed)</h2>
-    <p style="color:rgba(255,255,255,0.75);font-size:0.95rem;margin-top:8px;">You can sow your seed straight from your phone's dial pad — works on any phone, even without a smartphone or data.</p>
-
-    <div class="ussd-card">
-      <span style="font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--red-light);font-weight:700;">Ecobank Nigeria USSD Code</span>
-      <div class="ussd-dial-row">
-        <span class="ussd-code" id="ussdCode">*326#</span>
-        <button class="copy-btn" data-target="ussdCode">
-          <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
-          Copy
-        </button>
-      </div>
-
-      <div class="ussd-steps">
-        <div class="ussd-step">
-          <span class="num">1</span>
-          <p>Dial <strong>*326#</strong> on the phone line linked to your bank account, then select the <strong>Transfer</strong> option from the menu.</p>
-        </div>
-        <div class="ussd-step">
-          <span class="num">2</span>
-          <p>Choose <strong>Other Banks</strong> (if you don't bank with Ecobank) or <strong>Ecobank</strong> (if you already do), then enter <strong>Ecobank</strong> as the destination bank.</p>
-        </div>
-        <div class="ussd-step">
-          <span class="num">3</span>
-          <p>Enter the parish account number for the fund you're sowing into (see the accounts listed above), then enter the amount you wish to give.</p>
-        </div>
-        <div class="ussd-step">
-          <span class="num">4</span>
-          <p>Confirm the account name shown is <strong>RCCG Fuller's Field</strong>, then enter your USSD/transaction PIN to complete the transfer.</p>
-        </div>
-      </div>
-
-      <p class="ussd-note">Note: USSD menus and PIN steps vary slightly by bank. If this code doesn't match your bank's menu, dial your own bank's standard transfer USSD code and select Ecobank as the receiving bank, using the account numbers above.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="section reveal">
-  <div class="container" style="max-width:760px;">
-    <span class="eyebrow">Good to Know</span>
-    <h2>Giving FAQs</h2>
-
-    <div class="faq-item">
-      <h4>Which account should I use for my regular tithe?</h4>
-      <p>Use the "First Fruit, Tithe &amp; Love Offering" account for your weekly tithes, first fruit, and love offerings.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Is my giving secure?</h4>
-      <p>Yes. All accounts are official Ecobank accounts held in the name of RCCG Fuller's Field. Always confirm the account name reads "RCCG Fuller's Field" before completing any transfer.</p>
-    </div>
-    <div class="faq-item">
-      <h4>Can I get a giving statement or receipt?</h4>
-      <p>Yes, please reach out to the parish office after giving so we can issue you a giving statement for your records.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CLOSING CTA ============ -->
-<section class="closing-cta reveal">
-  <div class="closing-cta-inner">
-    <span class="eyebrow" style="color:var(--red-light);">Thank You</span>
-    <h2 style="color:#fff;">Every Seed Counts. Every Giver Matters.</h2>
-    <p style="color:rgba(255,255,255,0.75);max-width:520px;margin:10px auto 26px;font-size:0.95rem;">Whatever you sow today, sow it in faith — God sees, and He honours it.</p>
-    <a href="#give-online" class="btn btn-gold">Give Now</a>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<footer id="contact">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo"><span class="logo-mark"><img src="images/logo.png" alt="RCCG Fullers Field Parish logo"></span> Fuller's Field Parish</div>
-      <p style="font-size:0.8rem;line-height:1.5;">A parish of the Redeemed Christian Church of God — a home for your faith, your family, and your future.</p>
-    </div>
-    <div>
-      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Quick Links</h5>
-      <ul style="font-size:0.85rem;display:flex;flex-direction:column;gap:8px;">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#welcome">About</a></li>
-        <li><a href="index.html#leadership">Leadership</a></li>
-        <li><a href="sow-a-seed.html">Give</a></li>
-      </ul>
-    </div>
-    <div>
-      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Services</h5>
-      <ul style="font-size:0.8rem;display:flex;flex-direction:column;gap:6px;">
-        <li>Sun &middot; 7:30 AM / 10:30 AM</li>
-        <li>Tue &middot; Digging Deep 6:30 PM</li>
-        <li>Thu &middot; Faith Clinic 6:30 PM</li>
-      </ul>
-    </div>
-    <div>
-      <h5 style="color:#fff;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;">Contact</h5>
-      <p style="font-size:0.8rem;">Km 47 beside DKK Supermarket Canaan Estate, Sangotedo, Ajah, Lagos</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Fuller's Field Parish. All rights reserved.</span>
-  </div>
-</footer>
-
-<div class="toast" id="toast">
-  <svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
-  <span id="toastText">Copied to clipboard!</span>
-</div>
-
-<script>
-  // Header scroll state
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('scrolled', window.scrollY > 30);
-  });
-
-  // Mobile menu toggle
-  const hamburger = document.getElementById('hamburgerBtn');
-  const mainNav = document.getElementById('mainNav');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    mainNav.classList.toggle('mobile-open');
-  });
-  document.querySelectorAll('nav.main-nav a.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-      if(window.innerWidth <= 860){
-        hamburger.classList.remove('active');
-        mainNav.classList.remove('mobile-open');
-      }
-    });
-  });
-
-  // Copy to clipboard
-  const toast = document.getElementById('toast');
-  const toastText = document.getElementById('toastText');
-  let toastTimer;
-  function showToast(msg){
-    toastText.textContent = msg;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
-  }
-  document.querySelectorAll('.copy-btn').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const targetId = btn.getAttribute('data-target');
-      const value = document.getElementById(targetId).textContent.trim();
-      try{
-        await navigator.clipboard.writeText(value);
-      }catch(e){
-        const tmp = document.createElement('textarea');
-        tmp.value = value;
-        document.body.appendChild(tmp);
-        tmp.select();
-        document.execCommand('copy');
-        document.body.removeChild(tmp);
-      }
-      const original = btn.innerHTML;
-      btn.classList.add('copied');
-      btn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg> Copied';
-      showToast(value + ' copied!');
-      setTimeout(() => {
-        btn.classList.remove('copied');
-        btn.innerHTML = original;
-      }, 1600);
-    });
-  });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('in-view');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => io.observe(el));
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
