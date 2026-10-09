@@ -19,6 +19,74 @@
     });
   }
 
+  // ---------- Hero photo slideshow ----------
+  var show = document.querySelector("[data-slideshow]");
+  if (show) {
+    var pics = show.querySelectorAll("img");
+    var dotsWrap = show.querySelector(".hero-dots");
+    var cap = show.querySelector("figcaption");
+    var idx = 0, timer;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var dots = [];
+    pics.forEach(function (img, i) {
+      if (!dotsWrap) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Show photo " + (i + 1));
+      if (i === 0) b.className = "is-active";
+      b.addEventListener("click", function () { go(i); restart(); });
+      dotsWrap.appendChild(b); dots.push(b);
+    });
+    function go(i) {
+      pics[idx].classList.remove("is-active"); if (dots[idx]) dots[idx].classList.remove("is-active");
+      idx = i;
+      pics[idx].classList.add("is-active"); if (dots[idx]) dots[idx].classList.add("is-active");
+      if (cap && pics[idx].dataset.caption) cap.textContent = pics[idx].dataset.caption;
+    }
+    function restart() { clearInterval(timer); if (!reduce) timer = setInterval(function () { go((idx + 1) % pics.length); }, 6000); }
+    restart();
+  }
+
+  // ---------- Countdown to the next gathering ----------
+  var cd = document.querySelector(".countdown[data-countdown]");
+  if (cd) {
+    var gatherings = [
+      { day: 0, h: 7,  m: 30, len: 120, name: "Sunday first service" },
+      { day: 0, h: 9,  m: 30, len: 60,  name: "Sunday school" },
+      { day: 0, h: 9,  m: 30, len: 90,  name: "Hope of Nations youth service" },
+      { day: 0, h: 10, m: 30, len: 90,  name: "Sunday second service" },
+      { day: 2, h: 18, m: 30, len: 75,  name: "Digging Deep Bible study" },
+      { day: 4, h: 18, m: 30, len: 75,  name: "Faith Clinic prayer meeting" }
+    ];
+    var q = function (sel) { return cd.querySelector(sel); };
+    var pad = function (n) { return (n < 10 ? "0" : "") + n; };
+    var tick = function () {
+      var now = new Date(), live = [], next = null;
+      gatherings.forEach(function (g) {
+        var d = new Date(now);
+        d.setDate(now.getDate() + ((g.day - now.getDay() + 7) % 7));
+        d.setHours(g.h, g.m, 0, 0);
+        var end = new Date(d.getTime() + g.len * 60000);
+        if (d <= now && now < end) live.push(g.name);
+        if (d <= now) d.setDate(d.getDate() + 7);
+        if (!next || d < next.d) next = { d: d, name: g.name };
+      });
+      // Same start time: name both (Sunday school and Hope of Nations)
+      var sameTime = gatherings.filter(function (g) {
+        var d = new Date(next.d); return g.day === d.getDay() && g.h === d.getHours() && g.m === d.getMinutes();
+      }).map(function (g) { return g.name; });
+      cd.classList.toggle("is-live", live.length > 0);
+      q(".cd-name").textContent = live.length ? live.join(" and ") : sameTime.join(" and ");
+      q(".cd-when").textContent = live.length ? "Happening now" : "Next gathering";
+      var diff = Math.max(0, next.d - now);
+      q("[data-u=d]").textContent = pad(Math.floor(diff / 864e5));
+      q("[data-u=h]").textContent = pad(Math.floor(diff / 36e5) % 24);
+      q("[data-u=m]").textContent = pad(Math.floor(diff / 6e4) % 60);
+      q("[data-u=s]").textContent = pad(Math.floor(diff / 1e3) % 60);
+    };
+    tick(); setInterval(tick, 1000);
+  }
+
   // ---------- Footer year ----------
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
@@ -40,7 +108,7 @@
       d.setDate(now.getDate() + ((day - now.getDay() + 7) % 7));
       d.setHours(+hm[0], +hm[1], 0, 0);
       // Treat a gathering as "on now" for 90 minutes after it starts
-      var end = new Date(d.getTime() + 90 * 60000);
+      var end = new Date(d.getTime() + (+(row.dataset.len || 90)) * 60000);
       if (end <= now) d.setDate(d.getDate() + 7);
       var live = d <= now && now < end;
       if (!best || d < best.date) best = { row: row, date: d, live: live };

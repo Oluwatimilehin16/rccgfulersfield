@@ -23,9 +23,10 @@
         <ul>
           <li><a href="index.html" aria-current="page">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="index.html#ministries">Ministries</a></li>
-          <li><a href="index.html#monthly">Events</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="give.html">Give</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="mobile-actions">
           <a class="btn btn-red" href="index.html#visit">Plan a visit</a>
@@ -47,6 +48,7 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-panel">
+        <span class="hero-pill">Sundays 7:30am &amp; 10:30am</span>
         <h1>Welcome to Fuller's Field.</h1>
         <p class="lead">A parish of The Redeemed Christian Church of God on the Lekki–Epe Expressway. Come and worship with us this Sunday at 7:30am or 10:30am.</p>
         <div class="btn-row">
@@ -54,10 +56,30 @@
           <a class="btn btn-line" href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener">Watch online</a>
         </div>
       </div>
-      <figure class="hero-photo">
-        <img src="images/web/members26.jpg" alt="Members of Fuller's Field dancing in praise during Sunday worship" fetchpriority="high">
+      <figure class="hero-photo" data-slideshow>
+        <img class="is-active" src="images/web/members26.jpg" alt="Members of Fuller's Field dancing in praise during Sunday worship" data-caption="Sunday praise at Fuller's Field" fetchpriority="high">
+        <img src="images/web/wisemen.jpg" alt="The Wise Men celebrating in white" data-caption="The Wise Men in celebration" loading="lazy">
+        <img src="images/web/members25.jpg" alt="A mother in a green hat smiling with her baby" data-caption="Family is at the heart of Fuller's Field" loading="lazy">
+        <img src="images/web/womenministry.jpg" alt="The Wise Women singing together" data-caption="The Wise Women in worship" loading="lazy">
+        <img src="images/web/members17.jpg" alt="Young people worshipping" data-caption="Hope of Nations, every Sunday" loading="lazy">
         <figcaption>Sunday praise at Fuller's Field</figcaption>
+        <div class="hero-dots"></div>
       </figure>
+    </section>
+
+    <!-- Countdown -->
+    <section class="countdown" data-countdown aria-label="Countdown to the next gathering">
+      <div class="wrap">
+        <div class="cd-label"><small class="cd-when">Next gathering</small><strong class="cd-name">Sunday first service</strong></div>
+        <div class="cd-timer">
+          <div class="cd-unit"><span data-u="d">00</span><small>Days</small></div>
+          <div class="cd-unit"><span data-u="h">00</span><small>Hours</small></div>
+          <div class="cd-unit"><span data-u="m">00</span><small>Mins</small></div>
+          <div class="cd-unit"><span data-u="s">00</span><small>Secs</small></div>
+        </div>
+        <span class="cd-live"><span class="live-dot"></span> Join us in church or online</span>
+        <a class="btn btn-white" href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener">Watch live</a>
+      </div>
     </section>
 
     <!-- This week -->
@@ -68,31 +90,37 @@
           <a class="text-link" href="https://www.youtube.com/@rccgfullersfield" target="_blank" rel="noopener">All services stream on YouTube</a>
         </div>
         <ul class="timetable">
-          <li data-day="0" data-time="07:30">
+          <li data-day="0" data-time="07:30" data-len="120">
             <span class="tt-day">Sunday</span>
             <span class="tt-time">7:30 – 9:30am</span>
             <span class="tt-name">First service<span>A focused service for those who want to worship early.</span></span>
             <span class="tt-flag"></span>
           </li>
-          <li data-day="0" data-time="09:30">
+          <li data-day="0" data-time="09:30" data-len="60">
             <span class="tt-day">Sunday</span>
             <span class="tt-time">9:30 – 10:30am</span>
             <span class="tt-name">Sunday school<span>Bible study in small classes between the two services.</span></span>
             <span class="tt-flag"></span>
           </li>
-          <li data-day="0" data-time="10:30">
+          <li class="tt-youth" data-day="0" data-time="09:30" data-len="90">
+            <span class="tt-day">Sunday</span>
+            <span class="tt-time">9:30 – 11:00am</span>
+            <span class="tt-name">Hope of Nations <span class="tt-tag">Youth</span><span>Our youth and young adults service: worship, the Word and real conversations.</span></span>
+            <span class="tt-flag"></span>
+          </li>
+          <li data-day="0" data-time="10:30" data-len="90">
             <span class="tt-day">Sunday</span>
             <span class="tt-time">10:30am – 12:00pm</span>
             <span class="tt-name">Second service<span>Our main celebration service of praise and the Word.</span></span>
             <span class="tt-flag"></span>
           </li>
-          <li data-day="2" data-time="18:30">
+          <li data-day="2" data-time="18:30" data-len="75">
             <span class="tt-day">Tuesday</span>
             <span class="tt-time">6:30 – 7:45pm</span>
             <span class="tt-name">Digging Deep<span>Midweek Bible study. Bring your Bible and your questions.</span></span>
             <span class="tt-flag"></span>
           </li>
-          <li data-day="4" data-time="18:30">
+          <li data-day="4" data-time="18:30" data-len="75">
             <span class="tt-day">Thursday</span>
             <span class="tt-time">6:30 – 7:45pm</span>
             <span class="tt-name">Faith Clinic<span>An evening of prayer for healing, help and breakthrough.</span></span>
@@ -130,17 +158,17 @@
         </div>
         <div class="visit-grid">
           <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg>
+            <span class="ic ic-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8"/></svg></span>
             <h3>When you arrive</h3>
             <p>Our ushers will meet you at the door and help you find a seat. There is no dress code: come as you are.</p>
           </div>
           <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M12 9v7M8 21l4-5 4 5M7 12h10"/></svg>
+            <span class="ic ic-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6" r="3"/><path d="M12 9v7M8 21l4-5 4 5M7 12h10"/></svg></span>
             <h3>Bringing children</h3>
             <p>Children's church runs during service, so kids learn about Jesus in a way they understand while you worship.</p>
           </div>
           <div>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg>
+            <span class="ic ic-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></span>
             <h3>Can't come in person?</h3>
             <p>Every service streams live on YouTube and Facebook at @rccgfullersfield, wherever you are in the world.</p>
           </div>
@@ -170,31 +198,31 @@
           <p>Church is bigger than Sunday. Each of these groups meets, prays and serves together through the week.</p>
         </div>
         <div class="min-grid">
-          <a class="min-item feature" href="about.html#hope-of-nations">
+          <a class="min-item feature" href="ministries.html#hope-of-nations">
             <img src="images/web/members17.jpg" alt="Young people worshipping together" loading="lazy">
-            <span class="min-who">Teens and young adults</span>
+            <span class="min-who">Sundays 9:30 – 11:00am</span>
             <h3>Hope of Nations</h3>
-            <p>Our youth and young adults ministry: honest conversations, worship, career workshops and outreach.</p>
+            <p>Our youth and young adults ministry, meeting every Sunday from 9:30 to 11:00am: worship, honest conversations, career workshops and outreach.</p>
           </a>
-          <a class="min-item" href="#visit">
+          <a class="min-item" href="ministries.html#children">
             <img src="images/web/childrenministry.jpg" alt="Children of Fuller's Field gathered at a celebration" loading="lazy">
             <span class="min-who">Children</span>
             <h3>Children's Church</h3>
             <p>A safe, joyful place for kids to meet Jesus every Sunday.</p>
           </a>
-          <a class="min-item" href="#visit">
+          <a class="min-item" href="ministries.html#wise-women">
             <img src="images/web/womenministry.jpg" alt="Women of the Wise Women ministry singing in matching outfits" loading="lazy">
             <span class="min-who">Women 60 and above</span>
             <h3>Wise Women</h3>
             <p>Fellowship, prayer and the wisdom of women who have walked with God.</p>
           </a>
-          <a class="min-item" href="#visit">
+          <a class="min-item" href="ministries.html#wise-men">
             <img src="images/web/wisemen.jpg" alt="Men of the Wise Men ministry in white, celebrating" loading="lazy">
             <span class="min-who">Men 60 and above</span>
             <h3>Wise Men</h3>
             <p>Brotherhood, mentoring and prayer for the fathers of our church.</p>
           </a>
-          <a class="min-item" href="#visit">
+          <a class="min-item" href="ministries.html#sunday-school">
             <img src="images/web/members16.jpg" alt="A member singing during worship" loading="lazy">
             <span class="min-who">Everyone</span>
             <h3>Sunday school</h3>
@@ -209,7 +237,7 @@
       <div class="wrap">
         <div class="section-head">
           <h2 id="ev-title">Coming up</h2>
-          <p>Special services we hold every month and every year. Invite someone along.</p>
+          <p>Special services we hold every month and every year. Invite someone along. <a class="text-link" href="events.html" style="color:#fff">See all events</a></p>
         </div>
         <ul class="event-list">
           <li class="event" data-rule="nth,1,4" data-time="18:30">
@@ -304,6 +332,7 @@
           <ul>
             <li>Sunday 7:30am &amp; 10:30am</li>
             <li>Sunday school 9:30am</li>
+            <li>Hope of Nations 9:30am</li>
             <li>Tuesday 6:30pm, Digging Deep</li>
             <li>Thursday 6:30pm, Faith Clinic</li>
           </ul>
