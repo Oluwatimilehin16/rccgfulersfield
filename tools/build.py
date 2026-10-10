@@ -201,6 +201,7 @@ def header(active):
           <a href="ministries.html" class="nav-link"{min_cur}>Ministries {ic("chev")}</a>
           <div class="mega-panel">
 {mega}
+          <a class="mega-all" href="ministries.html">All ministries →</a>
           </div>
         </li>
         <li>{link("workers.html", "Serve")}</li>
@@ -208,8 +209,18 @@ def header(active):
         <li>{link("contact.html", "Contact")}</li>
       </ul>
       <div class="mobile-extra">
-        <a href="give.html" class="btn btn-red">{ic("heart")} Give</a>
-        <a href="{YT}" target="_blank" rel="noopener" class="btn btn-outline"><span class="live-dot"></span> Watch live</a>
+        <div class="mx-btns">
+          <a href="give.html" class="btn btn-red">{ic("heart")} Give</a>
+          <a href="{YT}" target="_blank" rel="noopener" class="btn btn-outline"><span class="live-dot"></span> Watch live</a>
+        </div>
+        <div class="mx-foot">
+          <p><strong>Sundays</strong> 7:30am &amp; 10:30am</p>
+          <div class="mx-social">
+            <a href="{FB}" target="_blank" rel="noopener" aria-label="Facebook">{FB_SVG}</a>
+            <a href="{IG}" target="_blank" rel="noopener" aria-label="Instagram">{IG_SVG}</a>
+            <a href="{YT}" target="_blank" rel="noopener" aria-label="YouTube">{YT_SVG}</a>
+          </div>
+        </div>
       </div>
     </nav>
     <div class="header-actions">
