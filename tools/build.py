@@ -111,10 +111,10 @@ MINISTRIES = [
              ("Speak to a pastor", "Let a pastor know you would like to join."),
              ("Share your details", "Leave your name and phone number."),
              ("Join the next meeting", "We'll tell you when and where we meet.")]),
- dict(fn="wise-men.html", name="Wise Men", tag="60 & Above", when="Speak to a pastor for meeting times",
+ dict(fn="men-of-honor.html", name="Men of Honor", tag="60 & Above", when="Speak to a pastor for meeting times",
       who="Men aged 60 and above", hero="wisemen.jpg",
       short="Mentorship, prayer and purpose for men 60 and above.",
-      about=["The Wise Men are the fathers of Fuller's Field: men of 60 and above who meet for brotherhood, prayer and purpose.",
+      about=["Men of Honor are the fathers of Fuller's Field: men of 60 and above who meet for brotherhood, prayer and purpose.",
              "They mentor younger men, stand with families in prayer and remind us all that it is never too late to serve God with joy."],
       acts=[("users", "Brotherhood", "Friendship and fellowship among the fathers of the church."),
             ("pray", "Prayer", "Interceding for families, the church and the nation."),
@@ -427,7 +427,7 @@ GALLERY = "\n".join([
   gi("g-med", "community1.jpg", "Two women embracing after service"),
   gi("g-xtall", "members13.jpg", "A minister speaking"),
   gi("g-wide", "members8.jpg", "The congregation in worship"),
-  gi("g-med", "wisemen.jpg", "The Wise Men celebrating"),
+  gi("g-med", "wisemen.jpg", "Men of Honor celebrating"),
   gi("g-tall", "members10.jpg", "A woman singing in worship"),
 ])
 
@@ -559,7 +559,7 @@ mins = f'''{page_hero("members8.jpg", "Find your place", "Our Ministries", "Chur
       <p>Use your gifts in one of our departments. Every worker starts with Workers in Training.</p>
       <div class="cta-buttons"><a href="workers.html" class="btn btn-white">See Departments</a></div>
     </section>'''
-page("ministries.html", "Ministries | Fuller's Field Parish", "Hope of Nations, Children's Church, Wise Women and Wise Men at RCCG Fuller's Field Parish.", mins)
+page("ministries.html", "Ministries | Fuller's Field Parish", "Hope of Nations, Children's Church, Wise Women and Men of Honor at RCCG Fuller's Field Parish.", mins)
 
 # ------------------------------------------------------------------ MINISTRY PAGES (earlier design)
 for m in MINISTRIES:
